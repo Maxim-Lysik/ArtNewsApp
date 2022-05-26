@@ -11,8 +11,8 @@ data class Article(
     @ColumnInfo(name = "id")
     val _id: String,
     @ColumnInfo(name = "score") val _score: Double,
-    @ColumnInfo(name = "author") val author: Any,
-    @ColumnInfo(name = "authors") val authors: List<Any>,
+    @ColumnInfo(name = "author") val author: String,
+    @ColumnInfo(name = "authors") val authors: List<String>,
     @ColumnInfo(name = "clean_url")val clean_url: String,
     @ColumnInfo(name = "country")val country: String,
     @ColumnInfo(name = "is_option")val is_opinion: Boolean,
@@ -28,3 +28,7 @@ data class Article(
     @ColumnInfo(name = "topic")val topic: String,
     @ColumnInfo(name = "twitter_account") val twitter_account: String
 )
+
+
+// @ColumnInfo(name = "author") val author: Any,
+// @ColumnInfo(name = "authors") val authors: List<Any>,
