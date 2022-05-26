@@ -66,6 +66,7 @@ class NewsListFragment : Fragment() {
         val api:RetrofitInstance
 
 
+
         return root
 
 
