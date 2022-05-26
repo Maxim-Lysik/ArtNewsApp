@@ -1,19 +1,26 @@
 package com.example.artnewsapplicationtorelease.ui.newslist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
+import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.api.NewsAPI
 import com.example.artnewsapplicationtorelease.api.RetrofitInstance
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
+import com.example.artnewsapplicationtorelease.repository.NewsRepository
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.utils.Constants
+import com.example.artnewsapplicationtorelease.utils.Resource
 import kotlinx.android.synthetic.main.fragment_news_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +39,8 @@ class NewsListFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     lateinit var viewModel: NewsViewModel
+    lateinit var newsAdapter: NewsAdapter
+    val TAG = "SearchedNewsFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,10 +53,29 @@ class NewsListFragment : Fragment() {
         _binding = FragmentNewsListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+
+       // val textView: TextView = binding.textHome
+       /* homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }*/
+
+
+     //   val buttonone: Button = binding.button1
+
+        /*buttonone.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val repo: NewsRepository = NewsRepository()
+                repo.getSearchedNews(
+                    "art && graffiti",
+                    1,
+                    "free-news.p.rapidapi.com",
+                    "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7"
+                )
+            }
         }
+*/
+
+
 
         return root
     }
@@ -55,6 +83,43 @@ class NewsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
+        setupRecyclerView()
+
+        viewModel.searchedNews.observe(viewLifecycleOwner, Observer { response ->
+            when(response) {
+                is Resource.Success -> {
+                    hideProgressBar()
+                    response.data?.let { newsResponse ->
+                        newsAdapter.differ.submitList(newsResponse.articles)
+                    }
+                }
+                is Resource.Error -> {
+                    hideProgressBar()
+                    response.message?.let { message ->
+                        Log.e(TAG, "An error occured: $message")
+                    }
+                }
+                is Resource.Loading -> {
+                    showProgressBar()
+                }
+            }
+        })
+    }
+
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter()
+        rvBreakingNews.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
+
+    private fun hideProgressBar() {
+        paginationProgressBar.visibility = View.INVISIBLE
+    }
+
+    private fun showProgressBar() {
+        paginationProgressBar.visibility = View.VISIBLE
     }
 
 

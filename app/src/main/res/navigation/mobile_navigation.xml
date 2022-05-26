@@ -9,7 +9,7 @@
         android:id="@+id/navigation_news"
         android:name="com.example.artnewsapplicationtorelease.ui.newslist.NewsListFragment"
         android:label="News"
-        tools:layout="@layout/fragment_news_list" >
+        tools:layout="@layout/fragment_news_list1" >
         <action
             android:id="@+id/action_navigation_news_to_articleFragment"
             app:destination="@id/articleFragment"
