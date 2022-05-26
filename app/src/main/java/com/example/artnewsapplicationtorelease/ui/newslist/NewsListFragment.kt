@@ -8,9 +8,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.api.NewsAPI
 import com.example.artnewsapplicationtorelease.api.RetrofitInstance
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
+import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.utils.Constants
 import kotlinx.android.synthetic.main.fragment_news_list.*
 import kotlinx.coroutines.CoroutineScope
@@ -29,6 +31,7 @@ class NewsListFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,31 +49,12 @@ class NewsListFragment : Fragment() {
             textView.text = it
         }
 
-
-
-
-
-        GetAPISUKA()
-
-        val buttonone: Button = binding.button1
-
-        buttonone.setOnClickListener {
-
-            CoroutineScope(Dispatchers.IO).launch {
-                GetAPISUKA()
-            }
-
-
-        }
-
-        val api:RetrofitInstance
-
-
-
         return root
+    }
 
-
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as ArtNewsActivity).viewModel
     }
 
 
@@ -78,7 +62,7 @@ class NewsListFragment : Fragment() {
 
 
 
-     fun GetAPISUKA(){
+   /*  fun GetAPISUKA(){
         val url = "https://free-news.p.rapidapi.com/v1/search?q=Elon%20Musk&lang=en"
         val client = OkHttpClient()
 
@@ -102,7 +86,7 @@ class NewsListFragment : Fragment() {
         })
 
     }
-
+*/
 
 
 

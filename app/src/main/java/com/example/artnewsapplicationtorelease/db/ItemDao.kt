@@ -2,7 +2,7 @@ package com.example.artnewsapplicationtorelease.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.artnewsapplicationtorelease.Article
+import com.example.artnewsapplicationtorelease.models.Article
 
 
 @Dao

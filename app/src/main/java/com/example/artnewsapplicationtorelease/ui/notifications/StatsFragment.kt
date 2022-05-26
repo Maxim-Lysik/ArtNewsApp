@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
+import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 
 class StatsFragment : Fragment() {
 
@@ -16,6 +18,7 @@ class StatsFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +37,12 @@ class StatsFragment : Fragment() {
         }
         return root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as ArtNewsActivity).viewModel
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
