@@ -1,7 +1,6 @@
 package com.example.artnewsapplicationtorelease.api
 
-import com.example.artnewsapplicationtorelease.NewsResponse
-import com.example.artnewsapplicationtorelease.utils.Constants.Companion.API_KEY
+import com.example.artnewsapplicationtorelease.models.NewsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header

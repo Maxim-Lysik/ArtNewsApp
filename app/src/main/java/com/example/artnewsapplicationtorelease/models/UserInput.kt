@@ -1,4 +1,4 @@
-package com.example.artnewsapplicationtorelease
+package com.example.artnewsapplicationtorelease.models
 
 data class UserInput(
     val from: String,

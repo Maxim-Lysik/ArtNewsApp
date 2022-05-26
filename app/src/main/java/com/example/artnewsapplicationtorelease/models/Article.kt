@@ -1,4 +1,4 @@
-package com.example.artnewsapplicationtorelease
+package com.example.artnewsapplicationtorelease.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
