@@ -8,12 +8,18 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.artnewsapplicationtorelease.api.NewsAPI
+import com.example.artnewsapplicationtorelease.api.RetrofitInstance
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
+import com.example.artnewsapplicationtorelease.utils.Constants
 import kotlinx.android.synthetic.main.fragment_news_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.*
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
 class NewsListFragment : Fragment() {
@@ -57,7 +63,7 @@ class NewsListFragment : Fragment() {
 
         }
 
-
+        val api:RetrofitInstance
 
 
         return root
@@ -65,6 +71,10 @@ class NewsListFragment : Fragment() {
 
 
     }
+
+
+
+
 
 
      fun GetAPISUKA(){
@@ -91,6 +101,9 @@ class NewsListFragment : Fragment() {
         })
 
     }
+
+
+
 
 
     override fun onDestroyView() {
