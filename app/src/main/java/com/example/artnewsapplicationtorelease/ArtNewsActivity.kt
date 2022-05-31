@@ -49,6 +49,8 @@ class ArtNewsActivity : AppCompatActivity() {
     }
 }
 
+// test commmit
+
 /*class ArtNewsActivity : AppCompatActivity() {
 
     lateinit var viewModel: NewsViewModel
