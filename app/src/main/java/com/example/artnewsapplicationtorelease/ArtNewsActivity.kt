@@ -49,7 +49,7 @@ class ArtNewsActivity : AppCompatActivity() {
     }
 }
 
-// test commmit8
+// test commmit9
 
 /*class ArtNewsActivity : AppCompatActivity() {
 
