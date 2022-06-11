@@ -28,7 +28,42 @@ data class Article(
     @ColumnInfo(name = "title")val title: String,
     @ColumnInfo(name = "topic")val topic: String,
     @ColumnInfo(name = "twitter_account") val twitter_account: String
-): Serializable
+): Serializable {
+
+
+
+    override fun hashCode(): Int {
+        var result = is_opinion.hashCode()
+       /* result = 31 * result + location.hashCode()
+        if (name.isNotEmpty()) {
+            result = 31 * result + name.hashCode()
+        }
+        if (addressRegion.isNotEmpty()) {
+            result = 31 * result + addressRegion.hashCode()
+        }
+        if (addressLocality.isNotEmpty()) {
+            result = 31 * result + addressLocality.hashCode()
+        }
+        if (streetAddress.isNotEmpty()) {
+            result = 31 * result + streetAddress.hashCode()
+        }
+        if (postalCode.isNotEmpty()) {
+            result = 31 * result + postalCode.hashCode()
+        }
+        if (category.isNotEmpty()) {
+            result = 31 * result + category.hashCode()
+        }
+        if (products.isNotEmpty()) {
+            result = 31 * result + products.hashCode()
+        }
+*/
+        return result
+    }
+
+
+}
+
+
 
 
 // @ColumnInfo(name = "author") val author: Any,
