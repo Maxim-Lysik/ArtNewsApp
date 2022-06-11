@@ -3,6 +3,7 @@ package com.example.artnewsapplicationtorelease.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 
 @Entity(tableName = "articles")
@@ -27,7 +28,7 @@ data class Article(
     @ColumnInfo(name = "title")val title: String,
     @ColumnInfo(name = "topic")val topic: String,
     @ColumnInfo(name = "twitter_account") val twitter_account: String
-)
+): Serializable
 
 
 // @ColumnInfo(name = "author") val author: Any,

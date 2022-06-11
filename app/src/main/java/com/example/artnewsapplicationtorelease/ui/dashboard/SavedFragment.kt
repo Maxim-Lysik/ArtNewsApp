@@ -7,9 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
+import com.example.artnewsapplicationtorelease.R
+import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentSavedBinding
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
+import kotlinx.android.synthetic.main.fragment_news_list.*
 
 class SavedFragment : Fragment() {
 
@@ -42,6 +47,29 @@ class SavedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
+
+
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_navigation_saved_to_articleFragment, bundle
+            )
+        }
+
+
+
+
+
+    }
+
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter()
+        rvBreakingNews.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
     }
 
 

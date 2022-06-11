@@ -11,8 +11,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
+import com.example.artnewsapplicationtorelease.R
 import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.api.NewsAPI
 import com.example.artnewsapplicationtorelease.api.RetrofitInstance
@@ -84,6 +86,19 @@ class NewsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
         setupRecyclerView()
+
+
+
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_navigation_news_to_articleFragment, bundle
+            )
+        }
+
+
 
         viewModel.searchedNews.observe(viewLifecycleOwner, Observer { response ->
             when(response) {
