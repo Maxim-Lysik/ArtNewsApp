@@ -12,7 +12,7 @@ data class Article(
     val _id: String,
     @ColumnInfo(name = "score") val _score: Double,
     @ColumnInfo(name = "author") val author: String,
-    @ColumnInfo(name = "authors") val authors: List<String>,
+  //  @ColumnInfo(name = "authors") val authors: List<String>,
     @ColumnInfo(name = "clean_url")val clean_url: String,
     @ColumnInfo(name = "country")val country: String,
     @ColumnInfo(name = "is_option")val is_opinion: Boolean,

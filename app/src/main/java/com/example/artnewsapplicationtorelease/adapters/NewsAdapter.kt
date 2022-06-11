@@ -43,10 +43,10 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         val article = differ.currentList[position]
         holder.itemView.apply {
             Glide.with(this).load(article.media).into(ivArticleImage)
-            tvSource.text = article.title
+            tvSource.text = article.author
             tvTitle.text = article.title
-            tvDescription.text = article.title
-            tvPublishedAt.text = article.title
+            tvDescription.text = article.summary
+            tvPublishedAt.text = article.published_date
             setOnClickListener {
                 onItemClickListener?.let { it(article) }
             }

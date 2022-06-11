@@ -26,6 +26,10 @@ class Converters {
     }
 */
 
+
+
+
+
     @RequiresApi(Build.VERSION_CODES.N)
 
     @TypeConverter
@@ -43,6 +47,8 @@ class Converters {
        // val yourArray: List<String> = data.split("_")
         //return Arrays.asList(data.split(",").toList()
     }
+
+
 
 
 
