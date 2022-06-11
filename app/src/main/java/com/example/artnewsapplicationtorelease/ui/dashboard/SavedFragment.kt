@@ -15,6 +15,7 @@ import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentSavedBinding
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news_list.*
+import kotlinx.android.synthetic.main.fragment_saved_news.*
 
 class SavedFragment : Fragment() {
 
@@ -24,6 +25,7 @@ class SavedFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     lateinit var viewModel: NewsViewModel
+    lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +49,7 @@ class SavedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
+        setupRecyclerView()
 
 
         newsAdapter.setOnItemClickListener {
@@ -66,7 +69,7 @@ class SavedFragment : Fragment() {
 
     private fun setupRecyclerView() {
         newsAdapter = NewsAdapter()
-        rvBreakingNews.apply {
+        rvSavedNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
         }

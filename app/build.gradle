@@ -4,10 +4,11 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 
+
 }
 
 
-
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 
 android {
@@ -104,6 +105,8 @@ dependencies {
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation 'androidx.room:room-ktx:2.4.2'
+
+
 
 
 
