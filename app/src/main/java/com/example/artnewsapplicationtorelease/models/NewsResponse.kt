@@ -1,7 +1,7 @@
 package com.example.artnewsapplicationtorelease.models
 
 data class NewsResponse(
-    val articles: List<Article>,
+    val articles: MutableList<Article>,
     val page: Int,
     val page_size: Int,
     val status: String,

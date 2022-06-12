@@ -13,7 +13,8 @@ import retrofit2.Response
 class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
 
     val searchedNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    val breakingNewsPage = 1
+    var breakingNewsPage = 1
+    var breakingNewsResponse: NewsResponse? = null
 
     init {
         getBreakingNews("art & graffiti", "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
@@ -29,7 +30,18 @@ class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
 
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
         if (response.isSuccessful) {
-            response.body()?.let { resultResponse -> return Resource.Success(resultResponse) }
+            response.body()?.let { resultResponse ->
+                breakingNewsPage++
+                if(breakingNewsResponse == null){
+                    breakingNewsResponse = resultResponse
+                } else{
+                    val oldArticles = breakingNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+
+                }
+                return Resource.Success(breakingNewsResponse?:resultResponse)
+            }
         }
         return Resource.Error(response.message())
     }
