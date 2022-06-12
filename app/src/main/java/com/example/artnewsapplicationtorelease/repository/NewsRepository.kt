@@ -16,5 +16,5 @@ class NewsRepository(
 
     suspend fun deleteArticle(article: Article) = db.getItemDao().deleteArticle(article)
 
-
+    // test
 }
