@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.Adapter
 import android.widget.Button
 import android.widget.TextView
@@ -23,6 +24,7 @@ import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBindi
 import com.example.artnewsapplicationtorelease.repository.NewsRepository
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.utils.Constants
+import com.example.artnewsapplicationtorelease.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.artnewsapplicationtorelease.utils.Resource
 import kotlinx.android.synthetic.main.fragment_news_list.*
 import kotlinx.coroutines.CoroutineScope
@@ -107,6 +109,8 @@ class NewsListFragment : Fragment() {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles)
+                        val totalPages = newsResponse.total_hits / QUERY_PAGE_SIZE + 2
+                        isLastPage = viewModel.breakingNewsPage == totalPages
                     }
                 }
                 is Resource.Error -> {
@@ -129,10 +133,33 @@ class NewsListFragment : Fragment() {
     val scrollListener = object: RecyclerView.OnScrollListener(){
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
+            if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                isScrolling = true
+            }
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
+
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+            val visibleItemCount = layoutManager.childCount
+            val totalItemCount = layoutManager.itemCount
+
+            val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
+            val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
+            val isNotAtBeginning = firstVisibleItemPosition >= 0
+            val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
+            val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
+                    isTotalMoreThanVisible && isScrolling
+
+            if(shouldPaginate){
+                viewModel.getBreakingNews("art & graffiti", "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
+                isScrolling = false
+            }else{
+                rvBreakingNews.setPadding(0,0,0,0)
+            }
+
         }
 
     }
@@ -145,15 +172,18 @@ class NewsListFragment : Fragment() {
         rvBreakingNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
+            addOnScrollListener(this@NewsListFragment.scrollListener)
         }
     }
 
     private fun hideProgressBar() {
         paginationProgressBar.visibility = View.INVISIBLE
+        isLoading = false
     }
 
     private fun showProgressBar() {
         paginationProgressBar.visibility = View.VISIBLE
+        isLoading = true
     }
 
 
