@@ -1,8 +1,16 @@
 package com.example.artnewsapplicationtorelease.ui
 
+import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.ConnectivityManager.*
+import android.net.NetworkCapabilities.*
+import android.os.Build
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.artnewsapplicationtorelease.NewsApplication
 import com.example.artnewsapplicationtorelease.models.Article
 import com.example.artnewsapplicationtorelease.models.NewsResponse
 import com.example.artnewsapplicationtorelease.repository.NewsRepository
@@ -10,7 +18,9 @@ import com.example.artnewsapplicationtorelease.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
+class NewsViewModel(
+    app: Application,
+    val newsRepository: NewsRepository) : AndroidViewModel(app) {
 
     val searchedNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
@@ -55,6 +65,45 @@ class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
     fun deleteArticle(article: Article) = viewModelScope.launch {
         newsRepository.deleteArticle(article)
     }
+
+
+
+
+
+
+
+
+
+
+    private fun hasInternetConnection(): Boolean {
+        val connectivityManager = getApplication<NewsApplication>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            val activeNetwork = connectivityManager.activeNetwork?: return false
+            val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+            return when {
+                capabilities.hasTransport(TRANSPORT_WIFI) -> true
+                capabilities.hasTransport(TRANSPORT_CELLULAR) -> true
+                capabilities.hasTransport(TRANSPORT_ETHERNET) -> true
+                else -> false
+            }
+        }else{
+            connectivityManager.activeNetworkInfo?.run {
+                return when(type) {
+                    TYPE_WIFI -> true
+                    TYPE_MOBILE -> true
+                    TYPE_ETHERNET -> true
+                    else -> false
+
+
+                }
+
+
+            }
+        }
+        return false
+
+    }
+
 
 
 }

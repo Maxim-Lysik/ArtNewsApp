@@ -9,6 +9,7 @@ import android.widget.AbsListView
 import android.widget.Adapter
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -111,6 +112,13 @@ class NewsListFragment : Fragment() {
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.total_hits / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.breakingNewsPage == totalPages
+
+                        if(isLastPage){
+                            rvBreakingNews.setPadding(0,0,0,0)
+                        }
+
+
+
                     }
                 }
                 is Resource.Error -> {
@@ -156,8 +164,6 @@ class NewsListFragment : Fragment() {
             if(shouldPaginate){
                 viewModel.getBreakingNews("art & graffiti", "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
                 isScrolling = false
-            }else{
-                rvBreakingNews.setPadding(0,0,0,0)
             }
 
         }
