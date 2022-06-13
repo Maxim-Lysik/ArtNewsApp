@@ -17,6 +17,7 @@ import com.example.artnewsapplicationtorelease.repository.NewsRepository
 import com.example.artnewsapplicationtorelease.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.io.IOException
 
 class NewsViewModel(
     app: Application,
@@ -66,7 +67,31 @@ class NewsViewModel(
         newsRepository.deleteArticle(article)
     }
 
+    private suspend fun safeBreakingNewsCall(q: String, page: Int, host: String, api: String){
+        searchedNews.postValue(Resource.Loading())
+        try{
+            if(hasInternetConnection()){
+                val response = newsRepository.getSearchedNews(q, breakingNewsPage, host, api)
+                searchedNews.postValue(handleBreakingNewsResponse(response))
+            }else{
+                searchedNews.postValue(Resource.Error("No internet connection"))
+            }
 
+
+        } catch (t: Throwable){
+                when(t){
+
+                    is IOException -> searchedNews.postValue(Resource.Error("Network Failure"))
+                    else -> searchedNews.postValue(Resource.Error("Conversion failed"))
+
+
+                }
+
+
+        }
+
+
+    }
 
 
 
