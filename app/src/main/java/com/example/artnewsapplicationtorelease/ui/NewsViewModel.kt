@@ -28,13 +28,16 @@ class NewsViewModel(
     var breakingNewsResponse: NewsResponse? = null
 
     init {
-        getBreakingNews("art & graffiti", "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
+        getBreakingNews("art & graffiti", breakingNewsPage, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
     }
 
-    fun getBreakingNews(q: String, host: String, api: String) = viewModelScope.launch {
-        searchedNews.postValue(Resource.Loading())
+    fun getBreakingNews(q: String, page: Int, host: String, api: String) = viewModelScope.launch {
+
+        safeBreakingNewsCall(q, breakingNewsPage, host, api)
+
+        /*searchedNews.postValue(Resource.Loading())
         val response = newsRepository.getSearchedNews(q, breakingNewsPage, host, api)
-        searchedNews.postValue(handleBreakingNewsResponse(response))
+        searchedNews.postValue(handleBreakingNewsResponse(response))*/
 
     }
 
