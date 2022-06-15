@@ -80,6 +80,8 @@ class NewsListFragment : Fragment() {
 
 
 
+        // test
+
         return root
     }
 
