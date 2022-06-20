@@ -85,7 +85,7 @@ class NewsViewModel(
                 when(t){
 
                     is IOException -> searchedNews.postValue(Resource.Error("Network Failure"))
-                    else -> searchedNews.postValue(Resource.Error("Conversion failed"))
+                    else -> searchedNews.postValue(Resource.Error(""))
 
 
                 }
