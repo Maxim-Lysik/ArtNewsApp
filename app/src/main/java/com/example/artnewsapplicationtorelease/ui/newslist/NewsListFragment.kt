@@ -19,6 +19,7 @@ import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.api.NewsAPI
 import com.example.artnewsapplicationtorelease.api.RetrofitInstance
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
+import com.example.artnewsapplicationtorelease.models.Article
 import com.example.artnewsapplicationtorelease.repository.NewsRepository
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.utils.Constants
@@ -81,7 +82,7 @@ class NewsListFragment : Fragment() {
 
 
 
-        // test4
+        // test5
 
         return root
     }
@@ -109,7 +110,32 @@ class NewsListFragment : Fragment() {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
+
+                        // тута и будем работац
+
+                       /* val count = newsResponse.total_pages
+                        val ourlist = emptyList<Article>()
+                        var i = 1
+                        while (i <= count) {
+                            viewModel.getBreakingNews("art & graffiti", i, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
+                            println(i)
+                            i = i + 1
+                        }
+
+
+                       // val ourlist = newsResponse.articles.toList()
+                        Log.d(TAG, "Array length is ${newsResponse.page}");
+                        Log.d(TAG, "AAAAAAA is ${i}");
+
+*/
+                        //
+
+                        // ограничиться 25?
+
+
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
+
+                      //  newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.total_hits / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.breakingNewsPage == totalPages
 
@@ -118,7 +144,7 @@ class NewsListFragment : Fragment() {
                         }
 
 
-
+//  newsAdapter.differ.submitList(newsResponse.articles.toList())
                     }
                 }
                 is Resource.Error -> {

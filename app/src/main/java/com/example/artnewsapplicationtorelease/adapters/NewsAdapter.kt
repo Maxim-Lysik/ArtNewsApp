@@ -1,15 +1,46 @@
 package com.example.artnewsapplicationtorelease.adapters
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.artnewsapplicationtorelease.R
 import com.example.artnewsapplicationtorelease.models.Article
 import kotlinx.android.synthetic.main.item_article_preview.view.*
+
+
+
+
+
+class UsersDiffCallBack(
+    private val oldList: List<Article>,
+    private val newList: List<Article>
+): DiffUtil.Callback(){
+    override fun getOldListSize(): Int = oldList.size
+
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldUser = oldList[oldItemPosition]
+        val newUser = newList[newItemPosition]
+        return oldUser.title == newUser.title
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldUser = oldList[oldItemPosition]
+        val newUser = newList[newItemPosition]
+        return oldUser == newUser
+    }
+
+}
+
+
 
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
@@ -17,14 +48,22 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.link == newItem.link
+            Log.d(TAG, "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}")
+            return oldItem.title == newItem.title
+
+            Log.d(TAG, "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}")
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem == newItem
+            Log.d(TAG, "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}")
+            return oldItem.title == newItem.title
+            Log.d(TAG, "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}")
         }
     }
     val differ = AsyncListDiffer(this, differCallback)
+
+
+
 
 
 
