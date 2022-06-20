@@ -48,16 +48,19 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            Log.d(TAG, "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}")
-            return oldItem.title == newItem.title
+            Log.d(TAG, "CHECKING AAAAAAAAAAAAAAAA")
 
-            Log.d(TAG, "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}")
+
+            Log.d(TAG, "PIZDETS FROM ${oldItem.title} AND ${newItem.title} EQUALS ${oldItem.title == newItem.title}")
+            return oldItem.title.toString() == newItem.title.toString()
+
+
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             Log.d(TAG, "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}")
-            return oldItem.title == newItem.title
-            Log.d(TAG, "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}")
+            return oldItem == newItem
+
         }
     }
     val differ = AsyncListDiffer(this, differCallback)

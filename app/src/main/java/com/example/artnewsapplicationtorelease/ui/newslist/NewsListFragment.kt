@@ -30,6 +30,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.*
+import okhttp3.internal.toImmutableList
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -131,7 +132,7 @@ class NewsListFragment : Fragment() {
                         //
 
                         // ограничиться 25?
-
+                        Log.d(TAG, "AAAAAAA1 is ${newsResponse.articles.size}");
 
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
 
