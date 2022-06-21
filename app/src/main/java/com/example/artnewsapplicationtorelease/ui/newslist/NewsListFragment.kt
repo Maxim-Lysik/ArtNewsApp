@@ -134,7 +134,7 @@ class NewsListFragment : Fragment() {
                         // ограничиться 25?
                         Log.d(TAG, "AAAAAAA1 is ${newsResponse.articles.size}");
 
-                        newsAdapter.differ.submitList(newsResponse.articles.toList())
+                        newsAdapter.differ.submitList(newsResponse.articles.toList().distinctBy { it.title })
 
                       //  newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.total_hits / QUERY_PAGE_SIZE + 2
@@ -184,9 +184,14 @@ class NewsListFragment : Fragment() {
             val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
-            val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
+            val isTotalMoreThanVisible = totalItemCount >= 21
+            //val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
+           // val shouldPaginate = true
+
+
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
                     isTotalMoreThanVisible && isScrolling
+
 
             if(shouldPaginate){
                 viewModel.getBreakingNews("art & graffiti", viewModel.breakingNewsPage, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
