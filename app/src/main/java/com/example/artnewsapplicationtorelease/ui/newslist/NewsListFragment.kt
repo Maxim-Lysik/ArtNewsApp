@@ -19,6 +19,7 @@ import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.api.NewsAPI
 import com.example.artnewsapplicationtorelease.api.RetrofitInstance
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
+import com.example.artnewsapplicationtorelease.models.Article
 import com.example.artnewsapplicationtorelease.repository.NewsRepository
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.utils.Constants
@@ -100,15 +101,26 @@ class NewsListFragment : Fragment() {
         }
 
 
-
+        val our_list = mutableListOf<Article>()
         viewModel.searchedNews.observe(viewLifecycleOwner, Observer { response ->
             when(response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
+
+
+
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
+                      //  newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.total_hits / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.breakingNewsPage == totalPages
+
+
+
+
+
+                        Log.d(TAG, "по id определяем кнопку, вызвавшую этот обработчик ${newsResponse.articles.size}");
+
 
                         if(isLastPage){
                             rvBreakingNews.setPadding(0,0,0,0)
@@ -160,6 +172,7 @@ class NewsListFragment : Fragment() {
 
             if(shouldPaginate){
                 viewModel.getBreakingNews("art & graffiti", viewModel.breakingNewsPage, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
+
                 isScrolling = false
             }
 
