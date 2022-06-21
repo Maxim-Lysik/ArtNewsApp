@@ -30,6 +30,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.*
+import okhttp3.internal.toImmutableList
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -58,6 +59,7 @@ class NewsListFragment : Fragment() {
         val root: View = binding.root
 
 
+
        // val textView: TextView = binding.textHome
        /* homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
@@ -81,6 +83,8 @@ class NewsListFragment : Fragment() {
 
 
 
+        // test5
+
         return root
     }
 
@@ -101,39 +105,53 @@ class NewsListFragment : Fragment() {
         }
 
 
-        val our_list = mutableListOf<Article>()
+
         viewModel.searchedNews.observe(viewLifecycleOwner, Observer { response ->
             when(response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
 
+                        // тута и будем работац
 
+                       /* val count = newsResponse.total_pages
+                        val ourlist = emptyList<Article>()
+                        var i = 1
+                        while (i <= count) {
+                            viewModel.getBreakingNews("art & graffiti", i, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
+                            println(i)
+                            i = i + 1
+                        }
+
+
+                       // val ourlist = newsResponse.articles.toList()
+                        Log.d(TAG, "Array length is ${newsResponse.page}");
+                        Log.d(TAG, "AAAAAAA is ${i}");
+
+*/
+                        //
+
+                        // ограничиться 25?
+                        Log.d(TAG, "AAAAAAA1 is ${newsResponse.articles.size}");
 
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
+
                       //  newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.total_hits / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.breakingNewsPage == totalPages
-
-
-
-
-
-                        Log.d(TAG, "по id определяем кнопку, вызвавшую этот обработчик ${newsResponse.articles.size}");
-
 
                         if(isLastPage){
                             rvBreakingNews.setPadding(0,0,0,0)
                         }
 
 
-
+//  newsAdapter.differ.submitList(newsResponse.articles.toList())
                     }
                 }
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Toast.makeText(activity, "An error occured $message", Toast.LENGTH_SHORT).show()
+                       // Toast.makeText(activity, "An error occured $message", Toast.LENGTH_SHORT).show()
                     }
                 }
                 is Resource.Loading -> {
@@ -172,7 +190,6 @@ class NewsListFragment : Fragment() {
 
             if(shouldPaginate){
                 viewModel.getBreakingNews("art & graffiti", viewModel.breakingNewsPage, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
-
                 isScrolling = false
             }
 

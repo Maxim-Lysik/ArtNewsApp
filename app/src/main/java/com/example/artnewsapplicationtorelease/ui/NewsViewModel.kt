@@ -1,11 +1,13 @@
 package com.example.artnewsapplicationtorelease.ui
 
 import android.app.Application
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.ConnectivityManager.*
 import android.net.NetworkCapabilities.*
 import android.os.Build
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -74,7 +76,12 @@ class NewsViewModel(
         searchedNews.postValue(Resource.Loading())
         try{
             if(hasInternetConnection()){
-                val response = newsRepository.getSearchedNews(q, breakingNewsPage, host, api)
+
+                val pages_number = 0
+                val response = newsRepository.getSearchedNews(q, breakingNewsPage, host, api)  // может быть тута
+                val pages_number_again = response.body()!!.total_pages
+                Log.d(TAG, "TOTAL NUMBER IS ${pages_number_again}");
+
                 searchedNews.postValue(handleBreakingNewsResponse(response))
             }else{
                 searchedNews.postValue(Resource.Error("No internet connection"))
@@ -85,7 +92,7 @@ class NewsViewModel(
                 when(t){
 
                     is IOException -> searchedNews.postValue(Resource.Error("Network Failure"))
-                    else -> searchedNews.postValue(Resource.Error("Conversion failed"))
+                    else -> searchedNews.postValue(Resource.Error(""))
 
 
                 }
