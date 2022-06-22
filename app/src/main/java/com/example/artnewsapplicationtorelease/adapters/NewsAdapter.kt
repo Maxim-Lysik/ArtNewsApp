@@ -5,13 +5,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestOptions
 import com.example.artnewsapplicationtorelease.R
 import com.example.artnewsapplicationtorelease.models.Article
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_article_preview.view.*
 
 
@@ -84,7 +89,37 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(article.media).into(ivArticleImage)
+
+
+           /* try{
+            if(article.media == null){Glide.with(this).load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg").into(ivArticleImage)}
+            else{Glide.with(this).load(article.media).dontAnimate().into(ivArticleImage)
+                //.onLoadFailed(ContextCompat.getDrawable(context, R.drawable.werrr))
+
+            }}catch(e:GlideException){
+                return
+            }
+*/
+
+
+
+            Picasso.get()
+                .load(article.media)
+                .error(R.drawable.werrr)
+                .fit()
+                .into(ivArticleImage)
+
+
+
+/*try{
+            if(article.media == null){Glide.with(this).load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg").into(ivArticleImage)}
+            else{Glide.with(this).load(article.media).into(ivArticleImage).
+                onLoadFailed(ContextCompat.getDrawable(context, R.drawable.werrr))
+
+            }} catch (e: GlideException){Glide.with(this).load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg").into(ivArticleImage)}
+
+*/
+            //Glide.with(this).load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg").into(ivArticleImage)
             tvSource.text = article.author
             tvTitle.text = article.title
             tvDescription.text = article.summary

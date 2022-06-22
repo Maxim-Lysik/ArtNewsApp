@@ -13,7 +13,8 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/werrr" />
 
     <TextView
         android:id="@+id/tvSource"
