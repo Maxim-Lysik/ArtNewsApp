@@ -20,13 +20,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_article_preview.view.*
 
 
-
-
-
 class UsersDiffCallBack(
     private val oldList: List<Article>,
     private val newList: List<Article>
-): DiffUtil.Callback(){
+) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldList.size
 
     override fun getNewListSize(): Int = newList.size
@@ -46,34 +43,34 @@ class UsersDiffCallBack(
 }
 
 
+class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
-class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
-
-    inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             Log.d(TAG, "CHECKING AAAAAAAAAAAAAAAA")
 
 
-            Log.d(TAG, "PIZDETS FROM ${oldItem.title} AND ${newItem.title} EQUALS ${oldItem.title == newItem.title}")
+            Log.d(
+                TAG,
+                "PIZDETS FROM ${oldItem.title} AND ${newItem.title} EQUALS ${oldItem.title == newItem.title}"
+            )
             return oldItem.title.toString() == newItem.title.toString()
 
 
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            Log.d(TAG, "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}")
+            Log.d(
+                TAG,
+                "CHECKING ${oldItem.title} AND ${newItem.title} IS: ${oldItem.title == newItem.title}"
+            )
             return oldItem == newItem
 
         }
     }
     val differ = AsyncListDiffer(this, differCallback)
-
-
-
-
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -91,24 +88,32 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         holder.itemView.apply {
 
 
-           /* try{
-            if(article.media == null){Glide.with(this).load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg").into(ivArticleImage)}
-            else{Glide.with(this).load(article.media).dontAnimate().into(ivArticleImage)
-                //.onLoadFailed(ContextCompat.getDrawable(context, R.drawable.werrr))
+            /* try{
+             if(article.media == null){Glide.with(this).load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg").into(ivArticleImage)}
+             else{Glide.with(this).load(article.media).dontAnimate().into(ivArticleImage)
+                 //.onLoadFailed(ContextCompat.getDrawable(context, R.drawable.werrr))
 
-            }}catch(e:GlideException){
-                return
+             }}catch(e:GlideException){
+                 return
+             }
+ */
+
+            // TESTING
+
+
+            if (article.media == null) {
+                Picasso.get()
+                    .load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg")
+                    .error(R.drawable.werrr)
+                    .fit()
+                    .into(ivArticleImage)
+            } else {
+                Picasso.get()
+                    .load(article.media)
+                    .error(R.drawable.werrr)
+                    .fit()
+                    .into(ivArticleImage)
             }
-*/
-
-
-
-            Picasso.get()
-                .load(article.media)
-                .error(R.drawable.werrr)
-                .fit()
-                .into(ivArticleImage)
-
 
 
 /*try{
@@ -135,8 +140,6 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
     }
-
-
 
 
     override fun getItemCount(): Int {
