@@ -8,8 +8,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
+import com.example.artnewsapplicationtorelease.DataPoint
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
+import kotlinx.android.synthetic.main.fragment_stats.*
+import java.util.*
 
 class StatsFragment : Fragment() {
 
@@ -41,6 +44,7 @@ class StatsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
+        graph_view.setData(emptyList())
     }
 
 
@@ -48,4 +52,20 @@ class StatsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+   /* private fun generateDataPoints():List<DataPoint>{
+
+        val random = Random()
+        return (0..20).map {
+            DataPoint(it, random.nextInt(50)+1)
+        }
+
+
+    }
+
+*/
+
+
 }
+
+
