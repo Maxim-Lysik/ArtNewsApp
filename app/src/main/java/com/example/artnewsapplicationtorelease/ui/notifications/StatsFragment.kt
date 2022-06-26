@@ -44,8 +44,8 @@ class StatsFragment : Fragment() {
 
         }
 
-        val ggraphView: GraphView = binding.graphView
-        ggraphView.setData(generateDataPoints())
+       /* val ggraphView: GraphView = binding.graphView
+        ggraphView.setData(generateDataPoints())*/
 
 
 
@@ -74,7 +74,7 @@ class StatsFragment : Fragment() {
         _binding = null
     }
 
-  private fun generateDataPoints():List<DataPoint>{
+  /*private fun generateDataPoints():List<DataPoint>{
 
         val random = Random()
         return (0..20).map {
@@ -82,7 +82,7 @@ class StatsFragment : Fragment() {
         }
 
 
-    }
+    }*/
 
 
 

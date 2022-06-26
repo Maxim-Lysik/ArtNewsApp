@@ -50,6 +50,10 @@ class ArtNewsActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        //val graphView1 = findViewById<GraphView>(R.id.graph_view)
+       // graphView1.setData(generateRandomDataPoints())
        // val graphick_view: GraphView = GraphView(this, attr)
 
        /* val graphView1 = findViewById<GraphView>(R.id.graph_view)
@@ -73,12 +77,12 @@ class ArtNewsActivity : AppCompatActivity() {
 
 
 
-    private fun generateRandomDataPoints(): List<DataPoint> {
+ /*   private fun generateRandomDataPoints(): List<DataPoint> {
         val random = Random()
         return (0..20).map {
             DataPoint(it, random.nextInt(50) + 1)
         }
-    }
+    }*/
 
 
 
