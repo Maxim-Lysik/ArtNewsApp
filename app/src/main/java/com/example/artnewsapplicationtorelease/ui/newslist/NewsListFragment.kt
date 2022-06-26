@@ -184,7 +184,7 @@ class NewsListFragment : Fragment() {
             val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
-            val isTotalMoreThanVisible = totalItemCount >= 21             // HERE IS THE SOLUTION
+            val isTotalMoreThanVisible = totalItemCount >= 3           // HERE IS THE SOLUTION
             //val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
            // val shouldPaginate = true
 
