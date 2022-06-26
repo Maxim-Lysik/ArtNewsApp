@@ -1,5 +1,6 @@
 package com.example.artnewsapplicationtorelease.ui.notifications
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.DataPoint
+import com.example.artnewsapplicationtorelease.GraphView
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_stats.*
 import java.util.*
+
 
 class StatsFragment : Fragment() {
 
@@ -37,14 +40,32 @@ class StatsFragment : Fragment() {
         val textView: TextView = binding.textNotifications
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+
+
         }
+
+        val ggraphView: GraphView = binding.graphView
+        ggraphView.setData(generateDataPoints())
+
+
+
+
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
-        graph_view.setData(emptyList())
+
+
+
+      //  val graph_view: GraphView = binding.graphView
+
+
+        //graph_view.setData(generateDataPoints())
+      //  graph_view.setData(emptyList())
+        //viewModel.generateDataPoints()
+
     }
 
 
@@ -53,7 +74,7 @@ class StatsFragment : Fragment() {
         _binding = null
     }
 
-   /* private fun generateDataPoints():List<DataPoint>{
+  private fun generateDataPoints():List<DataPoint>{
 
         val random = Random()
         return (0..20).map {
@@ -63,7 +84,6 @@ class StatsFragment : Fragment() {
 
     }
 
-*/
 
 
 }

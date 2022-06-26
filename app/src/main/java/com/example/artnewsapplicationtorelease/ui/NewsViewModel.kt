@@ -12,6 +12,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.artnewsapplicationtorelease.DataPoint
 import com.example.artnewsapplicationtorelease.NewsApplication
 import com.example.artnewsapplicationtorelease.models.Article
 import com.example.artnewsapplicationtorelease.models.NewsResponse
@@ -20,6 +21,7 @@ import com.example.artnewsapplicationtorelease.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
+import java.util.*
 
 class NewsViewModel(
     app: Application,
@@ -139,6 +141,19 @@ class NewsViewModel(
 
     }
 
+
+  //  val list2: List<DataPoint> = listOf(DataPoint(4,5),DataPoint(4,5), DataPoint(4,5), DataPoint(4,5), DataPoint(4,5))
+
+    /*fun generateDataPoints():List<DataPoint>{
+
+        val random = Random()
+        return (0..20).map {
+            DataPoint(it, random.nextInt(50)+1)
+        }
+
+
+    }
+*/
 
 
 }

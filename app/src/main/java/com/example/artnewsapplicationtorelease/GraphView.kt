@@ -9,43 +9,71 @@ import android.view.View
 
 class GraphView(context: Context, attributeSet: AttributeSet): View(context, attributeSet) {
 
-    private val dataSet = mutableSetOf<DataPoint>()
-
+    private val dataSet = mutableListOf<DataPoint>()
     private var xMin = 0
     private var xMax = 0
     private var yMin = 0
     private var yMax = 0
 
-
-
-
-    private val dataPointPaint = Paint().apply{
+    private val dataPointPaint = Paint().apply {
         color = Color.BLUE
+        strokeWidth = 7f
+        style = Paint.Style.STROKE
     }
 
-    override fun onDraw(canvas: Canvas){
+    private val dataPointFillPaint = Paint().apply {
+        color = Color.WHITE
+    }
+
+    private val dataPointLinePaint = Paint().apply {
+        color = Color.BLUE
+        strokeWidth = 7f
+        isAntiAlias = true
+    }
+
+    private val axisLinePaint = Paint().apply {
+        color = Color.RED
+        strokeWidth = 10f
+    }
+
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        dataSet.forEach { dataPoint ->
-            val realX = dataPoint.xVal.toFloat() / xMax * width
-            val realY = dataPoint.yVal.toFloat() / yMax * height
+        dataSet.forEachIndexed { index, currentDataPoint ->
+            val realX = currentDataPoint.xVal.toRealX()
+            val realY = currentDataPoint.yVal.toRealY()
 
-            canvas.drawCircle(realX, realY, 10f, dataPointPaint)
+            if (index < dataSet.size - 1) {
+                val nextDataPoint = dataSet[index + 1]
+                val startX = currentDataPoint.xVal.toRealX()
+                val startY = currentDataPoint.yVal.toRealY()
+                val endX = nextDataPoint.xVal.toRealX()
+                val endY = nextDataPoint.yVal.toRealY()
+                canvas.drawLine(startX, startY, endX, endY, dataPointLinePaint)
+            }
+
+            canvas.drawCircle(realX, realY, 7f, dataPointFillPaint)
+            canvas.drawCircle(realX, realY, 7f, dataPointPaint)
         }
 
-
+        canvas.drawLine(0f, 0f, 0f, height.toFloat(), axisLinePaint)
+        canvas.drawLine(0f, height.toFloat(), width.toFloat(), height.toFloat(), axisLinePaint)
     }
 
-    fun setData(newDataSet: List<DataPoint>){
+    fun setData(newDataSet: List<DataPoint>) {
         xMin = newDataSet.minByOrNull { it.xVal }?.xVal ?: 0
-        xMax = newDataSet.maxByOrNull { it.xVal }?.xVal ?: 0
+        xMax = newDataSet.minByOrNull { it.xVal }?.xVal ?: 0
         yMin = newDataSet.minByOrNull { it.yVal }?.yVal ?: 0
-        yMax = newDataSet.maxByOrNull { it.yVal }?.yVal ?: 0
-
-
+        yMax = newDataSet.minByOrNull { it.yVal }?.yVal ?: 0
         dataSet.clear()
         dataSet.addAll(newDataSet)
+        invalidate()
     }
+
+    private fun Int.toRealX() = toFloat() / xMax * width
+    private fun Int.toRealY() = toFloat() / yMax * height
 }
 
-data class DataPoint(val xVal: Int, val yVal: Int)
+data class DataPoint(
+    val xVal: Int,
+    val yVal: Int)
