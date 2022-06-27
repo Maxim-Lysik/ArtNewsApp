@@ -6,13 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.artnewsapplicationtorelease.models.Article
+import com.example.artnewsapplicationtorelease.models.DayData
 
 
-@Database(entities = [Article::class], version = 1)
+@Database(entities = [Article::class, DayData::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class NewsDataBase: RoomDatabase() {
 
     abstract fun getItemDao():ItemDao
+    abstract fun getDaydataDao():DaydataDao
     companion object{
         @Volatile
         private var instance:NewsDataBase? = null

@@ -3,6 +3,7 @@ package com.example.artnewsapplicationtorelease.repository
 import com.example.artnewsapplicationtorelease.api.RetrofitInstance
 import com.example.artnewsapplicationtorelease.db.NewsDataBase
 import com.example.artnewsapplicationtorelease.models.Article
+import com.example.artnewsapplicationtorelease.models.DayData
 
 class NewsRepository(
     val db: NewsDataBase
@@ -16,5 +17,12 @@ class NewsRepository(
 
     suspend fun deleteArticle(article: Article) = db.getItemDao().deleteArticle(article)
 
-    // test
+    // functions for DauData table
+
+    suspend fun upsert(dayData: DayData) = db.getDaydataDao().upsert(dayData)
+
+    fun getAllDays() = db.getDaydataDao().getAllDataObjects()
+
+    suspend fun deleteDay(dayData: DayData) = db.getDaydataDao().deleteDateObject(dayData)
+
 }

@@ -8,11 +8,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.DataPoint
 import com.example.artnewsapplicationtorelease.GraphView
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
+import com.example.artnewsapplicationtorelease.ui.dashboard.DashboardViewModel
+import com.example.artnewsapplicationtorelease.ui.newslist.HomeViewModel
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_stats.*
 import java.util.*
 
@@ -25,6 +31,16 @@ class StatsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     lateinit var viewModel: NewsViewModel
+    lateinit var viewModel_local: NotificationsViewModel
+
+
+
+    companion object{
+
+        private const val CHART_LABEL = "DAY_CHART"
+
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,6 +73,29 @@ class StatsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
 
+       // viewModel_local.lineDataSet.observe(this)
+
+        viewModel_local = ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
+
+
+
+        viewModel_local.dayData.add(Entry(17f, 5f))
+        var list1 = viewModel_local.dayData
+        viewModel_local._lineDataSet.value = LineDataSet(list1, CHART_LABEL)
+
+
+
+
+        viewModel_local.lineDataSet.observe(viewLifecycleOwner) { lineDataSet ->
+
+           // chartStyle.styleLineDataSet(lineDataSet)
+
+            //viewModel_local.dayData.add(Entry(17f, 5f))
+            binding.dayChart.data = LineData(lineDataSet)
+            binding.dayChart.invalidate()
+        }
+
+
 
 
       //  val graph_view: GraphView = binding.graphView
@@ -65,6 +104,16 @@ class StatsFragment : Fragment() {
         //graph_view.setData(generateDataPoints())
       //  graph_view.setData(emptyList())
         //viewModel.generateDataPoints()
+
+
+      //  if(today == monday){
+            viewModel_local.dayData.add(Entry(17f, 5f))
+        //viewModel_local.lineDataSet
+
+      //  }
+
+
+
 
     }
 

@@ -15,6 +15,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.artnewsapplicationtorelease.DataPoint
 import com.example.artnewsapplicationtorelease.NewsApplication
 import com.example.artnewsapplicationtorelease.models.Article
+import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.models.NewsResponse
 import com.example.artnewsapplicationtorelease.repository.NewsRepository
 import com.example.artnewsapplicationtorelease.utils.Resource
@@ -73,6 +74,30 @@ class NewsViewModel(
     fun deleteArticle(article: Article) = viewModelScope.launch {
         newsRepository.deleteArticle(article)
     }
+
+    // FUNCTIONS FOR DAYDATA
+
+
+    fun putDate(dayData: DayData) = viewModelScope.launch {
+        newsRepository.upsert(dayData)
+    }
+
+    fun getAllDays() = newsRepository.getAllDays()
+
+    fun deleteDay(dayData: DayData) = viewModelScope.launch {
+        newsRepository.deleteDay(dayData)
+    }
+
+
+    //
+
+
+
+
+
+
+
+
 
     private suspend fun safeBreakingNewsCall(q: String, page: Int, host: String, api: String){
         searchedNews.postValue(Resource.Loading())
