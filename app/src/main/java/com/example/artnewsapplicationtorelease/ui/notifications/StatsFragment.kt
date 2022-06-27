@@ -13,6 +13,7 @@ import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.DataPoint
 import com.example.artnewsapplicationtorelease.GraphView
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
+import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.ui.dashboard.DashboardViewModel
 import com.example.artnewsapplicationtorelease.ui.newslist.HomeViewModel
@@ -78,10 +79,43 @@ class StatsFragment : Fragment() {
         viewModel_local = ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
 
 
+        /// ТУТ ПОПЫТАЕМСЯ НАПИСАТЬ
 
-        viewModel_local.dayData.add(Entry(17f, 5f))
-        var list1 = viewModel_local.dayData
-        viewModel_local._lineDataSet.value = LineDataSet(list1, CHART_LABEL)
+        val dayData1: DayData = DayData(1, "Monday", 10)
+        val dayData2: DayData = DayData(2, "Tuesday", 9)
+        val dayData3: DayData = DayData(3, "Tuesday", 8)
+        val dayData4: DayData = DayData(4, "Tuesday", 7)
+        val dayData5: DayData = DayData(5, "Tuesday", 6)
+        val dayData6: DayData = DayData(6, "Tuesday", 5)
+        val dayData7: DayData = DayData(7, "Tuesday", 4)
+        viewModel.putDate(dayData1)
+        viewModel.putDate(dayData2)
+        viewModel.putDate(dayData3)
+        viewModel.putDate(dayData4)
+        viewModel.putDate(dayData5)
+        viewModel.putDate(dayData6)
+        viewModel.putDate(dayData7)
+
+
+
+        viewModel.getAllDays().observe(viewLifecycleOwner){
+
+            it.forEach {
+                viewModel_local.dayData.add(Entry(it.id.toFloat(), it.clicks_today!!.toFloat()))
+            }
+
+            var list1 = viewModel_local.dayData
+            viewModel_local._lineDataSet.value = LineDataSet(list1, CHART_LABEL)
+
+        }
+
+
+
+
+
+      /*  viewModel_local.dayData.add(Entry(17f, 5f))
+        var list1 = viewModel_local.dayData                                         // ЭТО уже готовый варик
+        viewModel_local._lineDataSet.value = LineDataSet(list1, CHART_LABEL)*/
 
 
 
