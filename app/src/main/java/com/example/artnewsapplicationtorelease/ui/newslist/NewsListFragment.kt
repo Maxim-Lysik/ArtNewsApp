@@ -17,11 +17,11 @@ import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.R
 import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
+import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.artnewsapplicationtorelease.utils.Resource
 import kotlinx.android.synthetic.main.fragment_news_list.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class NewsListFragment : Fragment() {
@@ -105,7 +105,22 @@ class NewsListFragment : Fragment() {
 
 
 
+        when (day) {
+            1 -> {}
+            2 -> {}
+            3 -> {
 
+               /* var clicks_tuesday = sharedPreference.getInt("Ass", 0)
+                var dayData3: DayData = DayData(3, "Tuesday", clicks_tuesday)
+                viewModel.putDate(dayData3)*/
+
+
+            }
+            4 -> {}
+            5 -> {}
+            6 -> {}
+            7 -> {}
+        }
 
 
 

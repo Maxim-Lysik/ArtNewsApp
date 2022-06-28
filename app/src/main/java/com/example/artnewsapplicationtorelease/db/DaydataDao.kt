@@ -18,6 +18,10 @@ interface DaydataDao {
     suspend fun deleteDateObject(day_data: DayData)
 
 
+    @Query("UPDATE dates SET clicks_today =:clicks_today WHERE id = :id")
+    fun update(clicks_today: Int?, id: Int)
+
+
 
 
 

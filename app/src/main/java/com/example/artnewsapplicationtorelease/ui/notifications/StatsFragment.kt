@@ -1,7 +1,9 @@
 package com.example.artnewsapplicationtorelease.ui.notifications
 
 import android.R
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,13 +83,13 @@ class StatsFragment : Fragment() {
 
         /// ТУТ ПОПЫТАЕМСЯ НАПИСАТЬ
 
-        val dayData1: DayData = DayData(1, "Monday", 10)
-        val dayData2: DayData = DayData(2, "Tuesday", 9)
-        val dayData3: DayData = DayData(3, "Wednesday", 8)
-        val dayData4: DayData = DayData(4, "Thursday", 7)
-        val dayData5: DayData = DayData(5, "Friday", 6)
-        val dayData6: DayData = DayData(6, "Saturday", 5)
-        val dayData7: DayData = DayData(7, "Sunday", 4)
+        val dayData1: DayData = DayData(1, "Sunday", 4)
+        val dayData2: DayData = DayData(2, "Monday", 10)
+        val dayData3: DayData = DayData(3, "Tuesday", 9)
+        val dayData4: DayData = DayData(4, "Wednesday", 8)
+        val dayData5: DayData = DayData(5, "Thursday", 7)
+        val dayData6: DayData = DayData(6, "Friday", 6)
+        val dayData7: DayData = DayData(7, "Saturday", 5)
         viewModel.putDate(dayData1)
         viewModel.putDate(dayData2)
         viewModel.putDate(dayData3)
@@ -102,6 +104,7 @@ class StatsFragment : Fragment() {
 
             it.forEach {
                 viewModel_local.dayData.add(Entry(it.id.toFloat(), it.clicks_today!!.toFloat()))
+                Log.d(TAG, "DAY FROM LIST: ${it}")
             }
 
             var list1 = viewModel_local.dayData
