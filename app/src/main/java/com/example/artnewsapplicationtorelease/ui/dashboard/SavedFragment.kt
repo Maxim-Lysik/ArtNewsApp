@@ -1,6 +1,9 @@
 package com.example.artnewsapplicationtorelease.ui.dashboard
 
+import android.content.ContentValues
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -104,10 +107,15 @@ class SavedFragment : Fragment() {
 
 
 
+        val sharedPreference =  this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        var needed = sharedPreference.getInt("Ass", 0)
+
+        Log.d(ContentValues.TAG, "SHARED ONE IZ ${needed}");
+
     }
 
     private fun setupRecyclerView() {
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter(this.requireActivity())
         rvSavedNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)

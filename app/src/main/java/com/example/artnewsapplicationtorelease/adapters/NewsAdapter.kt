@@ -1,19 +1,15 @@
 package com.example.artnewsapplicationtorelease.adapters
 
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestOptions
 import com.example.artnewsapplicationtorelease.R
 import com.example.artnewsapplicationtorelease.models.Article
 import com.squareup.picasso.Picasso
@@ -43,9 +39,37 @@ class UsersDiffCallBack(
 }
 
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
+class NewsAdapter(ctx: Context) : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    // SHARED PREFERENCES
+
+  val dick = ctx
+
+
+
+
+   /* val sharedPreference =  dick.getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)         // IT WORKED
+    var editor = sharedPreference.edit().putInt("Ass", 3).commit()
+*/
+
+
+
+    //var editor = sharedPreference.edit().putLong("l",100L).commit()
+
+
+    /*editor.putString("username","Anupam")
+    editor.putLong("l",100L)
+    editor.commit()
+
+*/
+
+
+
+    ///
+
+
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -137,8 +161,20 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     private var onItemClickListener: ((Article) -> Unit)? = null
 
+
+
+    val counter = 0
+
+
     fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
+
+
+       /* val sharedPreference =  dick.getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)         // IT WORKED
+        var editor = sharedPreference.edit().putInt("Ass", counter+1).commit()
+*/
+
+
     }
 
 

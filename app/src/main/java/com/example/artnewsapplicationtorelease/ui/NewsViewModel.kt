@@ -32,6 +32,10 @@ class NewsViewModel(
     var breakingNewsPage = 1
     var breakingNewsResponse: NewsResponse? = null
 
+
+
+
+
     init {
         getBreakingNews("art & graffiti", breakingNewsPage, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
     }

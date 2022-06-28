@@ -1,12 +1,12 @@
 package com.example.artnewsapplicationtorelease.ui.newslist
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.core.view.setPadding
+import android.widget.AbsListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,25 +16,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.R
 import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
-import com.example.artnewsapplicationtorelease.api.NewsAPI
-import com.example.artnewsapplicationtorelease.api.RetrofitInstance
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
-import com.example.artnewsapplicationtorelease.models.Article
-import com.example.artnewsapplicationtorelease.repository.NewsRepository
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
-import com.example.artnewsapplicationtorelease.utils.Constants
 import com.example.artnewsapplicationtorelease.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.artnewsapplicationtorelease.utils.Resource
 import kotlinx.android.synthetic.main.fragment_news_list.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.*
-import okhttp3.internal.toImmutableList
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewsListFragment : Fragment() {
 
@@ -46,6 +34,10 @@ class NewsListFragment : Fragment() {
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
     val TAG = "SearchedNewsFragment"
+   // var counter_start = 0
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -93,6 +85,37 @@ class NewsListFragment : Fragment() {
         viewModel = (activity as ArtNewsActivity).viewModel
         setupRecyclerView()
 
+        val sharedPreference =  this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        sharedPreference.getString("username","defaultName")
+        sharedPreference.getLong("l",1L)
+
+
+      /*  val sdf = SimpleDateFormat("EEEE")
+        val d = Date()
+        val dayOfTheWeek: String = sdf.format(d)*/
+
+
+        val calendar = Calendar.getInstance()
+        val day = calendar[Calendar.DAY_OF_WEEK]
+
+      //  Log.d(TAG, "DAY OF WEEK ${dayOfTheWeek}")
+        Log.d(TAG, "DAY VIA CALENDAR ${day}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        var counter_start: Int
+        counter_start = sharedPreference.getInt("Ass", 0)
 
 
         newsAdapter.setOnItemClickListener {
@@ -102,6 +125,13 @@ class NewsListFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_navigation_news_to_articleFragment, bundle
             )
+
+                   // IT WORKED
+            counter_start = counter_start+1
+            sharedPreference.edit().putInt("Ass", counter_start).commit()
+
+
+
         }
 
 
@@ -206,7 +236,7 @@ class NewsListFragment : Fragment() {
 
 
     private fun setupRecyclerView() {
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter(this.requireActivity())
         rvBreakingNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)

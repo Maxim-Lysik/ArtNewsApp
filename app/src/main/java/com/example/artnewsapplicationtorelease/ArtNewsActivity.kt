@@ -1,6 +1,9 @@
 package com.example.artnewsapplicationtorelease
 
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -50,6 +53,19 @@ class ArtNewsActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+      /* val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        var editor = sharedPreference.edit()
+        editor.putInt("Counter", 1)
+        editor.commit()
+
+
+
+        val gotthis = sharedPreference.getInt("Ass", 0)
+        //sharedPreference.getLong("l",1L)
+
+        Log.d(TAG, "SHARED ONE ${gotthis}");*/
 
 
         //val graphView1 = findViewById<GraphView>(R.id.graph_view)
