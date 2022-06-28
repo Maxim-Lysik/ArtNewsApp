@@ -62,6 +62,7 @@ class NotificationsViewModel : ViewModel() {
       //  dayData.add(Entry(5f, 10f))
       //  dayData.add(Entry(6f, 2f))
 
+
        // dayData.add(Entry(monthMaxDays.toFloat(), 7f))
 
         _lineDataSet.value = LineDataSet(dayData, CHART_LABEL)

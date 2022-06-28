@@ -2,6 +2,7 @@ package com.example.artnewsapplicationtorelease.ui.notifications
 
 import android.R
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,6 +28,9 @@ import java.util.*
 
 
 class StatsFragment : Fragment() {
+
+
+
 
     private var _binding: FragmentStatsBinding? = null
 
@@ -76,9 +80,11 @@ class StatsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
 
-       // viewModel_local.lineDataSet.observe(this)
+
 
         viewModel_local = ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
+
+
 
 
         /// ТУТ ПОПЫТАЕМСЯ НАПИСАТЬ
@@ -115,19 +121,8 @@ class StatsFragment : Fragment() {
 
 
 
-
-      /*  viewModel_local.dayData.add(Entry(17f, 5f))
-        var list1 = viewModel_local.dayData                                         // ЭТО уже готовый варик
-        viewModel_local._lineDataSet.value = LineDataSet(list1, CHART_LABEL)*/
-
-
-
-
         viewModel_local.lineDataSet.observe(viewLifecycleOwner) { lineDataSet ->
 
-           // chartStyle.styleLineDataSet(lineDataSet)
-
-            //viewModel_local.dayData.add(Entry(17f, 5f))
             binding.dayChart.data = LineData(lineDataSet)
             binding.dayChart.invalidate()
         }
@@ -135,22 +130,49 @@ class StatsFragment : Fragment() {
 
 
 
-      //  val graph_view: GraphView = binding.graphView
-
-
-        //graph_view.setData(generateDataPoints())
-      //  graph_view.setData(emptyList())
-        //viewModel.generateDataPoints()
-
-
-      //  if(today == monday){
-            viewModel_local.dayData.add(Entry(17f, 5f))
-        //viewModel_local.lineDataSet
-
-      //  }
 
 
 
+        val calendar = Calendar.getInstance()
+        val day = calendar[Calendar.DAY_OF_WEEK].toInt()
+
+        //  Log.d(TAG, "DAY OF WEEK ${dayOfTheWeek}")
+        Log.d(TAG, "DAY VIA CALENDAR ${day}")
+
+
+        val sharedPreference =  this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        sharedPreference.getInt("Ass", 20)
+
+
+        when (day) {
+            1 -> {Log.d(TAG, "SUKAAAA ${day}")}
+            2 -> {Log.d(TAG, "SUKAAAA ${day}")}
+            3 -> {
+                Log.d(TAG, "SUKAAAA ${day}")
+                 var clicks_tuesday = sharedPreference.getInt("Ass", 0)
+                 var dayData3: DayData = DayData(3, "Tuesday", clicks_tuesday)
+                 viewModel.putDate(dayData3)
+
+
+            }
+            4 -> {Log.d(TAG, "SUKAAAA ${day}")
+                var clicks_tuesday = sharedPreference.getInt("Ass", 0)
+                var dayData4: DayData = DayData(4, "Wednesday", clicks_tuesday)
+                viewModel.putDate(dayData4)
+
+            }
+            5 -> {Log.d(TAG, "SUKAAAA ${day}")}
+            6 -> {Log.d(TAG, "SUKAAAA ${day}")}
+            7 -> {Log.d(TAG, "SUKAAAA ${day}")}
+        }
+
+
+
+
+
+
+
+        ////
 
     }
 
@@ -160,15 +182,6 @@ class StatsFragment : Fragment() {
         _binding = null
     }
 
-  /*private fun generateDataPoints():List<DataPoint>{
-
-        val random = Random()
-        return (0..20).map {
-            DataPoint(it, random.nextInt(50)+1)
-        }
-
-
-    }*/
 
 
 

@@ -95,32 +95,7 @@ class NewsListFragment : Fragment() {
         val dayOfTheWeek: String = sdf.format(d)*/
 
 
-        val calendar = Calendar.getInstance()
-        val day = calendar[Calendar.DAY_OF_WEEK]
 
-      //  Log.d(TAG, "DAY OF WEEK ${dayOfTheWeek}")
-        Log.d(TAG, "DAY VIA CALENDAR ${day}")
-
-
-
-
-
-        when (day) {
-            1 -> {}
-            2 -> {}
-            3 -> {
-
-               /* var clicks_tuesday = sharedPreference.getInt("Ass", 0)
-                var dayData3: DayData = DayData(3, "Tuesday", clicks_tuesday)
-                viewModel.putDate(dayData3)*/
-
-
-            }
-            4 -> {}
-            5 -> {}
-            6 -> {}
-            7 -> {}
-        }
 
 
 

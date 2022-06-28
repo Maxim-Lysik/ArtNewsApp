@@ -171,18 +171,20 @@ class NewsViewModel(
     }
 
 
-  //  val list2: List<DataPoint> = listOf(DataPoint(4,5),DataPoint(4,5), DataPoint(4,5), DataPoint(4,5), DataPoint(4,5))
-
-    /*fun generateDataPoints():List<DataPoint>{
-
-        val random = Random()
-        return (0..20).map {
-            DataPoint(it, random.nextInt(50)+1)
-        }
+    // FOR LINEGRAPH
 
 
-    }
-*/
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
