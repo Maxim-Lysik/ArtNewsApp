@@ -93,14 +93,18 @@ class StatsFragment : Fragment() {
        val dayData1: DayData = DayData(1, "Sunday", 0)
         val dayData2: DayData = DayData(2, "Monday", 0)
         val dayData3: DayData = DayData(3, "Tuesday", 0)
-        val dayData4: DayData = DayData(4, "Wednesday", 0)
+        //val dayData4: DayData = DayData(4, "Wednesday", 0)
+        val dayData4 = viewModel.getdayDataByID(4)?: DayData(4, "Wednesday", 0)
+
+        //val l = b?.length ?: -1
+
         val dayData5: DayData = DayData(5, "Thursday", 0)
         val dayData6: DayData = DayData(6, "Friday", 0)
         val dayData7: DayData = DayData(7, "Saturday", 0)
         viewModel.putDate(dayData1)
         viewModel.putDate(dayData2)
         viewModel.putDate(dayData3)
-        viewModel.putDate(dayData4)
+        //viewModel.putDate(dayData4 )
         viewModel.putDate(dayData5)
         viewModel.putDate(dayData6)
         viewModel.putDate(dayData7)
@@ -150,19 +154,26 @@ class StatsFragment : Fragment() {
             2 -> {Log.d(TAG, "SUKAAAA ${day}")}
             3 -> {
                 Log.d(TAG, "SUKAAAA ${day}")
-                 var clicks_tuesday = sharedPreference.getInt("Ass", 0)
+                 var clicks_tuesday = sharedPreference.getInt("Tuesday", 0)
                  var dayData3: DayData = DayData(3, "Tuesday", clicks_tuesday)
                  viewModel.putDate(dayData3)
 
 
             }
             4 -> {Log.d(TAG, "SUKAAAA ${day}")
-                var clicks_tuesday = sharedPreference.getInt("Ass", 0)
-                var dayData4: DayData = DayData(4, "Wednesday", clicks_tuesday)
+                var clicks_wednesday = sharedPreference.getInt("Wednesday", 0)
+                var dayData4: DayData = DayData(4, "Wednesday", clicks_wednesday)
                 viewModel.putDate(dayData4)
 
             }
-            5 -> {Log.d(TAG, "SUKAAAA ${day}")}
+            5 -> {Log.d(TAG, "SUKAAAA ${day}")
+
+                var clicks_thursday = sharedPreference.getInt("Thursday", 0)
+                var dayData5: DayData = DayData(5, "Thursday", clicks_thursday)
+                viewModel.putDate(dayData5)
+
+
+            }
             6 -> {Log.d(TAG, "SUKAAAA ${day}")}
             7 -> {Log.d(TAG, "SUKAAAA ${day}")}
         }

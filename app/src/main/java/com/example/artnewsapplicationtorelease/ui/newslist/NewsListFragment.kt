@@ -1,5 +1,6 @@
 package com.example.artnewsapplicationtorelease.ui.newslist
 
+import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -98,14 +99,29 @@ class NewsListFragment : Fragment() {
 
 
 
-
+        val calendar = Calendar.getInstance()
+        val day = calendar[Calendar.DAY_OF_WEEK].toInt()
 
 
 
 
 
         var counter_start: Int
+        var counter_monday: Int
+        var counter_tuesday: Int
+        var counter_wednesday: Int
+        var counter_thursday: Int
+        var counter_friday: Int
+        var counter_saturday: Int
+        var counter_sunday: Int
         counter_start = sharedPreference.getInt("Ass", 0)
+        counter_sunday = sharedPreference.getInt("Sunday", 0)
+        counter_monday = sharedPreference.getInt("Monday", 0)
+        counter_tuesday = sharedPreference.getInt("Tuesday", 0)
+        counter_wednesday = sharedPreference.getInt("Wednesday", 0)
+        counter_thursday = sharedPreference.getInt("Thursday", 0)
+        counter_friday = sharedPreference.getInt("Friday", 0)
+        counter_saturday = sharedPreference.getInt("Saturday", 0)
 
 
         newsAdapter.setOnItemClickListener {
@@ -119,6 +135,53 @@ class NewsListFragment : Fragment() {
                    // IT WORKED
             counter_start = counter_start+1
             sharedPreference.edit().putInt("Ass", counter_start).commit()
+
+
+            when (day) {
+                1 -> {
+                    counter_sunday = counter_sunday + 1
+                    sharedPreference.edit().putInt("Sunday", counter_sunday).commit()
+
+                }
+                2 -> {
+
+                    counter_monday = counter_monday + 1
+                    sharedPreference.edit().putInt("Monday", counter_monday).commit()
+
+
+                }
+                3 -> {
+                    counter_tuesday = counter_tuesday + 1
+                    sharedPreference.edit().putInt("Tuesday", counter_tuesday).commit()
+
+                }
+                4 -> {
+
+                    counter_wednesday = counter_wednesday + 1
+                    sharedPreference.edit().putInt("Wednesday", counter_wednesday).commit()
+
+
+                }
+                5 -> {
+
+                    counter_thursday = counter_thursday + 1
+                    sharedPreference.edit().putInt("Thursday", counter_thursday).commit()
+
+
+                }
+                6 -> {
+                    counter_friday = counter_friday + 1
+                    sharedPreference.edit().putInt("Friday", counter_friday).commit()
+
+                }
+                7 -> {
+
+                    counter_saturday = counter_saturday + 1
+                    sharedPreference.edit().putInt("Saturday", counter_saturday).commit()
+                }
+            }
+
+
 
 
 

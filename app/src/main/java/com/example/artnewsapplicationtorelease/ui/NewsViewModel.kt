@@ -8,10 +8,7 @@ import android.net.ConnectivityManager.*
 import android.net.NetworkCapabilities.*
 import android.os.Build
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.artnewsapplicationtorelease.DataPoint
 import com.example.artnewsapplicationtorelease.NewsApplication
 import com.example.artnewsapplicationtorelease.models.Article
@@ -91,6 +88,15 @@ class NewsViewModel(
     fun deleteDay(dayData: DayData) = viewModelScope.launch {
         newsRepository.deleteDay(dayData)
     }
+
+
+    fun getdayDataByID(id: Int): LiveData<DayData>{
+        return newsRepository.getDayItemById(id)
+    }
+
+    /*fun itemByGeo(geoCoordinates: GeoCoordinates): LiveData<ArtItem?> {
+        return retroRepository.getArtItem(geoCoordinates)
+    }*/
 
 
     //

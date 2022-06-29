@@ -22,6 +22,10 @@ interface DaydataDao {
     fun update(clicks_today: Int?, id: Int)
 
 
+    @Query("SELECT * FROM dates WHERE id=:id ")
+    fun getDayDataItem(id: Int): LiveData<DayData>
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.example.artnewsapplicationtorelease.repository
 
+import androidx.lifecycle.LiveData
 import com.example.artnewsapplicationtorelease.api.RetrofitInstance
 import com.example.artnewsapplicationtorelease.db.NewsDataBase
 import com.example.artnewsapplicationtorelease.models.Article
@@ -22,6 +23,14 @@ class NewsRepository(
     suspend fun upsert(dayData: DayData) = db.getDaydataDao().upsert(dayData)
 
     fun getAllDays() = db.getDaydataDao().getAllDataObjects()
+
+    fun getDayItemById(id: Int): LiveData<DayData> = db.getDaydataDao().getDayDataItem(id)
+
+
+
+    /*fun getArtItem(geoCoordinates: GeoCoordinates): LiveData<ArtItem?> =
+        retroDao.getArtItem(geoCoordinates)*/
+
 
     suspend fun deleteDay(dayData: DayData) = db.getDaydataDao().deleteDateObject(dayData)
 
