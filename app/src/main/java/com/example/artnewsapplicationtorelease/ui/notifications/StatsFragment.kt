@@ -142,6 +142,41 @@ class StatsFragment : Fragment() {
 
 
 
+        val sharedPreference =  this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        sharedPreference.getInt("Ass", 20)
+
+
+      /*  var sunday = sharedPreference.getInt("Sunday", 0)
+        var monday = sharedPreference.getInt("Monday", 0)
+        var tuesday = sharedPreference.getInt("Tuesday", 0)
+        var wednesday = sharedPreference.getInt("Wednesday", 0)
+        var thursday = sharedPreference.getInt("Thursday", 0)
+        var friday = sharedPreference.getInt("Friday", 0)
+        var saturday = sharedPreference.getInt("Saturday", 0)
+
+
+
+
+        var listforchart = mutableListOf<Int>()
+
+        listforchart.add(sunday)
+        listforchart.add(monday)
+        listforchart.add(tuesday)
+        listforchart.add(wednesday)
+        listforchart.add(thursday)
+        listforchart.add(friday)
+        listforchart.add(saturday)
+
+
+        var count: Int = 0
+        listforchart.forEach {
+            viewModel_local.dayData.add(Entry(count.toFloat(), it.toFloat()))
+
+            viewModel_local.dayData.set(count, Entry(count.toFloat(), it.toFloat()) )
+                   // Log.d(TAG, "DAY FROM LIST: ${it}")
+
+        }
+*/
 
 
 
@@ -149,13 +184,15 @@ class StatsFragment : Fragment() {
 
         viewModel.getAllDays().observe(viewLifecycleOwner){
 
-           /* it.forEach {
-                viewModel_local.dayData.add(Entry(it.id.toFloat(), it.clicks_today!!.toFloat()))
+            it.forEach {
+               // viewModel_local.dayData.add(Entry(it.id.toFloat(), it.clicks_today!!.toFloat()))
+                viewModel_local.dayData.set(it.id-1, Entry(it.id.toFloat(), it.clicks_today!!.toFloat()))
+
                 Log.d(TAG, "DAY FROM LIST: ${it}")
             }
 
 
-            */
+
 
 
 
@@ -187,9 +224,6 @@ class StatsFragment : Fragment() {
         //  Log.d(TAG, "DAY OF WEEK ${dayOfTheWeek}")
         Log.d(TAG, "DAY VIA CALENDAR ${day}")
 
-
-        val sharedPreference =  this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-        sharedPreference.getInt("Ass", 20)
 
 
         when (day) {
@@ -239,6 +273,10 @@ class StatsFragment : Fragment() {
                 viewModel.putDate(dayData5)
 
 
+               // viewModel_local.dayData.set(4,Entry(dayData5.id.toFloat(), dayData5.clicks_today!!.toFloat()) )
+                viewModel_local.dayData.set(4,Entry(5f, clicks_thursday.toFloat()) )
+
+
             }
             6 -> {Log.d(TAG, "SUKAAAA ${day}")
 
@@ -246,6 +284,9 @@ class StatsFragment : Fragment() {
                 var clicks_friday = sharedPreference.getInt("Friday", 0)
                 var dayData6: DayData = DayData(6, "Friday", clicks_friday)
                 viewModel.putDate(dayData6)
+
+               // viewModel_local.dayData.set(5,Entry(dayData6.id.toFloat(), dayData6.clicks_today!!.toFloat()) )
+                viewModel_local.dayData.set(5,Entry(6f, clicks_friday.toFloat()) )
 
 
             }
