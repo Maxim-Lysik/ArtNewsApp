@@ -90,33 +90,76 @@ class StatsFragment : Fragment() {
         /// ТУТ ПОПЫТАЕМСЯ НАПИСАТЬ
 
 
-       val dayData1: DayData = DayData(1, "Sunday", 0)
-        val dayData2: DayData = DayData(2, "Monday", 0)
-        val dayData3: DayData = DayData(3, "Tuesday", 0)
+       // val dayData1 = viewModel.getdayDataByID(1)?: DayData(1, "Sunday", 0)  // putdata here
+        val dayData1 = viewModel.getdayDataByID(1)?: viewModel.putDate(DayData(1, "Sunday", 0))
+        val dayData2 = viewModel.getdayDataByID(2)?: viewModel.putDate(DayData(2, "Monday", 0))
+        val dayData3 = viewModel.getdayDataByID(3)?: viewModel.putDate(DayData(3, "Tuesday", 0))
+        val dayData4 = viewModel.getdayDataByID(4)?: viewModel.putDate(DayData(4, "Wednesday", 0))
+        val dayData5 = viewModel.getdayDataByID(5)?: viewModel.putDate(DayData(5, "Thursday", 0))
+        val dayData6 = viewModel.getdayDataByID(6)?: viewModel.putDate(DayData(6, "Friday", 0))
+        val dayData7 = viewModel.getdayDataByID(7)?: viewModel.putDate(DayData(7, "Saturday", 0))
+        val dayData8 = viewModel.getdayDataByID(7)?: viewModel.putDate(DayData(8, "Test", 0))
+        val dayData9 = viewModel.getdayDataByID(7)?: viewModel.putDate(DayData(0, "Test", 0))
+
+      /*  if( viewModel.getdayDataByID(1) == null){
+            viewModel.putDate(DayData(1, "Sunday", 0))
+
+        }else if(viewModel.getdayDataByID(2) == null){viewModel.putDate(DayData(2, "Monday", 0))}
+        else if(viewModel.getdayDataByID(3) == null){viewModel.putDate(DayData(3, "Tuesday", 0))}
+*/
+
+
+
+        //viewModel.putDate(dayData1)
+       // viewModel.putDate(dayData2)
+        //viewModel.putDate(dayData3)
+        //viewModel.putDate(dayData4 )
+        //viewModel.putDate(dayData5)
+       // viewModel.putDate(dayData6)
+       // viewModel.putDate(dayData7)
+
+
+
+        /*
+
+        ПРОСТО СОХРАНЮ КУСОК КОДА
+
+        val dayData1 = viewModel.getdayDataByID(1)?: DayData(1, "Sunday", 0)  // putdata here
+        val dayData1 = viewModel.getdayDataByID(1)?: viewModel.putDate(DayData(1, "Sunday", 0))
+        val dayData2 = viewModel.getdayDataByID(2)?: DayData(2, "Monday", 0)
+        val dayData3 = viewModel.getdayDataByID(3)?: DayData(3, "Tuesday", 0)
         //val dayData4: DayData = DayData(4, "Wednesday", 0)
         val dayData4 = viewModel.getdayDataByID(4)?: DayData(4, "Wednesday", 0)
 
         //val l = b?.length ?: -1
 
-        val dayData5: DayData = DayData(5, "Thursday", 0)
-        val dayData6: DayData = DayData(6, "Friday", 0)
-        val dayData7: DayData = DayData(7, "Saturday", 0)
-        viewModel.putDate(dayData1)
-        viewModel.putDate(dayData2)
-        viewModel.putDate(dayData3)
-        //viewModel.putDate(dayData4 )
-        viewModel.putDate(dayData5)
-        viewModel.putDate(dayData6)
-        viewModel.putDate(dayData7)
+        val dayData5 = viewModel.getdayDataByID(5)?: DayData(5, "Thursday", 0)
+        val dayData6 = viewModel.getdayDataByID(6)?: DayData(6, "Friday", 0)
+        val dayData7 = viewModel.getdayDataByID(7)?: DayData(7, "Saturday", 0)
+
+        */
+
+
+
+
+
+
 
 
 
         viewModel.getAllDays().observe(viewLifecycleOwner){
 
-            it.forEach {
+           /* it.forEach {
                 viewModel_local.dayData.add(Entry(it.id.toFloat(), it.clicks_today!!.toFloat()))
                 Log.d(TAG, "DAY FROM LIST: ${it}")
             }
+
+
+            */
+
+
+
+
 
             var list1 = viewModel_local.dayData
             viewModel_local._lineDataSet.value = LineDataSet(list1, CHART_LABEL)
@@ -150,13 +193,36 @@ class StatsFragment : Fragment() {
 
 
         when (day) {
-            1 -> {Log.d(TAG, "SUKAAAA ${day}")}
-            2 -> {Log.d(TAG, "SUKAAAA ${day}")}
+            1 -> {Log.d(TAG, "SUKAAAA ${day}")
+
+                var clicks_sunday = sharedPreference.getInt("Sunday", 0)
+                var dayData1: DayData = DayData(1, "Sunday", clicks_sunday)
+                viewModel.putDate(dayData1)
+
+                viewModel_local.dayData.set(0,Entry(dayData1.id.toFloat(), dayData1.clicks_today!!.toFloat()) )
+
+
+            }
+            2 -> {Log.d(TAG, "SUKAAAA ${day}")
+
+                Log.d(TAG, "SUKAAAA ${day}")
+                var clicks_monday = sharedPreference.getInt("Monday", 0)
+                var dayData2: DayData = DayData(2, "Monday", clicks_monday)
+                viewModel.putDate(dayData2)
+
+               // viewModel_local.dayData.set(1,Entry(dayData2.id.toFloat(), dayData2.clicks_today!!.toFloat()) )
+
+
+
+
+            }
             3 -> {
                 Log.d(TAG, "SUKAAAA ${day}")
                  var clicks_tuesday = sharedPreference.getInt("Tuesday", 0)
                  var dayData3: DayData = DayData(3, "Tuesday", clicks_tuesday)
                  viewModel.putDate(dayData3)
+
+            //    viewModel_local.dayData.set(1,Entry(dayData3.id.toFloat(), dayData3.clicks_today!!.toFloat()) )
 
 
             }
@@ -174,8 +240,23 @@ class StatsFragment : Fragment() {
 
 
             }
-            6 -> {Log.d(TAG, "SUKAAAA ${day}")}
-            7 -> {Log.d(TAG, "SUKAAAA ${day}")}
+            6 -> {Log.d(TAG, "SUKAAAA ${day}")
+
+
+                var clicks_friday = sharedPreference.getInt("Friday", 0)
+                var dayData6: DayData = DayData(6, "Friday", clicks_friday)
+                viewModel.putDate(dayData6)
+
+
+            }
+            7 -> {Log.d(TAG, "SUKAAAA ${day}")
+
+                var clicks_saturday = sharedPreference.getInt("Saturday", 0)
+                var dayData7: DayData = DayData(7, "Saturday", clicks_saturday)
+                viewModel.putDate(dayData7)
+
+
+            }
         }
 
 
