@@ -27,15 +27,19 @@
         app:layout_constraintVertical_bias="0.977"
         tools:text="TEST" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/our_recycler"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:clipChildren="true"
+        android:clipToPadding="false"
+        android:nestedScrollingEnabled="false"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/day_chart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:stackFromEnd="false" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/day_chart"
@@ -45,5 +49,34 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/our_recycler"></com.github.mikephil.charting.charts.LineChart>
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="216dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="471dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
