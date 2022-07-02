@@ -12,10 +12,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.DataPoint
 import com.example.artnewsapplicationtorelease.GraphView
+import com.example.artnewsapplicationtorelease.adapters.DaysAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
+import com.example.artnewsapplicationtorelease.models.Article
 import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.ui.dashboard.DashboardViewModel
@@ -23,6 +26,7 @@ import com.example.artnewsapplicationtorelease.ui.newslist.HomeViewModel
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import kotlinx.android.synthetic.main.fragment_news_list.*
 import kotlinx.android.synthetic.main.fragment_stats.*
 import java.util.*
 
@@ -39,6 +43,8 @@ class StatsFragment : Fragment() {
     private val binding get() = _binding!!
     lateinit var viewModel: NewsViewModel
     lateinit var viewModel_local: NotificationsViewModel
+    lateinit var daysAdapter: DaysAdapter
+    lateinit var newList: ArrayList<String>
 
 
 
@@ -80,6 +86,10 @@ class StatsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
 
+
+        newList = arrayListOf("MN", "TU", "WE", "TH", "FR", "ST", "SN")
+
+        setupDaysRecyclerView(newList)
 
 
         viewModel_local = ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
@@ -309,6 +319,23 @@ class StatsFragment : Fragment() {
         ////
 
     }
+
+
+
+    private fun setupDaysRecyclerView(newList: ArrayList<String>) {
+        daysAdapter = DaysAdapter(this.requireActivity(), newList )
+        our_recycler.apply {
+            adapter = daysAdapter
+            val linearLayoutManager = LinearLayoutManager(activity)
+            linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+           // layoutManager = LinearLayoutManager(activity)
+            layoutManager = linearLayoutManager
+           // addOnScrollListener(this@NewsListFragment.scrollListener)
+        }
+    }
+
+
+
 
 
     override fun onDestroyView() {

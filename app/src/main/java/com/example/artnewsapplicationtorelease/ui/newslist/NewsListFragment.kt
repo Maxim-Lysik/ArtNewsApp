@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.R
+import com.example.artnewsapplicationtorelease.adapters.DaysAdapter
 import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
 import com.example.artnewsapplicationtorelease.models.DayData
@@ -296,6 +297,11 @@ class NewsListFragment : Fragment() {
             addOnScrollListener(this@NewsListFragment.scrollListener)
         }
     }
+
+
+
+
+
 
     private fun hideProgressBar() {
         paginationProgressBar.visibility = View.INVISIBLE
