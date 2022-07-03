@@ -2,6 +2,7 @@ package com.example.artnewsapplicationtorelease.ui.notifications
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
@@ -148,6 +149,11 @@ class StatsFragment : Fragment() {
 
         val sharedPreference =  this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
         sharedPreference.getInt("Ass", 20)
+
+        // SETTING GENERAL COUNTER TEXTVIEW
+
+        val general_counter_number = sharedPreference.getInt("General", 0)
+        general_counter.setText(general_counter_number.toString())
 
 
       /*  var sunday = sharedPreference.getInt("Sunday", 0)
@@ -339,36 +345,43 @@ class StatsFragment : Fragment() {
             1 -> {
                 Log.d(TAG, "SUKAAAA ${day}")
                 sunday.setTypeface(null, Typeface.BOLD)
+                sunday.setTextColor(Color.RED);
 
             }
             2 -> {
                 Log.d(TAG, "SUKAAAA ${day}")
                 monday.setTypeface(null, Typeface.BOLD)
+                monday.setTextColor(Color.RED);
 
             }
             3 -> {
                 Log.d(TAG, "SUKAAAA ${day}")
                 tuesday.setTypeface(null, Typeface.BOLD)
+                tuesday.setTextColor(Color.RED);
 
             }
             4 -> {
                 Log.d(TAG, "SUKAAAA ${day}")
                 wednesday.setTypeface(null, Typeface.BOLD)
+                wednesday.setTextColor(Color.RED);
 
             }
             5 -> {
                 Log.d(TAG, "SUKAAAA ${day}")
                 thursday.setTypeface(null, Typeface.BOLD)
+                thursday.setTextColor(Color.RED);
 
             }
             6 -> {
                 Log.d(TAG, "SUKAAAA ${day}")
                 friday.setTypeface(null, Typeface.BOLD)
+                friday.setTextColor(Color.RED);
 
             }
             7 -> {
                 Log.d(TAG, "SUKAAAA ${day}")
                 saturday.setTypeface(null, Typeface.BOLD)
+                saturday.setTextColor(Color.RED);
 
             }
 

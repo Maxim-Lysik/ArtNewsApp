@@ -134,6 +134,7 @@ class NewsListFragment : Fragment() {
                 R.id.action_navigation_news_to_articleFragment, bundle
             )
 
+            counter_general += 1
             sharedPreference.edit().putInt("General", counter_general).commit()
 
                    // IT WORKED
