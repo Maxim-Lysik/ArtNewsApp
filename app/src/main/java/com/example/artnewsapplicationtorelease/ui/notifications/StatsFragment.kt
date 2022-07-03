@@ -1,8 +1,8 @@
 package com.example.artnewsapplicationtorelease.ui.notifications
 
-import android.R
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,19 +14,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
-import com.example.artnewsapplicationtorelease.DataPoint
-import com.example.artnewsapplicationtorelease.GraphView
 import com.example.artnewsapplicationtorelease.adapters.DaysAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
-import com.example.artnewsapplicationtorelease.models.Article
 import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
-import com.example.artnewsapplicationtorelease.ui.dashboard.DashboardViewModel
-import com.example.artnewsapplicationtorelease.ui.newslist.HomeViewModel
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import kotlinx.android.synthetic.main.fragment_news_list.*
 import kotlinx.android.synthetic.main.fragment_stats.*
 import java.util.*
 
@@ -231,6 +225,10 @@ class StatsFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val day = calendar[Calendar.DAY_OF_WEEK].toInt()
 
+
+
+        updateDateText(day)
+
         //  Log.d(TAG, "DAY OF WEEK ${dayOfTheWeek}")
         Log.d(TAG, "DAY VIA CALENDAR ${day}")
 
@@ -335,6 +333,51 @@ class StatsFragment : Fragment() {
     }
 
 
+    private fun updateDateText(day: Int) {
+
+        when (day) {
+            1 -> {
+                Log.d(TAG, "SUKAAAA ${day}")
+                sunday.setTypeface(null, Typeface.BOLD)
+
+            }
+            2 -> {
+                Log.d(TAG, "SUKAAAA ${day}")
+                monday.setTypeface(null, Typeface.BOLD)
+
+            }
+            3 -> {
+                Log.d(TAG, "SUKAAAA ${day}")
+                tuesday.setTypeface(null, Typeface.BOLD)
+
+            }
+            4 -> {
+                Log.d(TAG, "SUKAAAA ${day}")
+                wednesday.setTypeface(null, Typeface.BOLD)
+
+            }
+            5 -> {
+                Log.d(TAG, "SUKAAAA ${day}")
+                thursday.setTypeface(null, Typeface.BOLD)
+
+            }
+            6 -> {
+                Log.d(TAG, "SUKAAAA ${day}")
+                friday.setTypeface(null, Typeface.BOLD)
+
+            }
+            7 -> {
+                Log.d(TAG, "SUKAAAA ${day}")
+                saturday.setTypeface(null, Typeface.BOLD)
+
+            }
+
+        }
+
+
+
+
+    }
 
 
 

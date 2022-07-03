@@ -106,7 +106,7 @@ class NewsListFragment : Fragment() {
 
 
 
-
+        var counter_general: Int
         var counter_start: Int
         var counter_monday: Int
         var counter_tuesday: Int
@@ -115,6 +115,7 @@ class NewsListFragment : Fragment() {
         var counter_friday: Int
         var counter_saturday: Int
         var counter_sunday: Int
+        counter_general = sharedPreference.getInt("General", 0)
         counter_start = sharedPreference.getInt("Ass", 0)
         counter_sunday = sharedPreference.getInt("Sunday", 0)
         counter_monday = sharedPreference.getInt("Monday", 0)
@@ -132,6 +133,8 @@ class NewsListFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_navigation_news_to_articleFragment, bundle
             )
+
+            sharedPreference.edit().putInt("General", counter_general).commit()
 
                    // IT WORKED
             counter_start = counter_start+1

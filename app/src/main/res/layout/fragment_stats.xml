@@ -60,53 +60,53 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/sunday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Text" />
+            android:text="S" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/monday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Text" />
+            android:text="M" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tuesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Text" />
+            android:text="T" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/wednesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Text" />
+            android:text="W" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/thursday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Text" />
+            android:text="T" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/friday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Text" />
+            android:text="F" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/saturday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Text" />
+            android:text="S" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
