@@ -238,8 +238,8 @@ class StatsFragment : Fragment() {
 
 
 
-        day_chart.axisLeft.isEnabled = false
-        day_chart.axisRight.isEnabled = false
+       // day_chart.axisLeft.isEnabled = false
+       // day_chart.axisRight.isEnabled = false
 
 
         val calendar = Calendar.getInstance()
