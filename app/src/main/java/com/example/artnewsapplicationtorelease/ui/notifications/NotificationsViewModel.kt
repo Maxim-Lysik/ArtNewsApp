@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
+import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 import java.util.*
@@ -112,6 +113,8 @@ class NotificationsViewModel : ViewModel() {
         // dayData.add(Entry(monthMaxDays.toFloat(), 7f))
 
         _lineDataSet.value = LineDataSet(dayData, CHART_LABEL)
+
+
 
         Log.d(ContentValues.TAG, "NUMBER OF DAYS IS ${monthMaxDays}");
 

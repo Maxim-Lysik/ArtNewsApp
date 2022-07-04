@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
+import com.example.artnewsapplicationtorelease.LineGraphStyle
 import com.example.artnewsapplicationtorelease.adapters.DaysAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
 import com.example.artnewsapplicationtorelease.models.DayData
@@ -24,12 +25,14 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_stats.*
 import java.util.*
+import javax.inject.Inject
 
 
 class StatsFragment : Fragment() {
 
 
-
+    @Inject
+    lateinit var chartStyle: LineGraphStyle
 
     private var _binding: FragmentStatsBinding? = null
 
@@ -219,13 +222,24 @@ class StatsFragment : Fragment() {
         viewModel_local.lineDataSet.observe(viewLifecycleOwner) { lineDataSet ->
 
             binding.dayChart.data = LineData(lineDataSet)
+
+            chartStyle.styleLineDataSet(lineDataSet)   // STYLING THE LINE HERE
             binding.dayChart.invalidate()
         }
 
 
 
+        // STYLING HERE
+
+        chartStyle = LineGraphStyle(requireActivity())
+
+        chartStyle.styleChart(binding.dayChart)
 
 
+
+
+        day_chart.axisLeft.isEnabled = false
+        day_chart.axisRight.isEnabled = false
 
 
         val calendar = Calendar.getInstance()
