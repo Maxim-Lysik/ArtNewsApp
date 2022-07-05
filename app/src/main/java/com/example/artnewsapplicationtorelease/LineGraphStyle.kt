@@ -30,7 +30,7 @@ class LineGraphStyle @Inject constructor(private val context: Context) {
 
         xAxis.apply {
             axisMinimum = 1F
-            //axisMaximum = 24f
+            //axisMaximum = 24f        dfsdf
 
             isGranularityEnabled = true // Need this
             granularity = 1f  // Need this
