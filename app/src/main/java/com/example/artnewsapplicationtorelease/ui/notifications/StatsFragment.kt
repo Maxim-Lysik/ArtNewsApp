@@ -20,6 +20,7 @@ import com.example.artnewsapplicationtorelease.adapters.DaysAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
 import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
+import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -238,7 +239,34 @@ class StatsFragment : Fragment() {
 
 
 
-       // day_chart.axisLeft.isEnabled = false
+        // SECOND GRAPH
+
+
+        viewModel_local.barDataSet.observe(viewLifecycleOwner) { barDataSet ->
+
+            binding.dayChart2.data = BarData(barDataSet)
+
+         //   chartStyle.styleLineDataSet(lineDataSet)   // STYLING THE LINE HERE
+            binding.dayChart2.invalidate()
+            binding.dayChart2.axisLeft.isEnabled = true
+            binding.dayChart2.axisRight.isEnabled = false
+            binding.dayChart2.xAxis.isEnabled = true
+
+        }
+
+
+
+        viewModel_local.lineDataSet3.observe(viewLifecycleOwner){ barDataSet ->
+
+            binding.dayChart2.data.addDataSet(barDataSet)
+            binding.dayChart2.invalidate()
+        }
+
+
+        // SECOND GRAPH
+
+
+       //day_chart2.axisLeft.isEnabled = false
        // day_chart.axisRight.isEnabled = false
 
 
