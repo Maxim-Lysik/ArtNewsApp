@@ -272,17 +272,22 @@ class NewsListFragment : Fragment() {
             val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
-            val isTotalMoreThanVisible = totalItemCount >= 3           // HERE IS THE SOLUTION
+            val isTotalMoreThanVisible = totalItemCount >= 4       // HERE IS THE SOLUTION
             //val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
            // val shouldPaginate = true
 
+            // pagenumber
+            var page_number = viewModel.breakingNewsPage  // page_number was added later
+
+            val pages_not_more_than_two = page_number <= 1 // pages_not_more_than_two was added later
+
 
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
-                    isTotalMoreThanVisible && isScrolling
+                    isTotalMoreThanVisible && isScrolling && pages_not_more_than_two   // pages_not_more_than_two was added later
 
 
             if(shouldPaginate){
-                viewModel.getBreakingNews("art & graffiti", viewModel.breakingNewsPage, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
+                viewModel.getBreakingNews("skateboarding", viewModel.breakingNewsPage, "en", "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
                 isScrolling = false
             }
 

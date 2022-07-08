@@ -34,12 +34,14 @@ class NewsViewModel(
 
 
     init {
-        getBreakingNews("art & graffiti", breakingNewsPage, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
+        getBreakingNews("skateboarding", breakingNewsPage, "en", "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
+
+        //getBreakingNews("art & graffiti", breakingNewsPage, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
     }
 
-    fun getBreakingNews(q: String, page: Int, host: String, api: String) = viewModelScope.launch {
+    fun getBreakingNews(q: String, page: Int,  lang: String, host: String, api: String) = viewModelScope.launch {
 
-        safeBreakingNewsCall(q, breakingNewsPage, host, api)
+        safeBreakingNewsCall(q, breakingNewsPage, "en", host, api)
 
         /*searchedNews.postValue(Resource.Loading())
         val response = newsRepository.getSearchedNews(q, breakingNewsPage, host, api)
@@ -109,13 +111,13 @@ class NewsViewModel(
 
 
 
-    private suspend fun safeBreakingNewsCall(q: String, page: Int, host: String, api: String){
+    private suspend fun safeBreakingNewsCall(q: String, page: Int, lang: String, host: String, api: String){
         searchedNews.postValue(Resource.Loading())
         try{
             if(hasInternetConnection()){
 
                 val pages_number = 0
-                val response = newsRepository.getSearchedNews(q, breakingNewsPage, host, api)  // может быть тута
+                val response = newsRepository.getSearchedNews(q, breakingNewsPage, "en", host, api)  // может быть тута
                 val pages_number_again = response.body()!!.total_pages
                 Log.d(TAG, "TOTAL NUMBER IS ${pages_number_again}");
 
