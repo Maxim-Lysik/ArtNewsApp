@@ -264,7 +264,7 @@ class StatsFragment : Fragment() {
 
             var clicks_morning = sharedPreference.getInt("Morning", 0)
 
-            viewModel_local.morning.set(0, BarEntry(0f, clicks_morning.toFloat()))
+            viewModel_local.morning.set(0, BarEntry(3f, clicks_morning.toFloat()))
 
 
             binding.dayChart2.data = BarData(barDataSet)
@@ -300,7 +300,7 @@ class StatsFragment : Fragment() {
 
 
             var clicks_afternoon = sharedPreference.getInt("Afternoon", 0)
-            viewModel_local.afternoon.set(0, BarEntry(1f, clicks_afternoon.toFloat()))
+            viewModel_local.afternoon.set(0, BarEntry(2f, clicks_afternoon.toFloat()))
 
 
             binding.dayChart2.axisLeft.axisMaximum = (maximum+1).toFloat()
@@ -317,7 +317,7 @@ class StatsFragment : Fragment() {
 
 
             var clicks_evening = sharedPreference.getInt("Evening", 0)
-            viewModel_local.evening.set(0, BarEntry(2f, clicks_evening.toFloat()))
+            viewModel_local.evening.set(0, BarEntry(1f, clicks_evening.toFloat()))
 
 
             binding.dayChart2.axisLeft.axisMaximum = (maximum+1).toFloat()
@@ -330,7 +330,7 @@ class StatsFragment : Fragment() {
         viewModel_local.nightDataSet.observe(viewLifecycleOwner){ barDataSet ->
 
             var clicks_night = sharedPreference.getInt("Night", 0)
-            viewModel_local.night.set(0, BarEntry(3f, clicks_night.toFloat()))
+            viewModel_local.night.set(0, BarEntry(0f, clicks_night.toFloat()))
 
 
 
