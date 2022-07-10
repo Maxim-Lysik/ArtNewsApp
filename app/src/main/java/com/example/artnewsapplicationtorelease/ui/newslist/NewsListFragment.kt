@@ -166,7 +166,7 @@ class NewsListFragment : Fragment() {
 
 
             when (time2) {
-                in 1..4, 21, 22, 24 -> {
+                in 1..4, 21, 22, 23, 24 -> {
                     counter_night = counter_night + 1
                     sharedPreference.edit().putInt("Night", counter_night).commit()
 

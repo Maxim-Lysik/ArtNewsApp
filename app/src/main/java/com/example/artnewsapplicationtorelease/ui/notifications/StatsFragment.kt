@@ -239,8 +239,24 @@ class StatsFragment : Fragment() {
         // SECOND GRAPH
 
 
-        //viewModel_local.dayData.set(it.id-1, Entry(it.id.toFloat(), it.clicks_today!!.toFloat()))
+        // Need to get the biggest number here
 
+
+        var clicks_morning_for_max = sharedPreference.getInt("Morning", 0)
+        var clicks_afternoon_for_max = sharedPreference.getInt("Afternoon", 0)
+        var clicks_evening_for_max = sharedPreference.getInt("Evening", 0)
+        var clicks_night_for_max = sharedPreference.getInt("Night", 0)
+
+
+        var list_maximum = arrayListOf<Int>()
+        list_maximum.add(clicks_morning_for_max)
+        list_maximum.add(clicks_afternoon_for_max)
+        list_maximum.add(clicks_evening_for_max)
+        list_maximum.add(clicks_night_for_max)
+
+        val maximum = list_maximum.maxOf { it }
+
+        Log.d(TAG, "MAXIMUM NUMBER NOW IS: ${maximum}")
 
 
         viewModel_local.morningDataSet.observe(viewLifecycleOwner) { barDataSet ->
@@ -255,9 +271,26 @@ class StatsFragment : Fragment() {
 
          //   chartStyle.styleLineDataSet(lineDataSet)   // STYLING THE LINE HERE
             binding.dayChart2.invalidate()
-            binding.dayChart2.axisLeft.isEnabled = true
-            binding.dayChart2.axisRight.isEnabled = false
-            binding.dayChart2.xAxis.isEnabled = true
+            //binding.dayChart2.axisLeft.isEnabled = true
+           // binding.dayChart2.axisRight.isEnabled = false
+
+           // binding.dayChart2.xAxis.isEnabled = true
+          //  binding.dayChart2.xAxis.axisMaximum = 20f
+            //binding.dayChart2.axisLeft.isEnabled = true
+
+            binding.dayChart2.axisLeft.apply {
+
+                axisMaximum = (maximum+1).toFloat()
+               // isGranularityEnabled = false
+                isEnabled = false
+            }
+
+            binding.dayChart2.axisRight.apply {
+
+               // axisMaximum = 20f
+               // isGranularityEnabled = false
+                isEnabled = false
+            }
 
         }
 
@@ -269,8 +302,12 @@ class StatsFragment : Fragment() {
             var clicks_afternoon = sharedPreference.getInt("Afternoon", 0)
             viewModel_local.afternoon.set(0, BarEntry(1f, clicks_afternoon.toFloat()))
 
+
+            binding.dayChart2.axisLeft.axisMaximum = (maximum+1).toFloat()
+
             binding.dayChart2.data.addDataSet(barDataSet)
             binding.dayChart2.invalidate()
+            //binding.dayChart2.minimumWidth = 20
         }
 
 
@@ -282,6 +319,9 @@ class StatsFragment : Fragment() {
             var clicks_evening = sharedPreference.getInt("Evening", 0)
             viewModel_local.evening.set(0, BarEntry(2f, clicks_evening.toFloat()))
 
+
+            binding.dayChart2.axisLeft.axisMaximum = (maximum+1).toFloat()
+
             binding.dayChart2.data.addDataSet(barDataSet)
             binding.dayChart2.invalidate()
         }
@@ -292,8 +332,16 @@ class StatsFragment : Fragment() {
             var clicks_night = sharedPreference.getInt("Night", 0)
             viewModel_local.night.set(0, BarEntry(3f, clicks_night.toFloat()))
 
+
+
+            binding.dayChart2.axisLeft.axisMaximum = (maximum+1).toFloat()
+
+
+
             binding.dayChart2.data.addDataSet(barDataSet)
             binding.dayChart2.invalidate()
+          //  binding.dayChart2.setScaleEnabled(true)
+
         }
 
 
