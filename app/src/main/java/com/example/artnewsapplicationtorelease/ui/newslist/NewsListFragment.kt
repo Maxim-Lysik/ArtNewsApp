@@ -102,6 +102,17 @@ class NewsListFragment : Fragment() {
 
         val calendar = Calendar.getInstance()
         val day = calendar[Calendar.DAY_OF_WEEK].toInt()
+        val time = calendar.time
+
+
+        val time2 = calendar[Calendar.HOUR_OF_DAY].toInt()
+
+
+
+
+
+
+        Log.d(TAG, "TIME is ${time2}");
 
 
 
@@ -125,6 +136,16 @@ class NewsListFragment : Fragment() {
         counter_friday = sharedPreference.getInt("Friday", 0)
         counter_saturday = sharedPreference.getInt("Saturday", 0)
 
+        // VARIABLES FOR DAY PARTS
+
+        var counter_morning = sharedPreference.getInt("Morning", 0)
+        var counter_afternoon = sharedPreference.getInt("Afternoon", 0)
+        var counter_evening = sharedPreference.getInt("Evening", 0)
+        var counter_night = sharedPreference.getInt("Night", 0)
+
+
+
+
 
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
@@ -141,6 +162,40 @@ class NewsListFragment : Fragment() {
             counter_start = counter_start+1
             sharedPreference.edit().putInt("Ass", counter_start).commit()
 
+            // HOURCOUNTERS
+
+
+            when (time2) {
+                in 1..4, 21, 22, 24 -> {
+                    counter_night = counter_night + 1
+                    sharedPreference.edit().putInt("Night", counter_night).commit()
+
+                }
+                in 5..11 -> {
+
+                    counter_morning = counter_morning + 1
+                    sharedPreference.edit().putInt("Morning", counter_morning).commit()
+
+
+                }
+                in 12..16 -> {
+                    counter_afternoon = counter_afternoon + 1
+                    sharedPreference.edit().putInt("Afternoon", counter_afternoon).commit()
+
+                }
+                in 17..20 -> {
+
+                    counter_evening = counter_evening + 1
+                    sharedPreference.edit().putInt("Evening", counter_evening).commit()
+
+                }
+
+            }
+
+
+
+
+            // DAYSCOUNTERS
 
             when (day) {
                 1 -> {
@@ -247,6 +302,54 @@ class NewsListFragment : Fragment() {
                 }
             }
         })
+
+
+
+
+
+
+        fun updateBarchart(hour: Int){
+
+
+
+            when (hour) {
+                in 1..4, 21, 22, 24 -> {
+                    counter_night = counter_night + 1
+                    sharedPreference.edit().putInt("Night", counter_night).commit()
+
+                }
+                in 5..11 -> {
+
+                    counter_morning = counter_morning + 1
+                    sharedPreference.edit().putInt("Morning", counter_morning).commit()
+
+
+                }
+                in 12..16 -> {
+                    counter_afternoon = counter_afternoon + 1
+                    sharedPreference.edit().putInt("Afternoon", counter_afternoon).commit()
+
+                }
+                in 17..20 -> {
+
+                    counter_evening = counter_evening + 1
+                    sharedPreference.edit().putInt("Evening", counter_evening).commit()
+
+                }
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 
     var isLoading = false
@@ -327,31 +430,11 @@ class NewsListFragment : Fragment() {
 
 
 
-   /*  fun GetAPISUKA(){
-        val url = "https://free-news.p.rapidapi.com/v1/search?q=Elon%20Musk&lang=en"
-        val client = OkHttpClient()
 
-        val request = Request.Builder()
-            .url("https://free-news.p.rapidapi.com/v1/search?q=Elon%20Musk&lang=en")
-            .get()
-            .addHeader("X-RapidAPI-Host", "free-news.p.rapidapi.com")
-            .addHeader("X-RapidAPI-Key", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
-            .build()
 
-        client.newCall(request).enqueue(object: Callback{
-            override fun onFailure(call: Call, e: IOException) {
-                println("Failed to execute request")
-            }
 
-            override fun onResponse(call: Call, response: Response) {
-                val body = response.body?.string()
-                println(body)
-            }
 
-        })
 
-    }
-*/
 
 
 

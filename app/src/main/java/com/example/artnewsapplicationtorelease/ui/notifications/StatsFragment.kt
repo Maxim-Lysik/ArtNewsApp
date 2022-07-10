@@ -20,10 +20,7 @@ import com.example.artnewsapplicationtorelease.adapters.DaysAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
 import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.*
 import kotlinx.android.synthetic.main.fragment_stats.*
 import java.util.*
 import javax.inject.Inject
@@ -242,7 +239,17 @@ class StatsFragment : Fragment() {
         // SECOND GRAPH
 
 
-        viewModel_local.barDataSet.observe(viewLifecycleOwner) { barDataSet ->
+        //viewModel_local.dayData.set(it.id-1, Entry(it.id.toFloat(), it.clicks_today!!.toFloat()))
+
+
+
+        viewModel_local.morningDataSet.observe(viewLifecycleOwner) { barDataSet ->
+
+
+            var clicks_morning = sharedPreference.getInt("Morning", 0)
+
+            viewModel_local.morning.set(0, BarEntry(0f, clicks_morning.toFloat()))
+
 
             binding.dayChart2.data = BarData(barDataSet)
 
@@ -256,11 +263,41 @@ class StatsFragment : Fragment() {
 
 
 
-        viewModel_local.lineDataSet3.observe(viewLifecycleOwner){ barDataSet ->
+        viewModel_local.afternoonDataSet.observe(viewLifecycleOwner){ barDataSet ->
+
+
+            var clicks_afternoon = sharedPreference.getInt("Afternoon", 0)
+            viewModel_local.afternoon.set(0, BarEntry(1f, clicks_afternoon.toFloat()))
 
             binding.dayChart2.data.addDataSet(barDataSet)
             binding.dayChart2.invalidate()
         }
+
+
+
+        viewModel_local.eveningDataSet.observe(viewLifecycleOwner){ barDataSet ->
+
+
+
+            var clicks_evening = sharedPreference.getInt("Evening", 0)
+            viewModel_local.evening.set(0, BarEntry(2f, clicks_evening.toFloat()))
+
+            binding.dayChart2.data.addDataSet(barDataSet)
+            binding.dayChart2.invalidate()
+        }
+
+
+        viewModel_local.nightDataSet.observe(viewLifecycleOwner){ barDataSet ->
+
+            var clicks_night = sharedPreference.getInt("Night", 0)
+            viewModel_local.night.set(0, BarEntry(3f, clicks_night.toFloat()))
+
+            binding.dayChart2.data.addDataSet(barDataSet)
+            binding.dayChart2.invalidate()
+        }
+
+
+
 
 
         // SECOND GRAPH

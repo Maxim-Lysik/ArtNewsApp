@@ -45,8 +45,10 @@ class NotificationsViewModel : ViewModel() {
     companion object {
 
         private const val CHART_LABEL = "DAY_CHART"
-        private const val CHART_LABEL2 = "DAY_CHART3"
-        private const val CHART_LABEL3 = "DAY_CHART444"
+        private const val CHART_MORNING = "MORNING"
+        private const val CHART_AFTERNOON = "AFTERNOON"
+        private const val CHART_EVENING = "EVENING"
+        private const val CHART_NIGHT = "NIGHT"
 
     }
 
@@ -60,34 +62,34 @@ class NotificationsViewModel : ViewModel() {
     var lineDataSet: LiveData<LineDataSet> = _lineDataSet
 
 
-
-    // FOR THE SECOND GRAPH
-
-    var _dayData2 = mutableListOf<BarEntry>()
-    var _lineDataSet2 = MutableLiveData(BarDataSet(_dayData2, CHART_LABEL2))
-    var barDataSet: LiveData<BarDataSet> = _lineDataSet2
-
-// SECOND ENTRY
-
-     var _second_b_entry = mutableListOf<BarEntry>()
-    var _lineDataSet3 = MutableLiveData(BarDataSet(_second_b_entry, CHART_LABEL3))
-    var lineDataSet3: LiveData<BarDataSet> = _lineDataSet3
-
-    // FOR THE SECOND GRAPH
+    //    S_E_C_O_N_D    P_A_R_T               //
 
 
-    //BarDataSet copied = new BarDataSet(entries, getLabel());
+    // MORNING
 
-    //  FOR THE SECOND GRAPH
-   // List<IBarDataSet>
+    var morning = mutableListOf<BarEntry>()
+    var _morningDataSet = MutableLiveData(BarDataSet(morning, CHART_MORNING))
+    var morningDataSet: LiveData<BarDataSet> = _morningDataSet
 
-    /* val dayData1: DayData = DayData(1, "Sunday", 0)
-     val dayData2: DayData = DayData(2, "Monday", 0)
-     val dayData3: DayData = DayData(3, "Tuesday", 0)
-     val dayData4: DayData = DayData(4, "Wednesday", 0)
-     val dayData5: DayData = DayData(5, "Thursday", 0)
-     val dayData6: DayData = DayData(6, "Friday", 0)*/
-    // val dayData7: DayData = DayData(7, "Sunday", 0)
+    // AFTERNOON
+
+    var afternoon = mutableListOf<BarEntry>()
+    var _afternoonDataSet = MutableLiveData(BarDataSet(afternoon, CHART_AFTERNOON))
+    var afternoonDataSet: LiveData<BarDataSet> = _afternoonDataSet
+
+    // EVENING
+
+    var evening = mutableListOf<BarEntry>()
+    var _eveningDataSet = MutableLiveData(BarDataSet(evening, CHART_EVENING))
+    var eveningDataSet: LiveData<BarDataSet> = _eveningDataSet
+
+    // NIGHT
+
+    var night = mutableListOf<BarEntry>()
+    var _nightDataSet = MutableLiveData(BarDataSet(night, CHART_NIGHT))
+    var nightDataSet: LiveData<BarDataSet> = _nightDataSet
+
+
 
 
     init {
@@ -116,23 +118,33 @@ class NotificationsViewModel : ViewModel() {
         Log.d(ContentValues.TAG, "NUMBER OF DAYS IS ${monthMaxDays}");
 
 
-
-        // FOR THE SECOND GRAPH
-            _dayData2.add(BarEntry(0f,6f, "SSS"))
-        _dayData2.add(BarEntry(1f,6f))
-        _dayData2.add(BarEntry(2f,9f))
-
-
-        // Second entry
-
-        _second_b_entry.add(BarEntry(1f,13f))
-        _lineDataSet3.value = BarDataSet(_second_b_entry, CHART_LABEL3)
-        _lineDataSet3.value!!.setColor(Color.RED)
+        // MORNING
+        morning.add(BarEntry(0f, 1f,))
+        _morningDataSet.value = BarDataSet(morning, CHART_MORNING)
+        _morningDataSet.value!!.setColor(-0x1000000)
 
 
 
-         _lineDataSet2.value = BarDataSet(_dayData2, CHART_LABEL2)
-        _lineDataSet2.value!!.setColor(-0x1000000)
+        // AFTERNOON
+
+        afternoon.add(BarEntry(1f, 1f))
+        _afternoonDataSet.value = BarDataSet(afternoon, CHART_AFTERNOON)
+        _afternoonDataSet.value!!.setColor(Color.RED)
+
+        // EVENING
+
+        evening.add(BarEntry(2f, 1f))
+        _eveningDataSet.value = BarDataSet(evening, CHART_EVENING)
+        _eveningDataSet.value!!.setColor(Color.GREEN)
+
+        // NIGHT
+
+        night.add(BarEntry(3f, 1f))
+        _nightDataSet.value = BarDataSet(night, CHART_NIGHT)
+        _nightDataSet.value!!.setColor(Color.BLUE)
+
+
+
 
 
 
