@@ -41,8 +41,8 @@
         <argument android:name="article2"
             app:argType="string" />
         <action
-            android:id="@+id/action_navigation_stats_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            android:id="@+id/action_navigation_stats_to_second_article_fragment"
+            app:destination="@id/second_article_fragment" />
     </fragment>
 
 
@@ -57,4 +57,18 @@
             android:name="shit"
             app:argType="string" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/second_article_fragment"
+        android:name="com.example.artnewsapplicationtorelease.ui.SecondArticleFragment"
+        android:label="SecondArticleFragment"
+        tools:layout="@layout/fragment_second_article" >
+
+    </fragment>
+
+
+
+
+
 </navigation>

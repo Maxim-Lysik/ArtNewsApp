@@ -22,10 +22,11 @@ import com.example.artnewsapplicationtorelease.LineGraphStyle
 import com.example.artnewsapplicationtorelease.R
 import com.example.artnewsapplicationtorelease.adapters.DaysAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
+import com.example.artnewsapplicationtorelease.models.Article
 import com.example.artnewsapplicationtorelease.models.DayData
-import com.example.artnewsapplicationtorelease.ui.ArticleFragmentArgs
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.github.mikephil.charting.data.*
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_stats.*
 import java.util.*
 import javax.inject.Inject
@@ -207,13 +208,24 @@ class StatsFragment : Fragment() {
 
       //  args.article2
 
+        // DATA FOR LAST_ARTICLE_VIEW
+
+        val gson = Gson()
+        val json: String? = sharedPreference.getString("Our_object", "DEFAULT")
+        val obj: Article = gson.fromJson(json, Article::class.java)
+        Log.d(TAG, "JEYSON: ${obj.title}")
+
         var card_view_title = sharedPreference.getString("Card_title", "DEFAULT")
         var card_view_pict = sharedPreference.getString("Card_pict", "DEFAULT")
         var card_view_link = sharedPreference.getString("Card_link", "DEFAULT")
-        testing_text.setText(card_view_title)
+        testing_text.setText(obj.title)
 
 
-        Glide.with(this).load(card_view_pict).into(last_art_pic)
+        Glide.with(this).load(obj.media).into(last_art_pic)
+
+
+
+
 
 
         our_cardview.setOnClickListener {
@@ -234,8 +246,16 @@ class StatsFragment : Fragment() {
                 //putSerializable("article2", it)
             }
 
+
+           /* val gson = Gson()
+            val json: String? = sharedPreference.getString("Our_object", "DEFAULT")
+             val obj: Article = gson.fromJson(json, Article::class.java)
+            Log.d(TAG, "JEYSON: ${obj.title}")*/
+
+
+
             findNavController().navigate(
-                R.id.action_navigation_stats_to_articleFragment, bundle
+                R.id.action_navigation_stats_to_second_article_fragment, bundle
             )
 
 

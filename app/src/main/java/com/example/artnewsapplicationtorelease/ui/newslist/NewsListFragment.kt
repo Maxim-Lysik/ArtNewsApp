@@ -1,6 +1,5 @@
 package com.example.artnewsapplicationtorelease.ui.newslist
 
-import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -16,15 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.R
-import com.example.artnewsapplicationtorelease.adapters.DaysAdapter
 import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
-import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.artnewsapplicationtorelease.utils.Resource
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_news_list.*
 import java.util.*
+
 
 class NewsListFragment : Fragment() {
 
@@ -147,6 +146,11 @@ class NewsListFragment : Fragment() {
         var card_title = sharedPreference.getString("Card_title", "DEFAULT");
        // var card_pict = sharedPreference.getString("Card_pict", "DEFAULT");
 
+        var our_object = sharedPreference.getString("Our_object", "DEFAULT");
+
+
+
+
 
 
 
@@ -159,6 +163,15 @@ class NewsListFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_navigation_news_to_articleFragment, bundle
             )
+
+
+
+
+            val gson = Gson()
+            val json: String = gson.toJson(it)
+            sharedPreference.edit().putString("Our_object", json).commit()
+
+
 
             counter_general += 1
             sharedPreference.edit().putInt("General", counter_general).commit()
