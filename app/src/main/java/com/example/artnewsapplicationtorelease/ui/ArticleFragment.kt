@@ -48,8 +48,8 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             Snackbar.make(view, "Article was saved", Snackbar.LENGTH_SHORT).show()
         }
 
-        val hui = args.shit
-        Log.d(ContentValues.TAG, "SUKAAA: ${hui}")
+        //val hui = args.shit
+        //Log.d(ContentValues.TAG, "SUKAAA: ${hui}")
 
 
 

@@ -209,21 +209,25 @@ class StatsFragment : Fragment() {
       //  args.article2
 
         // DATA FOR LAST_ARTICLE_VIEW
+        try {
+            val gson = Gson()
+            val json: String? = sharedPreference.getString("Our_object", "DEFAULT")
+            val obj: Article = gson.fromJson(json, Article::class.java)
+            Log.d(TAG, "JEYSON: ${obj.title}")
 
-        val gson = Gson()
-        val json: String? = sharedPreference.getString("Our_object", "DEFAULT")
-        val obj: Article = gson.fromJson(json, Article::class.java)
-        Log.d(TAG, "JEYSON: ${obj.title}")
+
+            testing_text.setText(obj.title)
+
+
+            Glide.with(this).load(obj.media).into(last_art_pic)
+        }catch (e: Exception){
+
+
+        }
 
         var card_view_title = sharedPreference.getString("Card_title", "DEFAULT")
         var card_view_pict = sharedPreference.getString("Card_pict", "DEFAULT")
         var card_view_link = sharedPreference.getString("Card_link", "DEFAULT")
-        testing_text.setText(obj.title)
-
-
-        Glide.with(this).load(obj.media).into(last_art_pic)
-
-
 
 
 
