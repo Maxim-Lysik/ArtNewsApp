@@ -145,7 +145,7 @@ class NewsListFragment : Fragment() {
 
         // VARIABLES FOR CARDVIEW
         var card_title = sharedPreference.getString("Card_title", "DEFAULT");
-        var card_pict = sharedPreference.getString("Card_pict", "DEFAULT");
+       // var card_pict = sharedPreference.getString("Card_pict", "DEFAULT");
 
 
 
@@ -165,6 +165,7 @@ class NewsListFragment : Fragment() {
 
             sharedPreference.edit().putString("Card_title", it.title).commit()
             sharedPreference.edit().putString("Card_pict", it.media).commit()
+            sharedPreference.edit().putString("Card_link", it.link).commit()
 
                    // IT WORKED
             counter_start = counter_start+1

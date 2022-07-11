@@ -17,11 +17,16 @@ import kotlinx.android.synthetic.main.fragment_article.*
 class ArticleFragment : Fragment(R.layout.fragment_article) {
 
     lateinit var viewModel: NewsViewModel
-    val args: ArticleFragmentArgs by navArgs()
+    //val args: ArticleFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
+
+
+try {
+    val args: ArticleFragmentArgs by navArgs()
+    if (args.article != null) {
         val article = args.article
         webView.apply {
             webViewClient = WebViewClient()
@@ -31,36 +36,56 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
 
 
-
-       /* val bundle = Bundle().apply { article
-            //putSerializable("article", it)
-            putString("article2", article.title.toString())
-        }
-*/
-
-        val bundle = Bundle()
-        val fragment: Fragment = StatsFragment()
-        bundle.putString("company", "companyName")
-       // bundle.
-      //  bundle.putString("project", projectName)
-        fragment.arguments = bundle
+        var needed_object2 = viewModel.getArticleByLink(article.link!!)
+        Log.d(ContentValues.TAG, "ICHO: ${needed_object2.value!!.title}")
 
 
 
-        val hui = args.shit
-        Log.d(ContentValues.TAG, "SUKAAA: ${hui}")
-
-
-
-
-
-        /*val fragment_stats = StatsFragment()
-        fragment_stats.arguments = bundle*/
 
         fab.setOnClickListener {
             viewModel.saveArticle(article)
             Snackbar.make(view, "Article was saved", Snackbar.LENGTH_SHORT).show()
         }
+
+        val hui = args.shit
+        Log.d(ContentValues.TAG, "SUKAAA: ${hui}")
+
+    } else {
+
+        Log.d(ContentValues.TAG, "SUKAAA BLYA")
+    }
+}catch (e: Exception){
+
+    val bundle = Bundle()
+    val linkee = bundle.getString("Webview_link")
+    Log.d(ContentValues.TAG, "LINKA: ${linkee}")
+
+}
+        /* val bundle = Bundle().apply { article
+             //putSerializable("article", it)
+             putString("article2", article.title.toString())
+         }
+ */
+
+        val bundle = Bundle()
+        val fragment: Fragment = StatsFragment()
+        bundle.putString("company", "companyName")
+        // bundle.
+        //  bundle.putString("project", projectName)
+        fragment.arguments = bundle
+
+
+        /*val hui = args.shit
+        Log.d(ContentValues.TAG, "SUKAAA: ${hui}")*/
+
+
+        /*val fragment_stats = StatsFragment()
+        fragment_stats.arguments = bundle*/
+
+      /*  fab.setOnClickListener {
+            viewModel.saveArticle(article)
+            Snackbar.make(view, "Article was saved", Snackbar.LENGTH_SHORT).show()
+        }*/
     }
 
 

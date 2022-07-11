@@ -209,6 +209,7 @@ class StatsFragment : Fragment() {
 
         var card_view_title = sharedPreference.getString("Card_title", "DEFAULT")
         var card_view_pict = sharedPreference.getString("Card_pict", "DEFAULT")
+        var card_view_link = sharedPreference.getString("Card_link", "DEFAULT")
         testing_text.setText(card_view_title)
 
 
@@ -217,10 +218,19 @@ class StatsFragment : Fragment() {
 
         our_cardview.setOnClickListener {
 
+            Log.d(TAG, "OBJEct_LINK: ${card_view_link}")
+
+             var needed_object = viewModel.getArticleByLink(card_view_link!!).observe(viewLifecycleOwner, androidx.lifecycle.Observer { it ->
+
+                 Log.d(TAG, "EBATS: ${it!!.title}")
+
+             })
+            var needed_object2 = viewModel.getArticleByLink(card_view_link!!)
+            Log.d(TAG, "OBJECT: ${needed_object2.value?.title}")
 
 
             val bundle = Bundle().apply {
-                putString("Webview_link", "Erra")
+                putString("Webview_link", "sadsadsad")
                 //putSerializable("article2", it)
             }
 

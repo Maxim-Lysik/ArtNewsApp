@@ -15,6 +15,9 @@ interface ItemDao {
    @Query("SELECT * FROM articles")
    fun getAllArticles(): LiveData<List<Article>>
 
+   @Query("SELECT * FROM articles WHERE link =(:link)")
+   fun getByLink(link: String): LiveData<Article>
+
    @Delete
    suspend fun deleteArticle(article: Article)
   // suspend fun deleteArticle(article: Article)

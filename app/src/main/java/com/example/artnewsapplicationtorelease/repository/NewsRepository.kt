@@ -16,6 +16,8 @@ class NewsRepository(
 
     fun getSavedNews() = db.getItemDao().getAllArticles()
 
+    fun getArticleNeeded(link: String):LiveData<Article> = db.getItemDao().getByLink(link)
+
     suspend fun deleteArticle(article: Article) = db.getItemDao().deleteArticle(article)
 
     // functions for DauData table

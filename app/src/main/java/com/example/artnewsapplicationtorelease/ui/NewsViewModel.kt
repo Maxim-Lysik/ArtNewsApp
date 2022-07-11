@@ -78,6 +78,10 @@ class NewsViewModel(
         newsRepository.deleteArticle(article)
     }
 
+    fun getArticleByLink(link:String): LiveData<Article> {
+        return newsRepository.getArticleNeeded(link)
+    }
+
     // FUNCTIONS FOR DAYDATA
 
 
