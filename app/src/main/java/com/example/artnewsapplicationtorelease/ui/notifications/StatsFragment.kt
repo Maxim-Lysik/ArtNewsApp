@@ -13,12 +13,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.LineGraphStyle
+import com.example.artnewsapplicationtorelease.R
 import com.example.artnewsapplicationtorelease.adapters.DaysAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentStatsBinding
 import com.example.artnewsapplicationtorelease.models.DayData
+import com.example.artnewsapplicationtorelease.ui.ArticleFragmentArgs
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.github.mikephil.charting.data.*
 import kotlinx.android.synthetic.main.fragment_stats.*
@@ -41,6 +46,13 @@ class StatsFragment : Fragment() {
     lateinit var viewModel_local: NotificationsViewModel
     lateinit var daysAdapter: DaysAdapter
     lateinit var newList: ArrayList<String>
+
+
+    val args2: StatsFragmentArgs by navArgs()
+
+
+
+
 
 
 
@@ -190,6 +202,44 @@ class StatsFragment : Fragment() {
 */
 
 
+        var arguts = this.arguments
+        val inputdata = arguts?.get("company")
+
+      //  args.article2
+
+        var card_view_title = sharedPreference.getString("Card_title", "DEFAULT")
+        var card_view_pict = sharedPreference.getString("Card_pict", "DEFAULT")
+        testing_text.setText(card_view_title)
+
+
+        Glide.with(this).load(card_view_pict).into(last_art_pic)
+
+
+        our_cardview.setOnClickListener {
+
+
+
+            val bundle = Bundle().apply {
+                putString("Webview_link", "Erra")
+                //putSerializable("article2", it)
+            }
+
+            findNavController().navigate(
+                R.id.action_navigation_stats_to_articleFragment, bundle
+            )
+
+
+
+
+        }
+
+
+
+
+
+        //val article = arguments?.getString("article2")
+        Log.d(TAG, "ARGS: ${inputdata}")
+      //  testing_text.setText(article)
 
 
 

@@ -37,7 +37,13 @@
         android:id="@+id/navigation_stats"
         android:name="com.example.artnewsapplicationtorelease.ui.notifications.StatsFragment"
         android:label="Stats"
-        tools:layout="@layout/fragment_stats" />
+        tools:layout="@layout/fragment_stats" >
+        <argument android:name="article2"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_stats_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
 
 
     <fragment
@@ -47,5 +53,8 @@
         <argument
             android:name="article"
             app:argType="com.example.artnewsapplicationtorelease.models.Article" />
+        <argument
+            android:name="shit"
+            app:argType="string" />
     </fragment>
 </navigation>

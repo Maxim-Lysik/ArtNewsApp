@@ -143,6 +143,9 @@ class NewsListFragment : Fragment() {
         var counter_evening = sharedPreference.getInt("Evening", 0)
         var counter_night = sharedPreference.getInt("Night", 0)
 
+        // VARIABLES FOR CARDVIEW
+        var card_title = sharedPreference.getString("Card_title", "DEFAULT");
+        var card_pict = sharedPreference.getString("Card_pict", "DEFAULT");
 
 
 
@@ -150,6 +153,8 @@ class NewsListFragment : Fragment() {
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
+                putString("shit", "fuck")
+                //putSerializable("article2", it)
             }
             findNavController().navigate(
                 R.id.action_navigation_news_to_articleFragment, bundle
@@ -157,6 +162,9 @@ class NewsListFragment : Fragment() {
 
             counter_general += 1
             sharedPreference.edit().putInt("General", counter_general).commit()
+
+            sharedPreference.edit().putString("Card_title", it.title).commit()
+            sharedPreference.edit().putString("Card_pict", it.media).commit()
 
                    // IT WORKED
             counter_start = counter_start+1

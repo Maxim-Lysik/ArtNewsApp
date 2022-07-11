@@ -1,12 +1,15 @@
 package com.example.artnewsapplicationtorelease.ui
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
 import com.example.artnewsapplicationtorelease.R
+import com.example.artnewsapplicationtorelease.ui.notifications.StatsFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_article.*
 
@@ -25,6 +28,34 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             loadUrl(article.link)
             //https://www.entrepreneur.com/article/368477    article.link
         }
+
+
+
+
+       /* val bundle = Bundle().apply { article
+            //putSerializable("article", it)
+            putString("article2", article.title.toString())
+        }
+*/
+
+        val bundle = Bundle()
+        val fragment: Fragment = StatsFragment()
+        bundle.putString("company", "companyName")
+       // bundle.
+      //  bundle.putString("project", projectName)
+        fragment.arguments = bundle
+
+
+
+        val hui = args.shit
+        Log.d(ContentValues.TAG, "SUKAAA: ${hui}")
+
+
+
+
+
+        /*val fragment_stats = StatsFragment()
+        fragment_stats.arguments = bundle*/
 
         fab.setOnClickListener {
             viewModel.saveArticle(article)
