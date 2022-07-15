@@ -188,21 +188,24 @@ class NewsListFragment : Fragment() {
             )
 
 
-
+            var main_counter = sharedPreference.getInt("MAIN_COUNTER", 0)
             sharedPreference.getInt("Counter_for_day", 0)
+
 
 
             var comparable1 = calendar[Calendar.DAY_OF_WEEK].toInt()
             if (sharedPreference.getInt("Comparable2", 0)!= 0 && sharedPreference.getInt("Comparable2", 0) != comparable1){
 
 
-                sharedPreference.edit().putInt("Counter_for_day", 0).commit() // EMPTIED COUNTER
+                sharedPreference.edit().putInt("Counter_for_day", 1).commit() // EMPTIED COUNTER
+                sharedPreference.edit().putInt("MAIN_COUNTER", 1).commit()
 
                 var suki: String = "ochistili"
                 sharedPreference.edit().putInt("Comparable2", comparable1) //
             } else{
-
-                sharedPreference.edit().putInt("Counter_for_day", 6).commit()
+                main_counter = main_counter + 1
+                sharedPreference.edit().putInt("MAIN_COUNTER", main_counter).commit()
+                sharedPreference.edit().putInt("Counter_for_day", sharedPreference.getInt("MAIN_COUNTER",0)).commit()
 
             }
 
@@ -239,7 +242,7 @@ class NewsListFragment : Fragment() {
 
 
             when (time2) {
-                in 1..4, 21, 22, 23, 24 -> {
+                in 0..4, 21, 22, 23, 24 -> {
                     counter_night = counter_night + 1
                     sharedPreference.edit().putInt("Night", counter_night).commit()
 
