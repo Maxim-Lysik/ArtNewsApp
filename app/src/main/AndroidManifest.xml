@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.artnewsapplicationtorelease">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -13,14 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ArtNewsApplicationToRelease">
         <activity
-            android:name=".ArtNewsActivity"
+            android:name="com.example.artnewsapplicationtorelease.ui.boarding.On_boarding"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/title_activity_on_boarding"
+            android:theme="@style/Theme.ArtNewsApplicationToRelease.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".ArtNewsActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+
         </activity>
     </application>
 

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+
+    >
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1.16"
+        app:srcCompat="@drawable/ic_notifications_black_24dp"
+        tools:src="@tools:sample/avatars" />
+
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="260dp"
+        android:layout_height="6dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0"
+        tools:src="@tools:sample/avatars"
+        tools:srcCompat="@drawable/bg_gradient_line" />
+
+    <TextView
+        android:id="@+id/exploreTitle2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Explore cities2"
+        android:textAlignment="center"
+        android:textColor="#353535"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="311dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="2 Find masterpieces in 24 european cities \nand create your own pathway full of art.\n Enjoy your journey! " />
+
+
+    <Button
+        android:id="@+id/second_next_button"
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#4BA2D3"
+
+        android:text="Next"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:cornerRadius="20dp" />
+
+</LinearLayout>
