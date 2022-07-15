@@ -48,6 +48,8 @@ class FirstFragment : Fragment() {
 
        /* binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+
+            test
         }*/
 
 
