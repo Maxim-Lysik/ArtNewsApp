@@ -86,34 +86,57 @@ class NewsListFragment : Fragment() {
         viewModel = (activity as ArtNewsActivity).viewModel
         setupRecyclerView()
 
-        val sharedPreference =  this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-        sharedPreference.getString("username","defaultName")
-        sharedPreference.getLong("l",1L)
+        val sharedPreference =
+            this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        sharedPreference.getString("username", "defaultName")
+        sharedPreference.getLong("l", 1L)
 
 
-      /*  val sdf = SimpleDateFormat("EEEE")
+        /*  val sdf = SimpleDateFormat("EEEE")
         val d = Date()
         val dayOfTheWeek: String = sdf.format(d)*/
-
-
-
 
 
         val calendar = Calendar.getInstance()
         val day = calendar[Calendar.DAY_OF_WEEK].toInt()
         val time = calendar.time
-
-
         val time2 = calendar[Calendar.HOUR_OF_DAY].toInt()
 
+        //  FOR COUNTER FOR ONE DAY
+
+        val c = Calendar.getInstance()
+        c.add(Calendar.DATE, 1)
+        //c.add(Calendar.DAY_OF_WEEK).to
+        Log.d(TAG, "TOMORRA IS is ${c}");
+
+        sharedPreference.getInt("Counter_for_day", 0) // COUNTER THAT WE WILL USE
 
 
+      /*  var comparable1 = calendar[Calendar.DAY_OF_WEEK].toInt()
+        if (sharedPreference.getInt("Comparable2", 0)!= 0 && sharedPreference.getInt("Comparable2", 0) != comparable1){
+
+            sharedPreference.getInt("Counter_for_day", 0) // EMPTIED COUNTER
+            var suki: String = "ochistili"
+            sharedPreference.edit().putInt("Comparable2", comparable1) //
+        } else{
+
+
+        }
+
+
+
+
+        var count_today: Int = 0
+        var counter_todays = sharedPreference.getInt("$day", 0)
+        val day_last_counter = calendar[Calendar.DAY_OF_WEEK].toInt()
+        sharedPreference.edit().putInt("Comparable2", day_last_counter).commit()  // last day we entered application
+*/
+
+        ///  FOR COUNTER FOR ONE DAY
 
 
 
         Log.d(TAG, "TIME is ${time2}");
-
-
 
 
         var counter_general: Int
@@ -144,7 +167,7 @@ class NewsListFragment : Fragment() {
 
         // VARIABLES FOR CARDVIEW
         var card_title = sharedPreference.getString("Card_title", "DEFAULT");
-       // var card_pict = sharedPreference.getString("Card_pict", "DEFAULT");
+        // var card_pict = sharedPreference.getString("Card_pict", "DEFAULT");
 
         var our_object = sharedPreference.getString("Our_object", "DEFAULT");
 
@@ -166,6 +189,34 @@ class NewsListFragment : Fragment() {
 
 
 
+            sharedPreference.getInt("Counter_for_day", 0)
+
+
+            var comparable1 = calendar[Calendar.DAY_OF_WEEK].toInt()
+            if (sharedPreference.getInt("Comparable2", 0)!= 0 && sharedPreference.getInt("Comparable2", 0) != comparable1){
+
+
+                sharedPreference.edit().putInt("Counter_for_day", 0).commit() // EMPTIED COUNTER
+
+                var suki: String = "ochistili"
+                sharedPreference.edit().putInt("Comparable2", comparable1) //
+            } else{
+
+                sharedPreference.edit().putInt("Counter_for_day", 6).commit()
+
+            }
+
+
+            val day_last_counter = calendar[Calendar.DAY_OF_WEEK].toInt()
+            sharedPreference.edit().putInt("Comparable2", day_last_counter).commit()  // last day we entered application
+
+            Log.d(TAG, "TIME is ${time2}");
+            Log.d(TAG, "TIME is ${time2}");
+
+
+
+
+
 
             val gson = Gson()
             val json: String = gson.toJson(it)
@@ -180,8 +231,8 @@ class NewsListFragment : Fragment() {
             sharedPreference.edit().putString("Card_pict", it.media).commit()
             sharedPreference.edit().putString("Card_link", it.link).commit()
 
-                   // IT WORKED
-            counter_start = counter_start+1
+            // IT WORKED
+            counter_start = counter_start + 1
             sharedPreference.edit().putInt("Ass", counter_start).commit()
 
             // HOURCOUNTERS
@@ -213,8 +264,6 @@ class NewsListFragment : Fragment() {
                 }
 
             }
-
-
 
 
             // DAYSCOUNTERS
@@ -264,22 +313,19 @@ class NewsListFragment : Fragment() {
             }
 
 
-
-
-
         }
 
 
 
         viewModel.searchedNews.observe(viewLifecycleOwner, Observer { response ->
-            when(response) {
+            when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
 
                         // тута и будем работац
 
-                       /* val count = newsResponse.total_pages
+                        /* val count = newsResponse.total_pages
                         val ourlist = emptyList<Article>()
                         var i = 1
                         while (i <= count) {
@@ -299,14 +345,15 @@ class NewsListFragment : Fragment() {
                         // ограничиться 25?
                         Log.d(TAG, "AAAAAAA1 is ${newsResponse.articles.size}");
 
-                        newsAdapter.differ.submitList(newsResponse.articles.toList().distinctBy { it.title })
+                        newsAdapter.differ.submitList(
+                            newsResponse.articles.toList().distinctBy { it.title })
 
-                      //  newsAdapter.differ.submitList(newsResponse.articles.toList())
+                        //  newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.total_hits / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.breakingNewsPage == totalPages
 
-                        if(isLastPage){
-                            rvBreakingNews.setPadding(0,0,0,0)
+                        if (isLastPage) {
+                            rvBreakingNews.setPadding(0, 0, 0, 0)
                         }
 
 
@@ -316,7 +363,7 @@ class NewsListFragment : Fragment() {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                       // Toast.makeText(activity, "An error occured $message", Toast.LENGTH_SHORT).show()
+                        // Toast.makeText(activity, "An error occured $message", Toast.LENGTH_SHORT).show()
                     }
                 }
                 is Resource.Loading -> {
@@ -330,8 +377,7 @@ class NewsListFragment : Fragment() {
 
 
 
-        fun updateBarchart(hour: Int){
-
+        fun updateBarchart(hour: Int) {
 
 
             when (hour) {
@@ -361,15 +407,6 @@ class NewsListFragment : Fragment() {
 
             }
         }
-
-
-
-
-
-
-
-
-
 
 
     }

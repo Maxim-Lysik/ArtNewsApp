@@ -167,7 +167,11 @@ class StatsFragment : Fragment() {
         // SETTING GENERAL COUNTER TEXTVIEW
 
         val general_counter_number = sharedPreference.getInt("General", 0)
-        general_counter.setText("Articles red in sum: ${general_counter_number.toString()}")
+       // general_counter.setText("Articles red in sum: ")
+        counter_overall.setText("${general_counter_number.toString()}")
+
+        var counter_per_day = sharedPreference.getInt("Counter_for_day", 0)
+        articles_per_day.setText("$counter_per_day")
 
 
       /*  var sunday = sharedPreference.getInt("Sunday", 0)

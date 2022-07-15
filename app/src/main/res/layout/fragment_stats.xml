@@ -146,14 +146,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Articles red in sum:" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/counter_overall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="0" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -163,7 +163,7 @@
                 android:text="TextView" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/articles_per_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
