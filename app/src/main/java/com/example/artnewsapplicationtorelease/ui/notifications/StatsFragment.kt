@@ -174,6 +174,21 @@ class StatsFragment : Fragment() {
         articles_per_day.setText("$counter_per_day")
 
 
+
+
+        // ДОДЕЛАТЬ ТУТ
+
+        val calendar2: Calendar = Calendar.getInstance()
+        var comparable1 = calendar2[Calendar.DAY_OF_WEEK].toInt()
+        if (sharedPreference.getInt("Comparable2", 0)!= 0 && sharedPreference.getInt("Comparable2", 0) != comparable1){
+            per_day_text.setText("Yesterday")
+
+        }
+        else{
+            per_day_text.setText("TOday")
+        }
+
+
       /*  var sunday = sharedPreference.getInt("Sunday", 0)
         var monday = sharedPreference.getInt("Monday", 0)
         var tuesday = sharedPreference.getInt("Tuesday", 0)
