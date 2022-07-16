@@ -320,6 +320,42 @@ class NewsListFragment : Fragment() {
 
 
 
+        /// PART FOR LIST REFRESHING
+
+        var time_point1 = sharedPreference.getInt("Point1", 0)
+        var time_point2 = sharedPreference.getInt("Point2", 0)
+
+        if(time_point1==0){
+            val calendar_point1 = Calendar.getInstance()
+            val day = calendar_point1[Calendar.DAY_OF_WEEK].toInt()
+            sharedPreference.edit().putInt("Point1", day).commit()
+        }
+
+        if(time_point1!=0 ){
+            val calendar_point2 = Calendar.getInstance()
+            val day2 = calendar_point2[Calendar.DAY_OF_WEEK].toInt()
+            sharedPreference.edit().putInt("Point2", day2).commit()
+        }
+      /* else if(time_point1!=0 && time_point2!=0){
+            // здесь обмен значениями делаем
+            time_point1 = sharedPreference.getInt("Point2", 0)
+            val calendar_point3 = Calendar.getInstance()
+            val day3 = calendar_point3[Calendar.DAY_OF_WEEK].toInt()
+            sharedPreference.edit().putInt("Point2", day3).commit()
+
+        }*/
+
+        Log.d(TAG, "TIMEPOINT 1 IS ${time_point1}");
+        Log.d(TAG, "TIMEPOINT 2 IS ${time_point2}");
+
+
+
+
+
+
+
+
+
         viewModel.searchedNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
