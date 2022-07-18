@@ -321,7 +321,7 @@ class NewsListFragment : Fragment() {
 
 
         /// PART FOR LIST REFRESHING
-
+/*
         var time_point1 = sharedPreference.getInt("Point1", 0)
         var time_point2 = sharedPreference.getInt("Point2", 0)
 
@@ -331,7 +331,7 @@ class NewsListFragment : Fragment() {
             sharedPreference.edit().putInt("Point1", day).commit()
         }
 
-        if(time_point1!=0 ){
+        if(time_point1!=0 && time_point2== null){
             val calendar_point2 = Calendar.getInstance()
             val day2 = calendar_point2[Calendar.DAY_OF_WEEK].toInt()
             sharedPreference.edit().putInt("Point2", day2).commit()
@@ -349,7 +349,7 @@ class NewsListFragment : Fragment() {
         Log.d(TAG, "TIMEPOINT 2 IS ${time_point2}");
 
 
-
+*/
 
 
 

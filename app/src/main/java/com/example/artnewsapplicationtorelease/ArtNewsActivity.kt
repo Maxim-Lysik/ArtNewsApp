@@ -54,18 +54,83 @@ class ArtNewsActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        val sharedPreference =
+            getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
 
-      /* val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-        var editor = sharedPreference.edit()
-        editor.putInt("Counter", 1)
-        editor.commit()
+        var calendar_point1 = Calendar.getInstance()
+        var day = calendar_point1[Calendar.DAY_OF_WEEK].toInt()
+
+       // sharedPreference.edit().putInt("Point1", day).commit()
+      //  sharedPreference.edit().putInt("Point2", day).commit()
+
+
+        if(sharedPreference.getInt("Point1", 0) == 0){
+        sharedPreference.edit().putInt("Point1", day).commit()
+       }
+
+        else if(sharedPreference.getInt("Point1", 0) != 0 && sharedPreference.getInt("Point2", 0) ==0 ){
+
+
+            sharedPreference.edit().putInt("Point2", day).commit()
+
+        }
 
 
 
-        val gotthis = sharedPreference.getInt("Ass", 0)
-        //sharedPreference.getLong("l",1L)
 
-        Log.d(TAG, "SHARED ONE ${gotthis}");*/
+        /// PART FOR LIST REFRESHING
+
+/*
+        val sharedPreference =
+            getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+
+        var time_point1 = sharedPreference.getInt("Point1", 0)
+        var time_point2 = sharedPreference.getInt("Point2", 0)
+
+        if(time_point1==0){
+            val calendar_point1 = Calendar.getInstance()
+            val day = calendar_point1[Calendar.DAY_OF_WEEK].toInt()
+            sharedPreference.edit().putInt("Point1", day).commit()
+        }
+
+        //if(time_point1!=0 && time_point2== null){
+
+        if(time_point1>0 && time_point2== 0){
+            val calendar_point2 = Calendar.getInstance()
+            val day2 = calendar_point2[Calendar.DAY_OF_WEEK].toInt()
+            sharedPreference.edit().putInt("Point2", day2).commit()
+        }
+        /* else if(time_point1!=0 && time_point2!=0){
+              // здесь обмен значениями делаем
+              time_point1 = sharedPreference.getInt("Point2", 0)
+              val calendar_point3 = Calendar.getInstance()
+              val day3 = calendar_point3[Calendar.DAY_OF_WEEK].toInt()
+              sharedPreference.edit().putInt("Point2", day3).commit()
+
+          }*/
+
+        Log.d(TAG, "TIMEPOINT 1 IS ${time_point1}");
+        Log.d(TAG, "TIMEPOINT 2 IS ${time_point2}");
+
+*/
+
+
+
+
+
+
+
+        /* val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+          var editor = sharedPreference.edit()
+          editor.putInt("Counter", 1)
+          editor.commit()
+
+
+
+          val gotthis = sharedPreference.getInt("Ass", 0)
+          //sharedPreference.getLong("l",1L)
+
+          Log.d(TAG, "SHARED ONE ${gotthis}");*/
 
 
         //val graphView1 = findViewById<GraphView>(R.id.graph_view)
@@ -87,6 +152,54 @@ class ArtNewsActivity : AppCompatActivity() {
        // var board: GraphView = GraphView(this, list)
         //graph_view.
      //   graphick_view.setData(viewModel.list2)
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val sharedPreference =
+            getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+
+        var time_point1 = sharedPreference.getInt("Point1", 0)
+        var time_point2 = sharedPreference.getInt("Point2", 0)
+
+       /* if(sharedPreference.getInt("Point1", 0)==0){
+            val calendar_point1 = Calendar.getInstance()
+            val day = calendar_point1[Calendar.DAY_OF_WEEK].toInt()
+            sharedPreference.edit().putInt("Point1", day).commit()
+        }
+
+        //if(time_point1!=0 && time_point2== null){
+
+        if(sharedPreference.getInt("Point1", 0)>0 && sharedPreference.getInt("Point2", 0)== 0){
+            val calendar_point2 = Calendar.getInstance()
+            val day2 = calendar_point2[Calendar.DAY_OF_WEEK].toInt()
+            sharedPreference.edit().putInt("Point2", day2).commit()
+        }
+        /* else if(time_point1!=0 && time_point2!=0){
+              // здесь обмен значениями делаем
+              time_point1 = sharedPreference.getInt("Point2", 0)
+              val calendar_point3 = Calendar.getInstance()
+              val day3 = calendar_point3[Calendar.DAY_OF_WEEK].toInt()
+              sharedPreference.edit().putInt("Point2", day3).commit()
+
+          }*/
+
+        val calendar_point2 = Calendar.getInstance()
+        val day = calendar_point2[Calendar.DAY_OF_WEEK].toInt()
+
+*/
+
+
+
+
+
+        Log.d(TAG, "TIMEPOINT 1 IS ${time_point1}");
+        Log.d(TAG, "TIMEPOINT 2 IS ${time_point2}");
+
+
 
 
     }
