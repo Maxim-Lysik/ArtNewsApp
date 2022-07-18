@@ -62,7 +62,7 @@ class ArtNewsActivity : AppCompatActivity() {
         var calendar_point1 = Calendar.getInstance()
         var day = calendar_point1[Calendar.DAY_OF_WEEK].toInt()
         var day_time = calendar_point1.time
-        var month = calendar_point1[Calendar.MONTH]
+        var month = calendar_point1[Calendar.MONTH] + 1
         var year = calendar_point1[Calendar.YEAR]
         var day_day = calendar_point1[Calendar.DAY_OF_MONTH]
         val corrected_date = calendar_point1.set(Calendar.MONTH,Calendar.YEAR, Calendar.DAY_OF_MONTH )
@@ -99,93 +99,66 @@ class ArtNewsActivity : AppCompatActivity() {
             Log.d(TAG, "USPEKH");
 
 
+            var timee1 = fullDateFormatter.parse(sharedPreference.getString("Point1", "")).toString()
+            var timee2 = fullDateFormatter.parse(sharedPreference.getString("Point2", "")).toString()
+
+            var day_of_week1 = timee1.substring(0,3)
+            var day_of_week2 = timee2.substring(0,3)
+
+            var converted_day_of_week1: Int = fromStringtoInt(day_of_week1)   // Working
+            var converted_day_of_week2: Int = fromStringtoInt(day_of_week2)   // Working
+
+
+            // OPERATING WITH VALUES HERE
+
+            if(converted_day_of_week2 < converted_day_of_week1){
+
+
+
+            }
+
+
+
+
+
+            var timee12 = sharedPreference.getString("Point1", "")
+            var timee22 = sharedPreference.getString("Point2", "")
+
+
+
+
+            Log.d(TAG, "HER 1 IS ${timee1}");
+            Log.d(TAG, "HER 2 IS ${timee2}");
+
+            Log.d(TAG, "SUBSTRING 1 IS ${day_of_week1}");
+            Log.d(TAG, "SUBSTRING 2 IS ${day_of_week2}");
+
+            Log.d(TAG, "INTA 1 IS ${converted_day_of_week1}");
+            Log.d(TAG, "INTA 2 IS ${converted_day_of_week2}");
+
+
        }
 
 
 
 
-       // Log.d(TAG, "FORMATTER 1 IS ${fullDateFormatter.parse(sharedPreference.getString("Point2", ""))}");
-      //  Log.d(TAG, "FORMATTER 2 IS ${fullDateFormatter.parse(sharedPreference.getString("Point1", ""))}");
+
+    }
 
 
-
-
-        /// PART FOR LIST REFRESHING
-
-/*
-        val sharedPreference =
-            getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-
-        var time_point1 = sharedPreference.getInt("Point1", 0)
-        var time_point2 = sharedPreference.getInt("Point2", 0)
-
-        if(time_point1==0){
-            val calendar_point1 = Calendar.getInstance()
-            val day = calendar_point1[Calendar.DAY_OF_WEEK].toInt()
-            sharedPreference.edit().putInt("Point1", day).commit()
+    fun fromStringtoInt(string: String):Int{
+        var counter:Int = 0
+        when (string) {
+            "Sun" -> counter = 1
+            "Mon" -> counter = 2
+            "Tue" -> counter = 3
+            "Wed" -> counter = 4
+            "Thu" -> counter = 5
+            "Fri" -> counter = 6
+            "Sat" -> counter = 7
         }
 
-        //if(time_point1!=0 && time_point2== null){
-
-        if(time_point1>0 && time_point2== 0){
-            val calendar_point2 = Calendar.getInstance()
-            val day2 = calendar_point2[Calendar.DAY_OF_WEEK].toInt()
-            sharedPreference.edit().putInt("Point2", day2).commit()
-        }
-        /* else if(time_point1!=0 && time_point2!=0){
-              // здесь обмен значениями делаем
-              time_point1 = sharedPreference.getInt("Point2", 0)
-              val calendar_point3 = Calendar.getInstance()
-              val day3 = calendar_point3[Calendar.DAY_OF_WEEK].toInt()
-              sharedPreference.edit().putInt("Point2", day3).commit()
-
-          }*/
-
-        Log.d(TAG, "TIMEPOINT 1 IS ${time_point1}");
-        Log.d(TAG, "TIMEPOINT 2 IS ${time_point2}");
-
-*/
-
-
-
-
-
-
-
-        /* val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-          var editor = sharedPreference.edit()
-          editor.putInt("Counter", 1)
-          editor.commit()
-
-
-
-          val gotthis = sharedPreference.getInt("Ass", 0)
-          //sharedPreference.getLong("l",1L)
-
-          Log.d(TAG, "SHARED ONE ${gotthis}");*/
-
-
-        //val graphView1 = findViewById<GraphView>(R.id.graph_view)
-       // graphView1.setData(generateRandomDataPoints())
-       // val graphick_view: GraphView = GraphView(this, attr)
-
-       /* val graphView1 = findViewById<GraphView>(R.id.graph_view)
-        graphView1.setData(generateRandomDataPoints())*/
-
-      // graphick_view.setData(generateRandomDataPoints())
-
-       // graph_view.
-        //graphick_view.setData(generateRandomDataPoints())
-
-       // val list: List<DataPoint> = listOf(DataPoint(4,5),DataPoint(4,5), DataPoint(4,5), DataPoint(4,5), DataPoint(4,5))
-
-       // graphick_view.setData(list)
-
-       // var board: GraphView = GraphView(this, list)
-        //graph_view.
-     //   graphick_view.setData(viewModel.list2)
-
-
+return counter
     }
 
     override fun onStart() {
@@ -197,32 +170,6 @@ class ArtNewsActivity : AppCompatActivity() {
         var time_point1 = sharedPreference.getString("Point1", "")
         var time_point2 = sharedPreference.getString("Point2", "")
 
-       /* if(sharedPreference.getInt("Point1", 0)==0){
-            val calendar_point1 = Calendar.getInstance()
-            val day = calendar_point1[Calendar.DAY_OF_WEEK].toInt()
-            sharedPreference.edit().putInt("Point1", day).commit()
-        }
-
-        //if(time_point1!=0 && time_point2== null){
-
-        if(sharedPreference.getInt("Point1", 0)>0 && sharedPreference.getInt("Point2", 0)== 0){
-            val calendar_point2 = Calendar.getInstance()
-            val day2 = calendar_point2[Calendar.DAY_OF_WEEK].toInt()
-            sharedPreference.edit().putInt("Point2", day2).commit()
-        }
-        /* else if(time_point1!=0 && time_point2!=0){
-              // здесь обмен значениями делаем
-              time_point1 = sharedPreference.getInt("Point2", 0)
-              val calendar_point3 = Calendar.getInstance()
-              val day3 = calendar_point3[Calendar.DAY_OF_WEEK].toInt()
-              sharedPreference.edit().putInt("Point2", day3).commit()
-
-          }*/
-
-        val calendar_point2 = Calendar.getInstance()
-        val day = calendar_point2[Calendar.DAY_OF_WEEK].toInt()
-
-*/
 
 
 
@@ -238,30 +185,8 @@ class ArtNewsActivity : AppCompatActivity() {
 
 
 
- /*   private fun generateRandomDataPoints(): List<DataPoint> {
-        val random = Random()
-        return (0..20).map {
-            DataPoint(it, random.nextInt(50) + 1)
-        }
-    }*/
 
 
 
 }
 
-// test commmit12
-
-/*class ArtNewsActivity : AppCompatActivity() {
-
-    lateinit var viewModel: NewsViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val newsRepository = NewsRepository(NewsDataBase(this))
-        val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository)
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
-        val navController = findNavController(R.id.nav_host_fragment_activity_artnews)
-    }
-}*/
