@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.artnewsapplicationtorelease.databinding.ActivityMainBinding
 import com.example.artnewsapplicationtorelease.db.NewsDataBase
+import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.repository.NewsRepository
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.example.artnewsapplicationtorelease.ui.NewsViewModelProviderFactory
@@ -112,6 +113,31 @@ class ArtNewsActivity : AppCompatActivity() {
             // OPERATING WITH VALUES HERE
 
             if(converted_day_of_week2 < converted_day_of_week1){
+
+                sharedPreference.edit().putInt("Sunday", 0).commit()
+                sharedPreference.edit().putInt("Monday", 0).commit()
+                sharedPreference.edit().putInt("Tuesday", 0).commit()
+                sharedPreference.edit().putInt("Wednesday", 0).commit()
+                sharedPreference.edit().putInt("Thursday", 0).commit()
+                sharedPreference.edit().putInt("Friday", 0).commit()
+                sharedPreference.edit().putInt("Saturday", 0).commit()
+
+
+                var dayData1: DayData = DayData(1, "Sunday", 0)
+                viewModel.putDate(dayData1)
+                var dayData2: DayData = DayData(2, "Monday", 0)
+                viewModel.putDate(dayData2)
+                var dayData3: DayData = DayData(3, "Tuesday", 0)
+                viewModel.putDate(dayData3)
+                var dayData4: DayData = DayData(4, "Wednesday", 0)
+                viewModel.putDate(dayData4)
+                var dayData5: DayData = DayData(5, "Thursday", 0)
+                viewModel.putDate(dayData5)
+                var dayData6: DayData = DayData(6, "Friday", 0)
+                viewModel.putDate(dayData6)
+                var dayData7: DayData = DayData(7, "Saturday", 0)
+                viewModel.putDate(dayData7)
+
 
 
 
