@@ -139,6 +139,14 @@ class ArtNewsActivity : AppCompatActivity() {
                 viewModel.putDate(dayData7)
 
 
+                //   CLEANING PARTS OF THE DAY
+
+
+                sharedPreference.edit().putInt("Night", 0).commit()
+                sharedPreference.edit().putInt("Morning", 0).commit()
+                sharedPreference.edit().putInt("Afternoon", 0).commit()
+                sharedPreference.edit().putInt("Evening", 0).commit()
+
 
 
             }
