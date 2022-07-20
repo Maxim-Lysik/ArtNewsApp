@@ -139,7 +139,7 @@ class ArtNewsActivity : AppCompatActivity() {
                 viewModel.putDate(dayData7)
 
 
-                //   CLEANING PARTS OF THE DAY
+                //   CLEANING PARTS OF THE DAYY
 
 
                 sharedPreference.edit().putInt("Night", 0).commit()
