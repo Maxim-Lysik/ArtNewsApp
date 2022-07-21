@@ -106,7 +106,7 @@ class ArtNewsActivity : AppCompatActivity() {
             var day_of_week1 = timee1.substring(0,3)
             var day_of_week2 = timee2.substring(0,3)
 
-            var converted_day_of_week1: Int = fromStringtoInt(day_of_week1)   // Working
+            var converted_day_of_week1: Int = fromStringtoInt(day_of_week1)   // Workingg
             var converted_day_of_week2: Int = fromStringtoInt(day_of_week2)   // Working
 
 
