@@ -48,7 +48,7 @@ class ArtNewsActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_artnews) as NavHostFragment
         val navController = navHostFragment.navController
         // Passing each menu ID as a set of Ids because eachh
-        // menu should be considered as top level destinations.
+        // menu should be considered as top level destinationns.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_news, R.id.navigation_saved, R.id.navigation_stats
