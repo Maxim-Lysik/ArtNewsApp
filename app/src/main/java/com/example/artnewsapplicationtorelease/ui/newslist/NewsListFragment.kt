@@ -65,7 +65,7 @@ class NewsListFragment : Fragment() {
             CoroutineScope(Dispatchers.IO).launch {
                 val repo: NewsRepository = NewsRepository()
                 repo.getSearchedNews(
-                    "art && graffiti",
+                    "skateboarding",
                     1,
                     "free-news.p.rapidapi.com",
                     "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7"

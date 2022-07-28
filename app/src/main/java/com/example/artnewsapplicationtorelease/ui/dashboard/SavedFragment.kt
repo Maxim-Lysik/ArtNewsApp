@@ -103,6 +103,16 @@ class SavedFragment : Fragment() {
 
         viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articles ->
             newsAdapter.differ.submitList(articles)
+
+            if (articles.size > 0) {
+                no_items_found.visibility = View.INVISIBLE
+               // no_found_text.visibility = View.INVISIBLE
+
+
+            }
+
+
+
         })
 
 

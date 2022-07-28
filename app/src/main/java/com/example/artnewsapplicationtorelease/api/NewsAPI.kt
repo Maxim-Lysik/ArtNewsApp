@@ -11,7 +11,7 @@ interface NewsAPI {
     @GET("/v1/search")
     suspend fun getSearchedNews(
         @Query("q")
-        //query: String = "art && graffiti",
+        //query: String = "skateboarding",
         query: String = "skateboarding",
         @Query("page") page: Int = 1,
         @Query("lang") lang: String = "en",
