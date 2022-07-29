@@ -154,7 +154,7 @@ class NewsAdapter(ctx: Context) : RecyclerView.Adapter<NewsAdapter.ArticleViewHo
 
             //tvSource.text = article.author
            tvTitle.text = article.title
-           // tvDescription.text = article.summary
+            tvDescription.text = article.summary
            // tvPublishedAt.text = article.published_date
             setOnClickListener {
                 onItemClickListener?.let { it(article) }

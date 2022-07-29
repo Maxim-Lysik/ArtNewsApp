@@ -21,12 +21,12 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="400dp">
 
             <ImageView
                 android:id="@+id/ivArticleImage"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:adjustViewBounds="false"
                 android:cropToPadding="false"
                 android:scaleType="fitXY" />
@@ -37,8 +37,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivArticleImage"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="-1dp"
+                android:layout_marginBottom="92dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -49,21 +51,24 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/hkgrotesk_bold"
-                    android:text="TextView"
-                    android:maxLines="3"
                     android:ellipsize="end"
+                    android:fontFamily="@font/hkgrotesk_bold"
+                    android:maxLines="3"
+                    android:text="TextView"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/tvDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/hkgrotesk_medium"
+                    android:maxLines="2"
                     android:text="TextView" />
             </LinearLayout>
 
