@@ -43,6 +43,11 @@ class ArtNewsActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
+
+        val actionBar: androidx.appcompat.app.ActionBar? = supportActionBar     // Hiding actionbar
+        actionBar?.hide()
+
+
       //  val navController = findNavController(R.id.nav_host_fragment_activity_artnews)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_artnews) as NavHostFragment

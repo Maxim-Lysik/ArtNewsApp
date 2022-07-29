@@ -136,6 +136,7 @@ class NewsAdapter(ctx: Context) : RecyclerView.Adapter<NewsAdapter.ArticleViewHo
                     .load(article.media)
                     .error(R.drawable.werrr)
                     .fit()
+                    .centerCrop()
                     .into(ivArticleImage)
             }
 
@@ -149,10 +150,12 @@ class NewsAdapter(ctx: Context) : RecyclerView.Adapter<NewsAdapter.ArticleViewHo
 
 */
             //Glide.with(this).load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg").into(ivArticleImage)
-            tvSource.text = article.author
-            tvTitle.text = article.title
-            tvDescription.text = article.summary
-            tvPublishedAt.text = article.published_date
+
+
+            //tvSource.text = article.author
+           tvTitle.text = article.title
+           // tvDescription.text = article.summary
+           // tvPublishedAt.text = article.published_date
             setOnClickListener {
                 onItemClickListener?.let { it(article) }
             }

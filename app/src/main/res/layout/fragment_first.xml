@@ -15,11 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
         android:layout_weight="1.16"
-        app:srcCompat="@drawable/werrr"
+        app:srcCompat="@drawable/news_final21"
         tools:src="@tools:sample/avatars" />
 
 
@@ -30,15 +30,17 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_weight="0"
-        tools:src="@tools:sample/avatars"
-        tools:srcCompat="@drawable/bg_gradient_line" />
+        app:srcCompat="@drawable/slider1"
+        tools:src="@drawable/slider1"
+        tools:srcCompat="@drawable/slider1" />
 
     <TextView
         android:id="@+id/exploreTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Explore cities"
+        android:fontFamily="@font/hkgrotesk_black"
+        android:text="Collect news"
         android:textAlignment="center"
         android:textColor="#353535"
         android:textSize="24sp"
@@ -50,8 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/hkgrotesk_bold"
         android:gravity="center"
-        android:text="Find masterpieces in 24 european cities \nand create your own pathway full of art.\n Enjoy your journey! " />
+        android:text="Find up-to-date skateboarding news \n &amp; start your day with boards in your phone.\n Keep on scrolling! " />
 
 
     <Button
@@ -62,6 +65,7 @@
         android:layout_marginTop="30dp"
         android:backgroundTint="#4BA2D3"
 
+        android:fontFamily="@font/hkgrotesk_black"
         android:text="Next"
         android:textAllCaps="false"
         android:textStyle="bold"

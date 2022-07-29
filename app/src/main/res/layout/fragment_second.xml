@@ -15,11 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
         android:layout_weight="1.16"
-        app:srcCompat="@drawable/ic_notifications_black_24dp"
+        app:srcCompat="@drawable/saved1"
         tools:src="@tools:sample/avatars" />
 
 
@@ -30,15 +30,17 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_weight="0"
+        app:srcCompat="@drawable/slider2"
         tools:src="@tools:sample/avatars"
-        tools:srcCompat="@drawable/bg_gradient_line" />
+        tools:srcCompat="@drawable/slider2" />
 
     <TextView
         android:id="@+id/exploreTitle2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Explore cities2"
+        android:fontFamily="@font/hkgrotesk_black"
+        android:text="Save the best"
         android:textAlignment="center"
         android:textColor="#353535"
         android:textSize="24sp"
@@ -50,8 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/hkgrotesk_bold"
         android:gravity="center"
-        android:text="2 Find masterpieces in 24 european cities \nand create your own pathway full of art.\n Enjoy your journey! " />
+        android:text="Collect your most favorite articles. \nKeep them all in your phone to read later.\n Create your own knowledge base! " />
 
 
     <Button
@@ -62,6 +65,7 @@
         android:layout_marginTop="30dp"
         android:backgroundTint="#4BA2D3"
 
+        android:fontFamily="@font/hkgrotesk_black"
         android:text="Next"
         android:textAllCaps="false"
         android:textStyle="bold"
