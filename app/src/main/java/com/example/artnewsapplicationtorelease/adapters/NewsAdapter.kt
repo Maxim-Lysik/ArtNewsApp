@@ -2,7 +2,6 @@ package com.example.artnewsapplicationtorelease.adapters
 
 import android.content.ContentValues.TAG
 import android.content.Context
-import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -127,14 +126,15 @@ class NewsAdapter(ctx: Context) : RecyclerView.Adapter<NewsAdapter.ArticleViewHo
 
             if (article.media == null) {
                 Picasso.get()
-                    .load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg")
-                    .error(R.drawable.werrr)
+                    .load("https://ibb.co/LrjvZQr")     // .load("https://i.ibb.co/XYNfnCR/imgonline-com-ua-dexif-J11-TBi-KNXOTO.jpg")
+                    .error(R.drawable.not_found4)
                     .fit()
+                    .centerCrop()
                     .into(ivArticleImage)
             } else {
                 Picasso.get()
                     .load(article.media)
-                    .error(R.drawable.werrr)
+                    .error(R.drawable.not_found4)
                     .fit()
                     .centerCrop()
                     .into(ivArticleImage)
@@ -155,6 +155,8 @@ class NewsAdapter(ctx: Context) : RecyclerView.Adapter<NewsAdapter.ArticleViewHo
             //tvSource.text = article.author
            tvTitle.text = article.title
             tvDescription.text = article.summary
+            our_date.text = article.published_date
+            our_rigths.text = article.rights
            // tvPublishedAt.text = article.published_date
             setOnClickListener {
                 onItemClickListener?.let { it(article) }
