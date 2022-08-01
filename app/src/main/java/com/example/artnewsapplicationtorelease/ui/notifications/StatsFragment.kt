@@ -28,6 +28,7 @@ import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.github.mikephil.charting.data.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_stats.*
+import kotlinx.android.synthetic.main.fragment_stats.view.*
 import java.util.*
 import javax.inject.Inject
 
@@ -250,41 +251,60 @@ class StatsFragment : Fragment() {
 
 
 
+        var counter_general: Int = sharedPreference.getInt("General", 0)
 
-        our_cardview.setOnClickListener {
+        if(counter_general == 0){
+            our_cardview.setOnClickListener {null}
+            Log.d(TAG, "GENERAL: ${counter_general}")
+        }
+        else{
 
-            Log.d(TAG, "OBJEct_LINK: ${card_view_link}")
-
-             var needed_object = viewModel.getArticleByLink(card_view_link!!).observe(viewLifecycleOwner, androidx.lifecycle.Observer { it ->
-
-                 Log.d(TAG, "EBATS: ${it!!.title}")
-
-             })
-            var needed_object2 = viewModel.getArticleByLink(card_view_link!!)
-            Log.d(TAG, "OBJECT: ${needed_object2.value?.title}")
+            try{
+                our_cardview.setOnClickListener {
 
 
-            val bundle = Bundle().apply {
-                putString("Webview_link", "sadsadsad")
-                //putSerializable("article2", it)
+
+                    Log.d(TAG, "OBJEct_LINK: ${card_view_link}")
+
+                    var needed_object = viewModel.getArticleByLink(card_view_link!!).observe(viewLifecycleOwner, androidx.lifecycle.Observer { it ->
+
+                        //   Log.d(TAG, "EBATS: ${it!!.title}")
+
+                    })
+                    var needed_object2 = viewModel.getArticleByLink(card_view_link!!)
+                    Log.d(TAG, "OBJECT: ${needed_object2.value?.title}")
+
+
+                    val bundle = Bundle().apply {
+                        putString("Webview_link", "sadsadsad")
+                        //putSerializable("article2", it)
+                    }
+
+
+                    /* val gson = Gson()
+                     val json: String? = sharedPreference.getString("Our_object", "DEFAULT")
+                      val obj: Article = gson.fromJson(json, Article::class.java)
+                     Log.d(TAG, "JEYSON: ${obj.title}")*/
+
+
+                    findNavController().navigate(
+                        R.id.action_navigation_stats_to_second_article_fragment, bundle
+                    )
+
+
+                }
+
+            }catch (e: Exception){
+
+
             }
 
 
-           /* val gson = Gson()
-            val json: String? = sharedPreference.getString("Our_object", "DEFAULT")
-             val obj: Article = gson.fromJson(json, Article::class.java)
-            Log.d(TAG, "JEYSON: ${obj.title}")*/
-
-
-
-            findNavController().navigate(
-                R.id.action_navigation_stats_to_second_article_fragment, bundle
-            )
-
-
-
-
         }
+
+
+
+
 
 
 

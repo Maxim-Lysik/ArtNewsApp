@@ -17,6 +17,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_article.*
 import kotlinx.android.synthetic.main.fragment_article.webView
 import kotlinx.android.synthetic.main.fragment_second_article.*
+import kotlinx.android.synthetic.main.fragment_stats.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +38,33 @@ class SecondArticleFragment : Fragment(R.layout.fragment_second_article) {
         val sharedPreference =  this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
         val gson = Gson()
         val json: String? = sharedPreference.getString("Our_object", "DEFAULT")
-        val obj: Article = gson.fromJson(json, Article::class.java)
+
+
+      /*  var obj_smal: Article = Article("2", 2.0, "sdsa", "clean_url", "country", true, "language", "link", "media", "published_date", "published_date_precision"
+            , 2, "rights", "summary", "title", "topic", "twitter_account"
+        )*/
+
+        Log.d(ContentValues.TAG, "JEYSON: ${json}")
+
+        var obj: Article = Article("2", 2.0, "sdsa", "clean_url", "country", true, "language", "link", "media", "published_date", "published_date_precision"
+            , 2, "rights", "summary", "title", "topic", "twitter_account")
+
+
+        if(json =="DEFAULT"){
+            obj= Article("2", 2.0, "sdsa", "clean_url", "country", true, "language", "link", "media", "published_date", "published_date_precision"
+                , 2, "rights", "summary", "title", "topic", "twitter_account")
+
+
+           // our_cardview.setOnClickListener(null)
+        }
+        else{obj= gson.fromJson(json, Article::class.java)}
+
+      // val obj: Article = gson.fromJson(json, Article::class.java)
+
+
+
+
+
         //Log.d(ContentValues.TAG, "JEYSON: ${obj.title}")
 
         webView.apply {
