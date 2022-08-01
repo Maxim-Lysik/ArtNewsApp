@@ -64,7 +64,7 @@ class SavedFragment : Fragment() {
                 putSerializable("article", it)
             }
             findNavController().navigate(
-                R.id.action_navigation_saved_to_articleFragment, bundle
+                R.id.action_navigation_saved_to_second_article_fragment2, bundle
             )
         }
 

@@ -49,11 +49,11 @@ class SecondArticleFragment : Fragment(R.layout.fragment_second_article) {
         }
 
 
-        fab2.setOnClickListener {
+     /*   fab2.setOnClickListener {
             viewModel.saveArticle(obj)
             Snackbar.make(view, "Article was saved", Snackbar.LENGTH_SHORT).show()
         }
-
+*/
 
 
 

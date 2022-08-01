@@ -25,12 +25,8 @@
         android:label="Saved"
         tools:layout="@layout/fragment_saved" >
         <action
-            android:id="@+id/action_navigation_saved_to_articleFragment"
-            app:destination="@id/articleFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            android:id="@+id/action_navigation_saved_to_second_article_fragment2"
+            app:destination="@id/second_article_fragment" />
     </fragment>
 
     <fragment
