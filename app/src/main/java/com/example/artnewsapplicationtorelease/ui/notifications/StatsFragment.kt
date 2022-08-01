@@ -75,12 +75,12 @@ class StatsFragment : Fragment() {
         _binding = FragmentStatsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
+       /* val textView: TextView = binding.textNotifications
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
 
 
-        }
+        }*/
 
        /* val ggraphView: GraphView = binding.graphView
         ggraphView.setData(generateDataPoints())*/
@@ -558,14 +558,14 @@ class StatsFragment : Fragment() {
 
     private fun setupDaysRecyclerView(newList: ArrayList<String>) {
         daysAdapter = DaysAdapter(this.requireActivity(), newList )
-        our_recycler.apply {
+       /* our_recycler.apply {
             adapter = daysAdapter
             val linearLayoutManager = LinearLayoutManager(activity)
             linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
            // layoutManager = LinearLayoutManager(activity)
             layoutManager = linearLayoutManager
            // addOnScrollListener(this@NewsListFragment.scrollListener)
-        }
+        }*/
     }
 
 
