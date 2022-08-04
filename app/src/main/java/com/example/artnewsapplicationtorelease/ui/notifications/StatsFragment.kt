@@ -182,11 +182,11 @@ class StatsFragment : Fragment() {
         val calendar2: Calendar = Calendar.getInstance()
         var comparable1 = calendar2[Calendar.DAY_OF_WEEK].toInt()
         if (sharedPreference.getInt("Comparable2", 0)!= 0 && sharedPreference.getInt("Comparable2", 0) != comparable1){
-            per_day_text.setText("Yesterday")
+            per_day_text.setText("Yesterday articles read")
 
         }
         else{
-            per_day_text.setText("TOday")
+            per_day_text.setText("Today articles read")
         }
 
 
@@ -239,7 +239,21 @@ class StatsFragment : Fragment() {
             testing_text.setText(obj.title)
 
 
-            Glide.with(this).load(obj.media).into(last_art_pic)
+
+
+            /*
+            *
+
+      .fit()
+                    .centerCrop()
+            * */
+
+
+
+
+
+
+            Glide.with(this).load(obj.media).fitCenter().centerCrop().into(last_art_pic)
         }catch (e: Exception){
 
 
