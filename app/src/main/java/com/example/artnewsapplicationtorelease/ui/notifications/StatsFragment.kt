@@ -243,7 +243,7 @@ class StatsFragment : Fragment() {
 
             /*
             *
-
+.fitCenter().centerCrop().
       .fit()
                     .centerCrop()
             * */
@@ -253,7 +253,7 @@ class StatsFragment : Fragment() {
 
 
 
-            Glide.with(this).load(obj.media).fitCenter().centerCrop().into(last_art_pic)
+            Glide.with(this).load(obj.media).into(last_art_pic)
         }catch (e: Exception){
 
 
