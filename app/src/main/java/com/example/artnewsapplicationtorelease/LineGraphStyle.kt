@@ -73,11 +73,12 @@ class LineGraphStyle @Inject constructor(private val context: Context) {
         color = ContextCompat.getColor(context, R.color.black)
         valueTextColor = ContextCompat.getColor(context, R.color.black)
         // setDrawValues(false) // Deleting circles with numbers
-        valueTextSize = 12f  // setting value size right
-        lineWidth = 3f
+        valueTextSize = 10f  // setting value size right
+        lineWidth = 1f
         isHighlightEnabled = true
         // setDrawCircles(false) // Deleting circles\
         mode = CUBIC_BEZIER
+
 
         setDrawFilled(true)
         fillDrawable = ContextCompat.getDrawable(context, R.drawable.bg_gradient_line)

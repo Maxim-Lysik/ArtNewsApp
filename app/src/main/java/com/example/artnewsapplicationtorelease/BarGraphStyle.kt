@@ -21,7 +21,6 @@ class BarGraphStyle @Inject constructor(private val context: Context) {
 
 
 
-
         xAxis.apply {
 
 

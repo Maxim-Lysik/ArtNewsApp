@@ -62,6 +62,7 @@ class NotificationsViewModel : ViewModel() {
     var lineDataSet: LiveData<LineDataSet> = _lineDataSet
 
 
+
     //    S_E_C_O_N_D    P_A_R_T               //
 
 
@@ -121,7 +122,7 @@ class NotificationsViewModel : ViewModel() {
         // MORNING
         morning.add(BarEntry(3f, 1f,))
         _morningDataSet.value = BarDataSet(morning, CHART_MORNING)
-        _morningDataSet.value!!.setColor(-0x1000000)
+        _morningDataSet.value!!.setColor(Color.parseColor("#A2CCCB"))
 
 
 
@@ -129,21 +130,21 @@ class NotificationsViewModel : ViewModel() {
 
         afternoon.add(BarEntry(2f, 1f))
         _afternoonDataSet.value = BarDataSet(afternoon, CHART_AFTERNOON)
-        _afternoonDataSet.value!!.setColor(Color.RED)
+        _afternoonDataSet.value!!.setColor(Color.parseColor("#509096"))
 
         // EVENING
 
         evening.add(BarEntry(1f, 1f))
         _eveningDataSet.value = BarDataSet(evening, CHART_EVENING)
-        _eveningDataSet.value!!.setColor(Color.GREEN)
+        _eveningDataSet.value!!.setColor(Color.parseColor("#2F5759"))
 
         // NIGHT
 
         night.add(BarEntry(0f, 1f))
         _nightDataSet.value = BarDataSet(night, CHART_NIGHT)
-        _nightDataSet.value!!.setColor(Color.BLUE)
+        _nightDataSet.value!!.setColor(Color.parseColor("#1C3333"))
 
-
+  // 0E2C2D
 
 
 

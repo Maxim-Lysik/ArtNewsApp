@@ -29,6 +29,7 @@ import com.github.mikephil.charting.data.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_stats.*
 import kotlinx.android.synthetic.main.fragment_stats.view.*
+import kotlinx.android.synthetic.main.item_article_preview.*
 import java.util.*
 import javax.inject.Inject
 
@@ -428,7 +429,9 @@ class StatsFragment : Fragment() {
                // axisMaximum = 20f
                // isGranularityEnabled = false
                 isEnabled = false
+
             }
+            binding.dayChart2.description = null
 
         }
 
