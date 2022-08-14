@@ -27,9 +27,6 @@ import kotlinx.android.synthetic.main.fragment_saved.*
 class SavedFragment : Fragment() {
 
     private var _binding: FragmentSavedBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
@@ -44,11 +41,6 @@ class SavedFragment : Fragment() {
 
         _binding = FragmentSavedBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-      //  val textView: TextView = binding.textDashboard
-       /* dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
         return root
     }
 
@@ -69,10 +61,10 @@ class SavedFragment : Fragment() {
         }
 
 
-        val itemTouchHelperCallback = object: ItemTouchHelper.SimpleCallback(
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ){
+        ) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -86,7 +78,7 @@ class SavedFragment : Fragment() {
                 val article = newsAdapter.differ.currentList[position]
                 viewModel.deleteArticle(article)
                 Snackbar.make(view, "Successfully deleted article", Snackbar.LENGTH_SHORT).apply {
-                    setAction("Undo"){
+                    setAction("Undo") {
                         viewModel.saveArticle(article)
                     }
                     show()
@@ -96,7 +88,7 @@ class SavedFragment : Fragment() {
         }
 
 
-        ItemTouchHelper(itemTouchHelperCallback).apply{
+        ItemTouchHelper(itemTouchHelperCallback).apply {
             attachToRecyclerView(rvSavedNews)
         }
 
@@ -106,18 +98,13 @@ class SavedFragment : Fragment() {
 
             if (articles.size > 0) {
                 no_items_found.visibility = View.INVISIBLE
-               // no_found_text.visibility = View.INVISIBLE
-
-
             }
-
-
 
         })
 
 
-
-        val sharedPreference =  this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        val sharedPreference =
+            this.activity!!.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
         var needed = sharedPreference.getInt("Ass", 0)
 
         Log.d(ContentValues.TAG, "SHARED ONE IZ ${needed}");
@@ -131,9 +118,6 @@ class SavedFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
         }
     }
-
-
-
 
 
     override fun onDestroyView() {

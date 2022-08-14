@@ -11,25 +11,7 @@ import javax.inject.Inject
 class BarGraphStyle @Inject constructor(private val context: Context) {
 
     fun styleChart(barChart: BarChart) = barChart.apply {
-
-
-
-
-     // tst2 tst3 tst7 tst8
-
-
-
-
-
-        xAxis.apply {
-
-
-        }
-
-
+        xAxis.apply {}
     }
-
-
-
 
 }

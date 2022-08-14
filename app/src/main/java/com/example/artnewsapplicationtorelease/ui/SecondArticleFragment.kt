@@ -39,33 +39,15 @@ class SecondArticleFragment : Fragment(R.layout.fragment_second_article) {
         val gson = Gson()
         val json: String? = sharedPreference.getString("Our_object", "DEFAULT")
 
-
-      /*  var obj_smal: Article = Article("2", 2.0, "sdsa", "clean_url", "country", true, "language", "link", "media", "published_date", "published_date_precision"
-            , 2, "rights", "summary", "title", "topic", "twitter_account"
-        )*/
-
-        Log.d(ContentValues.TAG, "JEYSON: ${json}")
-
         var obj: Article = Article("2", 2.0, "sdsa", "clean_url", "country", true, "language", "link", "media", "published_date", "published_date_precision"
             , 2, "rights", "summary", "title", "topic", "twitter_account")
-
 
         if(json =="DEFAULT"){
             obj= Article("2", 2.0, "sdsa", "clean_url", "country", true, "language", "link", "media", "published_date", "published_date_precision"
                 , 2, "rights", "summary", "title", "topic", "twitter_account")
 
-
-           // our_cardview.setOnClickListener(null)
         }
         else{obj= gson.fromJson(json, Article::class.java)}
-
-      // val obj: Article = gson.fromJson(json, Article::class.java)
-
-
-
-
-
-        //Log.d(ContentValues.TAG, "JEYSON: ${obj.title}")
 
         webView.apply {
             webViewClient = WebViewClient()
@@ -75,12 +57,6 @@ class SecondArticleFragment : Fragment(R.layout.fragment_second_article) {
            loadUrl(obj.link)
         }
 
-
-     /*   fab2.setOnClickListener {
-            viewModel.saveArticle(obj)
-            Snackbar.make(view, "Article was saved", Snackbar.LENGTH_SHORT).show()
-        }
-*/
 
 
 

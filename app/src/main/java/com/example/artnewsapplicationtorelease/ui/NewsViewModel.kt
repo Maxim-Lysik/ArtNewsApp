@@ -23,46 +23,43 @@ import java.util.*
 
 class NewsViewModel(
     app: Application,
-    val newsRepository: NewsRepository) : AndroidViewModel(app) {
+    val newsRepository: NewsRepository
+) : AndroidViewModel(app) {
 
     val searchedNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
     var breakingNewsResponse: NewsResponse? = null
 
 
-
-
-
     init {
-        getBreakingNews("skateboarding", breakingNewsPage, "en", "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
-
-        //getBreakingNews("art & graffiti", breakingNewsPage, "free-news.p.rapidapi.com", "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7")
+        getBreakingNews(
+            "skateboarding",
+            breakingNewsPage,
+            "en",
+            "free-news.p.rapidapi.com",
+            "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7"
+        )
     }
 
-    fun getBreakingNews(q: String, page: Int,  lang: String, host: String, api: String) = viewModelScope.launch {
-
-        safeBreakingNewsCall(q, breakingNewsPage, "en", host, api)
-
-        /*searchedNews.postValue(Resource.Loading())
-        val response = newsRepository.getSearchedNews(q, breakingNewsPage, host, api)
-        searchedNews.postValue(handleBreakingNewsResponse(response))*/
-
-    }
+    fun getBreakingNews(q: String, page: Int, lang: String, host: String, api: String) =
+        viewModelScope.launch {
+            safeBreakingNewsCall(q, breakingNewsPage, "en", host, api)
+        }
 
 
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 breakingNewsPage++
-                if(breakingNewsResponse == null){
+                if (breakingNewsResponse == null) {
                     breakingNewsResponse = resultResponse
-                } else{
+                } else {
                     val oldArticles = breakingNewsResponse?.articles
                     val newArticles = resultResponse.articles
                     oldArticles?.addAll(newArticles)
 
                 }
-                return Resource.Success(breakingNewsResponse?:resultResponse)
+                return Resource.Success(breakingNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
@@ -78,11 +75,11 @@ class NewsViewModel(
         newsRepository.deleteArticle(article)
     }
 
-    fun getArticleByLink(link:String): LiveData<Article> {
+    fun getArticleByLink(link: String): LiveData<Article> {
         return newsRepository.getArticleNeeded(link)
     }
 
-    // FUNCTIONS FOR DAYDATA
+    // FUNCTIONS FOR DAYDATA //
 
 
     fun putDate(dayData: DayData) = viewModelScope.launch {
@@ -96,49 +93,47 @@ class NewsViewModel(
     }
 
 
-    fun getdayDataByID(id: Int): LiveData<DayData>{
+    fun getdayDataByID(id: Int): LiveData<DayData> {
         return newsRepository.getDayItemById(id)
     }
 
-    /*fun itemByGeo(geoCoordinates: GeoCoordinates): LiveData<ArtItem?> {
-        return retroRepository.getArtItem(geoCoordinates)
-    }*/
 
-
-    //
-
-
-
-
-
-
-
-
-
-    private suspend fun safeBreakingNewsCall(q: String, page: Int, lang: String, host: String, api: String){
+    private suspend fun safeBreakingNewsCall(
+        q: String,
+        page: Int,
+        lang: String,
+        host: String,
+        api: String
+    ) {
         searchedNews.postValue(Resource.Loading())
-        try{
-            if(hasInternetConnection()){
+        try {
+            if (hasInternetConnection()) {
 
                 val pages_number = 0
-                val response = newsRepository.getSearchedNews(q, breakingNewsPage, "en", host, api)  // может быть тута
+                val response = newsRepository.getSearchedNews(
+                    q,
+                    breakingNewsPage,
+                    "en",
+                    host,
+                    api
+                )
                 val pages_number_again = response.body()!!.total_pages
                 Log.d(TAG, "TOTAL NUMBER IS ${pages_number_again}");
 
                 searchedNews.postValue(handleBreakingNewsResponse(response))
-            }else{
+            } else {
                 searchedNews.postValue(Resource.Error("No internet connection"))
             }
 
 
-        } catch (t: Throwable){
-                when(t){
+        } catch (t: Throwable) {
+            when (t) {
 
-                    is IOException -> searchedNews.postValue(Resource.Error("Network Failure"))
-                    else -> searchedNews.postValue(Resource.Error(""))
+                is IOException -> searchedNews.postValue(Resource.Error("Network Failure"))
+                else -> searchedNews.postValue(Resource.Error(""))
 
 
-                }
+            }
 
 
         }
@@ -147,26 +142,22 @@ class NewsViewModel(
     }
 
 
-
-
-
-
-
-
     private fun hasInternetConnection(): Boolean {
-        val connectivityManager = getApplication<NewsApplication>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            val activeNetwork = connectivityManager.activeNetwork?: return false
-            val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        val connectivityManager =
+            getApplication<NewsApplication>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val activeNetwork = connectivityManager.activeNetwork ?: return false
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
             return when {
                 capabilities.hasTransport(TRANSPORT_WIFI) -> true
                 capabilities.hasTransport(TRANSPORT_CELLULAR) -> true
                 capabilities.hasTransport(TRANSPORT_ETHERNET) -> true
                 else -> false
             }
-        }else{
+        } else {
             connectivityManager.activeNetworkInfo?.run {
-                return when(type) {
+                return when (type) {
                     TYPE_WIFI -> true
                     TYPE_MOBILE -> true
                     TYPE_ETHERNET -> true
@@ -181,22 +172,5 @@ class NewsViewModel(
         return false
 
     }
-
-
-    // FOR LINEGRAPH
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

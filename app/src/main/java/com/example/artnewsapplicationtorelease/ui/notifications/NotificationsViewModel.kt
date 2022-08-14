@@ -19,28 +19,11 @@ import java.util.*
 class NotificationsViewModel : ViewModel() {
 
     lateinit var viewModel: NewsViewModel
-
-    // private val newsRepository: NewsRepository
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"
     }
     val text: LiveData<String> = _text
 
-// FUNCTIONS FOR DAYDATA
-
-
-    /* fun putDate(dayData: DayData) = viewModelScope.launch {
-         newsRepository.upsert(dayData)
-     }
-
-     fun getAllDays() = newsRepository.getAllDays()
-
-     fun deleteDay(dayData: DayData) = viewModelScope.launch {
-         newsRepository.deleteDay(dayData)
-     }
- */
-
-    //
 
     companion object {
 
@@ -60,10 +43,6 @@ class NotificationsViewModel : ViewModel() {
     var dayData = mutableListOf<Entry>()
     var _lineDataSet = MutableLiveData(LineDataSet(dayData, CHART_LABEL))
     var lineDataSet: LiveData<LineDataSet> = _lineDataSet
-
-
-
-    //    S_E_C_O_N_D    P_A_R_T               //
 
 
     // MORNING
@@ -92,7 +71,6 @@ class NotificationsViewModel : ViewModel() {
 
 
 
-
     init {
 
         val dayData1: DayData = DayData(1, "Sunday", 0)
@@ -111,20 +89,14 @@ class NotificationsViewModel : ViewModel() {
         dayData.add(Entry(dayData5.id.toFloat(), dayData5.clicks_today!!.toFloat()))
         dayData.add(Entry(dayData6.id.toFloat(), dayData6.clicks_today!!.toFloat()))
         dayData.add(Entry(dayData7.id.toFloat(), dayData7.clicks_today!!.toFloat()))
-
         _lineDataSet.value = LineDataSet(dayData, CHART_LABEL)
 
-
-
-        Log.d(ContentValues.TAG, "NUMBER OF DAYS IS ${monthMaxDays}");
 
 
         // MORNING
         morning.add(BarEntry(3f, 1f,))
         _morningDataSet.value = BarDataSet(morning, CHART_MORNING)
         _morningDataSet.value!!.setColor(Color.parseColor("#A2CCCB"))
-
-
 
         // AFTERNOON
 
@@ -143,14 +115,6 @@ class NotificationsViewModel : ViewModel() {
         night.add(BarEntry(0f, 1f))
         _nightDataSet.value = BarDataSet(night, CHART_NIGHT)
         _nightDataSet.value!!.setColor(Color.parseColor("#1C3333"))
-
-  // 0E2C2D
-
-
-
-
-
-        // FOR THE SECOND GRAPH
 
     }
 

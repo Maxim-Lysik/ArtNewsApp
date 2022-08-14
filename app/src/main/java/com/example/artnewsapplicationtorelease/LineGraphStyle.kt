@@ -13,56 +13,36 @@ import javax.inject.Inject
 class LineGraphStyle @Inject constructor(private val context: Context) {
 
 
-
     fun styleChart(lineChart: LineChart) = lineChart.apply {
-
-
-
 
 
         axisRight.apply {
             isEnabled = true
             granularity = 1f
-
         }
 
 
         axisLeft.apply {
-           isEnabled = false
-            axisMinimum = -3.9F  // Need this
-
+            isEnabled = false
+            axisMinimum = -3.9F
             granularity = 1f
         }
 
         xAxis.apply {
             axisMinimum = 1F
-            //axisMaximum = 24f        dfsdfs
-
-            isGranularityEnabled = true // Need this
-            granularity = 1f  // Need this
+            isGranularityEnabled = true
+            granularity = 1f
             isEnabled = false
-
-
-
-            setDrawGridLines(true)   // mainhere
-
-            setDrawAxisLine(false)  // Need this
-
-             position = XAxis.XAxisPosition.BOTTOM
-
-
-
+            setDrawGridLines(true)
+            setDrawAxisLine(false)
+            position = XAxis.XAxisPosition.BOTTOM
         }
 
 
-        setTouchEnabled(true)  // Also think we need this
+        setTouchEnabled(true)
         isDragEnabled = true
         setScaleEnabled(true)
         setPinchZoom(true)
-
-
-        // Descriptions
-
         description = null
         legend.isEnabled = false
 
@@ -72,19 +52,12 @@ class LineGraphStyle @Inject constructor(private val context: Context) {
     fun styleLineDataSet(lineDataSet: LineDataSet) = lineDataSet.apply {
         color = ContextCompat.getColor(context, R.color.black)
         valueTextColor = ContextCompat.getColor(context, R.color.black)
-        // setDrawValues(false) // Deleting circles with numbers
-        valueTextSize = 10f  // setting value size right
+        valueTextSize = 10f
         lineWidth = 1f
         isHighlightEnabled = true
-        // setDrawCircles(false) // Deleting circles\
         mode = CUBIC_BEZIER
-
-
         setDrawFilled(true)
         fillDrawable = ContextCompat.getDrawable(context, R.drawable.bg_gradient_line)
-
-
-
     }
 
 }
