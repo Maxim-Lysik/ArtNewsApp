@@ -41,10 +41,11 @@ class SecondArticleFragment : Fragment(R.layout.fragment_second_article) {
         //Log.d(ContentValues.TAG, "JEYSON: ${obj.title}")
 
         webView.apply {
+
+            val settings = webView.settings
+            settings.javaScriptEnabled = true
+            settings.domStorageEnabled = true
             webViewClient = WebViewClient()
-
-
-
            loadUrl(obj.link)
         }
 
