@@ -1,9 +1,10 @@
 package com.example.artnewsapplicationtorelease.ui
 
-import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -25,11 +26,41 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
         val args: ArticleFragmentArgs by navArgs()
 
+
+
+       /* webView.setWebViewClient(object : WebViewClient() {
+            override fun onReceivedError(
+                view: WebView,
+                errorCode: Int,
+                description: String,
+                failingUrl: String
+            ) {
+                when (errorCode) {
+                    ERROR_CONNECT -> {
+                        Log.d(TAG, "кнопка ОК");}
+                    ERROR_REDIRECT_LOOP -> {Log.d(TAG, "кнопка ОК");}
+                    ERROR_UNKNOWN -> {Log.d(TAG, "кнопка ОК");}
+                    ERROR_TOO_MANY_REQUESTS -> {Log.d(TAG, "кнопка ОК");}
+                }
+            }
+        })
+*/
+
+
+
+
+
         val article = args.article
         webView.apply {
+            val settings = webView.settings
+            settings.javaScriptEnabled = true
+            settings.domStorageEnabled = true
             webViewClient = WebViewClient()
+
             loadUrl(article.link)
         }
+
+
 
 
 

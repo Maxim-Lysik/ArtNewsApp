@@ -74,6 +74,11 @@ class ArtNewsActivity : AppCompatActivity() {
 
 
 
+
+
+
+
+
         if(sharedPreference.getString("Point1", "") == ""){
         sharedPreference.edit().putString("Point1", string_for_date).commit()
        }

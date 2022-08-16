@@ -50,6 +50,18 @@ class NewsViewModel(
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
+
+                // ЦИКЛ FOR для ResultResponse, там для кажого респонса перебираем есть ли чьл-то что нам не катит
+
+                //for(item in resultResponse.articles){}
+               // if(resultResponse.articles.c){}
+
+                /*
+                for (x in arr) {
+                    println(x)
+                  }
+                 */
+
                 breakingNewsPage++
                 if (breakingNewsResponse == null) {
                     breakingNewsResponse = resultResponse

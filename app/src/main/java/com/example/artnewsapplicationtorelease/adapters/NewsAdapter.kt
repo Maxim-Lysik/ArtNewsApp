@@ -102,6 +102,7 @@ class NewsAdapter(ctx: Context) : RecyclerView.Adapter<NewsAdapter.ArticleViewHo
                 Picasso.Builder(holder.itemView.ivArticleImage.context).listener { picasso, uri, exception ->
                     Log.d("TAG", " onImageLoadFailed message")
                     holder.itemView.ivArticleImage.isVisible = false
+                    holder.itemView.cardview_main.isVisible = false
                     exception.printStackTrace()
                 }.build()
 

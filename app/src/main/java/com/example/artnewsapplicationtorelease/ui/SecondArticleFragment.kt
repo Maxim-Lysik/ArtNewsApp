@@ -50,10 +50,11 @@ class SecondArticleFragment : Fragment(R.layout.fragment_second_article) {
         else{obj= gson.fromJson(json, Article::class.java)}
 
         webView.apply {
+
+            val settings = webView.settings
+            settings.javaScriptEnabled = true
+            settings.domStorageEnabled = true
             webViewClient = WebViewClient()
-
-
-
            loadUrl(obj.link)
         }
 
