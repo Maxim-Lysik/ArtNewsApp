@@ -1,11 +1,11 @@
 package com.example.artnewsapplicationtorelease.adapters
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -63,21 +63,56 @@ class NewsAdapter(ctx: Context) : RecyclerView.Adapter<NewsAdapter.ArticleViewHo
         )
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.itemView.apply {
 
+
+            val picasso =
+                Picasso.Builder(holder.itemView.ivArticleImage.context).listener { picasso, uri, exception ->
+                    Log.d("TAG", " onImageLoadFailed message")
+                    holder.itemView.ivArticleImage.isVisible = false
+                    exception.printStackTrace()
+                }.build()
+
+
             if (article.media == null) {
-                Picasso.get()
-                    .load("https://ibb.co/LrjvZQr")
-                    .error(R.drawable.not_found4)
-                    .fit()
-                    .centerCrop()
-                    .into(ivArticleImage)
+               picasso.load("https://ibb.co/LrjvZQr")
+                   .fit()
+                   .centerCrop()
+                   .into(ivArticleImage)
             } else {
-                Picasso.get()
-                    .load(article.media)
-                    .error(R.drawable.not_found4)
+                picasso.load(article.media)
                     .fit()
                     .centerCrop()
                     .into(ivArticleImage)
@@ -90,7 +125,50 @@ class NewsAdapter(ctx: Context) : RecyclerView.Adapter<NewsAdapter.ArticleViewHo
             setOnClickListener {
                 onItemClickListener?.let { it(article) }
             }
+
+
+            /*
+              //
+
+              if (article.media == null) {
+                  Picasso.get()
+                      .load("https://ibb.co/LrjvZQr")
+                      //.error(R.drawable.no_preview_image)
+                      .fit()
+                      .centerCrop()
+                      .into(ivArticleImage)
+              } else {
+                  Picasso.get()
+                      .load(article.media)
+                      .error(R.drawable.no_preview_image)
+                      .fit()
+                      .centerCrop()
+                      .into(ivArticleImage)
+              }
+
+              tvTitle.text = article.title
+              tvDescription.text = article.summary
+              our_date.text = article.published_date
+              our_rigths.text = article.rights
+              setOnClickListener {
+                  onItemClickListener?.let { it(article) }
+              }
+
+              //
+              */
+
         }
+
+
+
+
+
+
+
+
+
+
+
     }
 
     private var onItemClickListener: ((Article) -> Unit)? = null
