@@ -45,7 +45,7 @@ class SavedFragment : Fragment() {
         _binding = FragmentSavedBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-      //  val textView: TextView = binding.textDashboard
+      //  val textView: TextView = binding.textDashboard  txt1
        /* dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }*/
