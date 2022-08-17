@@ -20,19 +20,13 @@ class NewsRepository(
 
     suspend fun deleteArticle(article: Article) = db.getItemDao().deleteArticle(article)
 
-    // functions for DauData table
+    // Functions for DauData table //
 
     suspend fun upsert(dayData: DayData) = db.getDaydataDao().upsert(dayData)
 
     fun getAllDays() = db.getDaydataDao().getAllDataObjects()
 
     fun getDayItemById(id: Int): LiveData<DayData> = db.getDaydataDao().getDayDataItem(id)
-
-
-
-    /*fun getArtItem(geoCoordinates: GeoCoordinates): LiveData<ArtItem?> =
-        retroDao.getArtItem(geoCoordinates)*/
-
 
     suspend fun deleteDay(dayData: DayData) = db.getDaydataDao().deleteDateObject(dayData)
 
