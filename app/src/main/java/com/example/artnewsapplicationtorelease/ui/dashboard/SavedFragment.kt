@@ -106,7 +106,7 @@ class SavedFragment : Fragment() {
 
             if (articles.size > 0) {
                 no_items_found.visibility = View.INVISIBLE
-               // no_found_text.visibility = View.INVISIBLE
+               // no_found_text.visibility = View.INVISIBLE txt
 
 
             }

@@ -27,7 +27,11 @@ import com.example.artnewsapplicationtorelease.models.DayData
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
 import com.github.mikephil.charting.data.*
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_stats.*
+import kotlinx.android.synthetic.main.fragment_stats.view.*
+import kotlinx.android.synthetic.main.item_article_preview.*
+import kotlinx.android.synthetic.main.item_article_preview.view.*
 import java.util.*
 import javax.inject.Inject
 
