@@ -25,8 +25,8 @@
         android:label="Saved"
         tools:layout="@layout/fragment_saved" >
         <action
-            android:id="@+id/action_navigation_saved_to_second_article_fragment2"
-            app:destination="@id/second_article_fragment" />
+            android:id="@+id/action_navigation_saved_to_articleFragment"
+            app:destination="@id/articleFragment" />
     </fragment>
 
     <fragment
