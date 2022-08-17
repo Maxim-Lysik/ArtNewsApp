@@ -35,25 +35,18 @@ class ArtNewsActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val newsRepository = NewsRepository(NewsDataBase(this))
         val viewModelProviderFactory = NewsViewModelProviderFactory(application, newsRepository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
-
-
         val navView: BottomNavigationView = binding.navView
 
-
-        val actionBar: androidx.appcompat.app.ActionBar? = supportActionBar     // Hiding actionbar
+        val actionBar: androidx.appcompat.app.ActionBar? = supportActionBar
         actionBar?.hide()
 
 
-      //  val navController = findNavController(R.id.nav_host_fragment_activity_artnews)
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_artnews) as NavHostFragment
         val navController = navHostFragment.navController
-        // Passing each menu ID as a set of Ids because eacch. Testing new words
-        // menu should be considered as top level destinatioons.
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_news, R.id.navigation_saved, R.id.navigation_stats
@@ -80,42 +73,39 @@ class ArtNewsActivity : AppCompatActivity() {
 
 
 
-        Log.d(TAG, "CALENDAR TODAY'S ISS ${day_time}");
 
-       // sharedPreference.edit().putInt("Point1", day).commit()
-      //  sharedPreference.edit().putInt("Point2", day).commit()
+
+
+
+
+
+
+
+
 
 
         if(sharedPreference.getString("Point1", "") == ""){
         sharedPreference.edit().putString("Point1", string_for_date).commit()
        }
-
         else if(sharedPreference.getString("Point1", "") != "" && sharedPreference.getString("Point2", "") == "" ){
-
 
             sharedPreference.edit().putString("Point2", string_for_date).commit()
 
         }
-
-      else if( (sharedPreference.getString("Point1", "") != "" && sharedPreference.getString("Point2", "") != "")
+        else if( (sharedPreference.getString("Point1", "") != "" && sharedPreference.getString("Point2", "") != "")
                   && fullDateFormatter.parse(sharedPreference.getString("Point2", ""))!! >= fullDateFormatter.parse(sharedPreference.getString("Point1", ""))   ){
 
-            sharedPreference.edit().putString("Point1", sharedPreference.getString("Point2", "")).commit()  // Последнюю дату ставим на место первой
+            sharedPreference.edit().putString("Point1", sharedPreference.getString("Point2", "")).commit()
             sharedPreference.edit().putString("Point2", string_for_date).commit()
-            Log.d(TAG, "USPEKH");
-
 
             var timee1 = fullDateFormatter.parse(sharedPreference.getString("Point1", "")).toString()
             var timee2 = fullDateFormatter.parse(sharedPreference.getString("Point2", "")).toString()
-
             var day_of_week1 = timee1.substring(0,3)
             var day_of_week2 = timee2.substring(0,3)
+            var converted_day_of_week1: Int = fromStringtoInt(day_of_week1)
+            var converted_day_of_week2: Int = fromStringtoInt(day_of_week2)
 
-            var converted_day_of_week1: Int = fromStringtoInt(day_of_week1)   // Workingg
-            var converted_day_of_week2: Int = fromStringtoInt(day_of_week2)   // Working
 
-
-            // OPERATING WITH VALUES HERE
 
             if(converted_day_of_week2 < converted_day_of_week1){
 
@@ -126,7 +116,6 @@ class ArtNewsActivity : AppCompatActivity() {
                 sharedPreference.edit().putInt("Thursday", 0).commit()
                 sharedPreference.edit().putInt("Friday", 0).commit()
                 sharedPreference.edit().putInt("Saturday", 0).commit()
-
 
                 var dayData1: DayData = DayData(1, "Sunday", 0)
                 viewModel.putDate(dayData1)
@@ -143,44 +132,17 @@ class ArtNewsActivity : AppCompatActivity() {
                 var dayData7: DayData = DayData(7, "Saturday", 0)
                 viewModel.putDate(dayData7)
 
-
-                //   CLEANING PARTS OF THE DAYY
-
-
                 sharedPreference.edit().putInt("Night", 0).commit()
                 sharedPreference.edit().putInt("Morning", 0).commit()
                 sharedPreference.edit().putInt("Afternoon", 0).commit()
                 sharedPreference.edit().putInt("Evening", 0).commit()
 
-
-
             }
-
-
-
-
 
             var timee12 = sharedPreference.getString("Point1", "")
             var timee22 = sharedPreference.getString("Point2", "")
 
-
-
-
-            Log.d(TAG, "HER 1 IS ${timee1}");
-            Log.d(TAG, "HER 2 IS ${timee2}");
-
-            Log.d(TAG, "SUBSTRING 1 IS ${day_of_week1}");
-            Log.d(TAG, "SUBSTRING 2 IS ${day_of_week2}");
-
-            Log.d(TAG, "INTA 1 IS ${converted_day_of_week1}");
-            Log.d(TAG, "INTA 2 IS ${converted_day_of_week2}");
-
-
        }
-
-
-
-
 
     }
 
@@ -196,35 +158,16 @@ class ArtNewsActivity : AppCompatActivity() {
             "Fri" -> counter = 6
             "Sat" -> counter = 7
         }
-
-return counter
+        return counter
     }
 
     override fun onStart() {
         super.onStart()
-
         val sharedPreference =
             getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-
         var time_point1 = sharedPreference.getString("Point1", "")
         var time_point2 = sharedPreference.getString("Point2", "")
-
-
-
-
-
-
-        Log.d(TAG, "TIMEPOINT 1 IS ${time_point1}");
-        Log.d(TAG, "TIMEPOINT 2 IS ${time_point2}");
-
-
-
-
     }
-
-
-
-
 
 
 }
