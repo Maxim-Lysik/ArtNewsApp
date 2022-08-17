@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 class LineGraphStyle @Inject constructor(private val context: Context) {
 
-
     fun styleChart(lineChart: LineChart) = lineChart.apply {
 
 

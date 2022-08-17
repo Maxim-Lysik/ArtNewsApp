@@ -13,34 +13,4 @@ data class SiteSources (
     val _id: String,
     @ColumnInfo(name = "score") val _score: Double,
 
-
-    /*
-
-    foxnews.com
-
-    express.co.uk
-yahoo.com
-olympics.com
-redbull.com
-dailymail.co.uk
-
-
-*/
-
-
-
-/*
-
-redbull.com
-olympics.com
-yahoo.com
-
-
-
- */
-
-
-
-
-
     )

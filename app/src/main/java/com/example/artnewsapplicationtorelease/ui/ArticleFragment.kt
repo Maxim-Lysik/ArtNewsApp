@@ -1,9 +1,10 @@
 package com.example.artnewsapplicationtorelease.ui
 
-import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -17,28 +18,48 @@ import kotlinx.android.synthetic.main.fragment_article.*
 class ArticleFragment : Fragment(R.layout.fragment_article) {
 
     lateinit var viewModel: NewsViewModel
-    //val args: ArticleFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as ArtNewsActivity).viewModel
 
 
+        val args: ArticleFragmentArgs by navArgs()
 
-    val args: ArticleFragmentArgs by navArgs()
+
+
+       /* webView.setWebViewClient(object : WebViewClient() {
+            override fun onReceivedError(
+                view: WebView,
+                errorCode: Int,
+                description: String,
+                failingUrl: String
+            ) {
+                when (errorCode) {
+                    ERROR_CONNECT -> {
+                        Log.d(TAG, "кнопка ОК");}
+                    ERROR_REDIRECT_LOOP -> {Log.d(TAG, "кнопка ОК");}
+                    ERROR_UNKNOWN -> {Log.d(TAG, "кнопка ОК");}
+                    ERROR_TOO_MANY_REQUESTS -> {Log.d(TAG, "кнопка ОК");}
+                }
+            }
+        })
+*/
+
+
+
 
 
         val article = args.article
         webView.apply {
+            val settings = webView.settings
+            settings.javaScriptEnabled = true
+            settings.domStorageEnabled = true
             webViewClient = WebViewClient()
+
             loadUrl(article.link)
-            //https://www.entrepreneur.com/article/368477    article.link
         }
 
-
-
-       // var needed_object2 = viewModel.getArticleByLink(article.link!!)
-      //  Log.d(ContentValues.TAG, "ICHO: ${needed_object2.value!!.title}")
 
 
 
@@ -48,31 +69,11 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             Snackbar.make(view, "Article was saved", Snackbar.LENGTH_SHORT).show()
         }
 
-        //val hui = args.shit
-        //Log.d(ContentValues.TAG, "SUKAAA: ${hui}")
-
-
-
-        /* val bundle = Bundle().apply { article
-             //putSerializable("article", it)
-             putString("article2", article.title.toString())
-         }
- */
 
         val bundle = Bundle()
         val fragment: Fragment = StatsFragment()
         bundle.putString("company", "companyName")
-        // bundle.
-        //  bundle.putString("project", projectName)
         fragment.arguments = bundle
-
-
-        /*val hui = args.shit
-        Log.d(ContentValues.TAG, "SUKAAA: ${hui}")*/
-
-
-        /*val fragment_stats = StatsFragment()
-        fragment_stats.arguments = bundle*/
 
         fab.setOnClickListener {
             viewModel.saveArticle(article)
