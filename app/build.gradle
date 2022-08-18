@@ -11,7 +11,7 @@ plugins {
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 
-
+//applicationId "com.example.artnewsapplicationtorelease"
 
 android {
     compileSdk 32

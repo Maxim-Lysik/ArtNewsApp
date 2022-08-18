@@ -9,7 +9,6 @@ interface DaydataDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(day_data: DayData): Long
-    //suspend fun upsert(article: Article): String
 
     @Query("SELECT * FROM dates")
     fun getAllDataObjects(): LiveData<List<DayData>>
@@ -24,11 +23,6 @@ interface DaydataDao {
 
     @Query("SELECT * FROM dates WHERE id=:id ")
     fun getDayDataItem(id: Int): LiveData<DayData>
-
-
-
-
-
 
 
 }
