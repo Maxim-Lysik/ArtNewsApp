@@ -36,7 +36,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
             webViewClient = WebViewClient()
             loadUrl(article.link)
-            //https://www.entrepreneur.com/article/368477    article.link txt txt txt txt txt5
+            //https://www.entrepreneur.com/article/368477    article.link txt txt txt txt txt5 txt7
         }
 
 
