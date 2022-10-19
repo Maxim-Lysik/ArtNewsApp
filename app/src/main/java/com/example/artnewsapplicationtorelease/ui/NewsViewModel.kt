@@ -9,7 +9,7 @@ import android.net.NetworkCapabilities.*
 import android.os.Build
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.artnewsapplicationtorelease.DataPoint
+import com.example.artnewsapplicationtorelease.BuildConfig
 import com.example.artnewsapplicationtorelease.NewsApplication
 import com.example.artnewsapplicationtorelease.models.Article
 import com.example.artnewsapplicationtorelease.models.DayData
@@ -30,14 +30,14 @@ class NewsViewModel(
     var breakingNewsPage = 1
     var breakingNewsResponse: NewsResponse? = null
 
-
+    var apiKey: String = BuildConfig.API_KEY
     init {
         getBreakingNews(
             "skateboarding",
             breakingNewsPage,
             "en",
             "free-news.p.rapidapi.com",
-            "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7"
+            apiKey
         )
     }
 

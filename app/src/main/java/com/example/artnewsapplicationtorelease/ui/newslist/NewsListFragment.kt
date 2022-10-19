@@ -14,10 +14,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.artnewsapplicationtorelease.ArtNewsActivity
+import com.example.artnewsapplicationtorelease.BuildConfig
 import com.example.artnewsapplicationtorelease.R
 import com.example.artnewsapplicationtorelease.adapters.NewsAdapter
 import com.example.artnewsapplicationtorelease.databinding.FragmentNewsListBinding
 import com.example.artnewsapplicationtorelease.ui.NewsViewModel
+import com.example.artnewsapplicationtorelease.utils.Constants.Companion.API_KEY
 import com.example.artnewsapplicationtorelease.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.artnewsapplicationtorelease.utils.Resource
 import com.google.gson.Gson
@@ -319,13 +321,16 @@ class NewsListFragment : Fragment() {
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
                     isTotalMoreThanVisible && isScrolling && pages_not_more_than_two
 
+            val API_KEY: String = BuildConfig.API_KEY
+
+
             if (shouldPaginate) {
                 viewModel.getBreakingNews(
                     "skateboarding",
                     viewModel.breakingNewsPage,
                     "en",
                     "free-news.p.rapidapi.com",
-                    "d1565c3530msh540aa5917d83d32p15f952jsn233e528b8ff7"
+                    API_KEY
                 )
                 isScrolling = false
             }
