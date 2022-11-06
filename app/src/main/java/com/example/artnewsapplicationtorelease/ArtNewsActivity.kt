@@ -74,7 +74,7 @@ class ArtNewsActivity : AppCompatActivity() {
 
 
 
-// Testing18
+// Testing19
 
 
 
