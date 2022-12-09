@@ -9,7 +9,6 @@ import com.example.artnewsapplicationtorelease.models.DayData
 class NewsRepository(
     val db: NewsDataBase
 ) {
-
     suspend fun getSearchedNews(q: String, page: Int, lang: String, host: String, api: String) = RetrofitInstance.api.getSearchedNews(q,page, lang, host, api)
 
     suspend fun upsert(article: Article) = db.getItemDao().upsert(article)
