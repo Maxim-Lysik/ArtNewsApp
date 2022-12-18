@@ -161,6 +161,9 @@ class ArtNewsActivity : AppCompatActivity() {
         return counter
     }
 
+
+    //test1
+
     override fun onStart() {
         super.onStart()
         val sharedPreference =
