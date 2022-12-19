@@ -59,7 +59,7 @@ class SecondArticleFragment : Fragment(R.layout.fragment_second_article) {
         }
 
 
-
+// test1
 
     }
 }
