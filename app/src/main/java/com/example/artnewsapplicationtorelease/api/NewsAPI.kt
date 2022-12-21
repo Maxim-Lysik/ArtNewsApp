@@ -20,3 +20,6 @@ interface NewsAPI {
     ): Response<NewsResponse>
 
 }
+
+
+// test1
