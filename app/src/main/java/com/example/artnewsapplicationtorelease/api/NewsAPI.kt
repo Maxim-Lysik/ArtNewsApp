@@ -22,4 +22,4 @@ interface NewsAPI {
 }
 
 
-// test1
+// test2
