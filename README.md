@@ -7,4 +7,5 @@ Application is divided into 3 main screens for easy navigation:
 
 Searching with this application is fast & intuitive. Each title is accompanied by it's rating, description & final poster
 
-This Application has it's own [behance page](https://pages.github.com/](https://www.behance.net/gallery/165774285/TR-Movies-Mobile-App).
+This Application has it's own [behance page](https://pages.github.com/](https://www.behance.net/gallery/165774285/TR-Movies-Mobile-App/).
+[behance page](https://pages.github.com/](https://www.behance.net/gallery/165774285/TR-Movies-Mobile-App/)
