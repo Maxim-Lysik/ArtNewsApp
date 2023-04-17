@@ -210,6 +210,8 @@ class StatsFragment : Fragment() {
         chartStyle.styleChart(binding.dayChart)
 
 
+        // TEST12
+
         // SECOND GRAPH //
 
 
