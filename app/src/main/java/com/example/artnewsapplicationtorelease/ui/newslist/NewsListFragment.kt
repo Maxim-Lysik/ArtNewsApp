@@ -366,5 +366,9 @@ class NewsListFragment : Fragment() {
         _binding = null
     }
 
+
+    // test12
+
+
 }
 
