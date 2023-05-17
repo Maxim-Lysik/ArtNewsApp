@@ -153,7 +153,7 @@ class ArtNewsActivity : AppCompatActivity() {
     }
 
 
-    //test12
+    //test13
 
     override fun onStart() {
         super.onStart()
