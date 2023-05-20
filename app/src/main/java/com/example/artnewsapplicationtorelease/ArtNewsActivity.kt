@@ -72,7 +72,7 @@ class ArtNewsActivity : AppCompatActivity() {
 
 
 
-// Testing97
+// Testing98
         
 
         if(sharedPreference.getString("Point1", "") == ""){
