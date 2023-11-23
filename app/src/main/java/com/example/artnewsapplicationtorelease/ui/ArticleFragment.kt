@@ -70,7 +70,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         //  bundle.putString("project", projectName)
         fragment.arguments = bundle
 
-// test91
+// test92
         /*val hui = args.shit
         Log.d(ContentValues.TAG, "SUKAAA: ${hui}")*/
 
