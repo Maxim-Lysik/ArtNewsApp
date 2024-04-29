@@ -70,7 +70,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         //  bundle.putString("project", projectName)
         fragment.arguments = bundle
 
-// test195
+// test196
 
 
         /*val fragment_stats = StatsFragment()
